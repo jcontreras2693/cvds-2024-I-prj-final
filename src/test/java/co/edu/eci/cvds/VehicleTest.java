@@ -44,7 +44,7 @@ class VehicleTest {
     @Test
     void shouldNotCreateVehicleInvalidYCylinderCapacity() {
         try {
-            Vehicle vehicle = new Vehicle("AUDI", "A1", -2022, 150);
+            Vehicle vehicle = new Vehicle("AUDI", "A1", 2022, -150);
             fail();
         }
         catch (ModelException modelException){
