@@ -9,8 +9,8 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue
-    @Column(name = "CATEGORY_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CATEGORY_ID")
     private int categoryId;
 
     @Column(name = "CATEGORY_NAME", nullable = false)
@@ -22,8 +22,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(int categoryId, String name) {
-        this.categoryId = categoryId;
+    public Category(String name) {
+        this.categoryId = 0;
         this.name = name;
     }
 

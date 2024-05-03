@@ -2,6 +2,7 @@ package co.edu.eci.cvds.service;
 
 import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.model.Quotation;
+import co.edu.eci.cvds.model.QuotationStatus;
 import co.edu.eci.cvds.repository.QuotationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,14 +76,14 @@ public class QuotationService {
         return calculateTotal(quotation);
     }
 
-    public void updateStatus(Quotation quotation, String status){
-        quotation.setStatus(status);
+    public void updateStatus(Quotation quotation, QuotationStatus status){
+        quotation.updateStatus(status);
     }
 
-    public void updateStatus(int id, String status){
+    public void updateStatus(int id, QuotationStatus status){
         Quotation quotation = getQuotation(id);
         if(quotation != null){
-            quotation.setStatus(status);
+            quotation.updateStatus(status);
         }
     }
 
@@ -98,13 +99,13 @@ public class QuotationService {
     }
 
     public void deleteItem(Quotation quotation, Item item){
-        quotation.deleteItem(); //completar metodo
+        quotation.deleteItem(item); //completar metodo
     }
 
     public void deleteItem(int id, Item item){
         Quotation quotation = getQuotation(id);
         if(quotation != null){
-            quotation.deleteItem(); //completar metodo
+            quotation.deleteItem(item); //completar metodo
         }
     }
 }

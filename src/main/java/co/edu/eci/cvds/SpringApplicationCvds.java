@@ -17,6 +17,7 @@ import java.util.Arrays;
 public class SpringApplicationCvds {
 	private final ConfigurationService configurationService;
 
+
 	@Autowired
 	public SpringApplicationCvds(
 			ConfigurationService configurationService
