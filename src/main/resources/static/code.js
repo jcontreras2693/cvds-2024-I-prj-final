@@ -19,24 +19,36 @@ var imagenes = [
 
 // función para agregar una imagen al contenedor con un ID único y evento de clic
 function agregarImagen(src, alt) {
-    // generar un ID único para la imagen
-    var idUnico = 'imagen-' + alt.toLowerCase();
+    // generar un ID único para el rectángulo
+    var idUnico = 'brand-' + alt.toLowerCase();
+
+    // crear el elemento de rectángulo
+    var rectangle = document.createElement('div');
+    rectangle.className = 'rectanglee';
+    rectangle.id = idUnico; // Asignar el ID único al rectángulo
 
     // crear el elemento de imagen
     var img = document.createElement('img');
     img.src = src;
     img.alt = alt;
-    img.id = idUnico; // Asignar el ID único a la imagen
 
-    // obtener el contenedor de imágenes
-    var contenedor = document.getElementById('image-grid');
+    // agregar la imagen al rectángulo
+    rectangle.appendChild(img);
 
-    // agregar la imagen al contenedor
-    contenedor.appendChild(img);
+    // obtener el contenedor de rectángulos
+    var contenedor = document.getElementById('rectangle-grid');
 
-    // agregar evento de clic a la imagen
-    img.addEventListener('click', function() {
-        alert('¡Hiciste clic en la imagen de ' + alt + '!');
+    // agregar el rectángulo al contenedor
+    contenedor.appendChild(rectangle);
+
+    img.addEventListener('click', function() { // evento de clic a la imagen
+        // remover la clase de todos los rectángulos
+        var rectangles = document.querySelectorAll('.rectanglee');
+        rectangles.forEach(function(rectangle) {
+            rectangle.classList.remove('active');
+        });
+        
+        rectangle.classList.add('active'); // agregar la clase al rectángulo actual
     });
 }
 
@@ -44,4 +56,3 @@ function agregarImagen(src, alt) {
 for (var i = 0; i < imagenes.length; i++) {
     agregarImagen(imagenes[i].src, imagenes[i].alt);
 }
-
