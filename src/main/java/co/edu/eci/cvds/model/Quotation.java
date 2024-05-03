@@ -2,7 +2,9 @@ package co.edu.eci.cvds.model;
 
 import jakarta.persistence.*;
 
+import java.sql.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,6 +42,7 @@ public class Quotation {
         this.creationDate = creationDate;
         this.status = status;
         this.total = total;
+        this.items = new ArrayList<Item>();
     }
 
     public int getQuotationId() {
@@ -82,11 +85,16 @@ public class Quotation {
 
     }
 
-    public void addItem(){
-
+    public void addItem(Item item){
+        items.add(item);
     }
 
     public void deleteItem(){
 
     }
+
+    public List<Item> getItems(){
+        return items;
+    }
+
 }
