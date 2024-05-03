@@ -1,7 +1,9 @@
 package co.edu.eci.cvds.model;
 
+import co.edu.eci.cvds.exceptions.ModelException;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,8 +11,8 @@ import java.util.List;
 public class Vehicle {
 
     @Id
-    @GeneratedValue
-    @Column(name = "VEHICLE_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "VEHICLE_ID")
     private int vehicleId;
 
     @Column(name = "BRAND", nullable = false)
@@ -23,7 +25,7 @@ public class Vehicle {
     private int year;
 
     @Column(name = "CYLINDER_CAPACITY", nullable = false)
-    private String cylinderCapacity;
+    private int cylinderCapacity;
 
     @ManyToMany(mappedBy = "vehicles")
     private List<Item> items;
@@ -31,12 +33,12 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(int vehicleId, String brand, String model, int year, String cylinderCapacity) {
-        this.vehicleId = vehicleId;
+    public Vehicle(String brand, String model, int year, int cylinderCapacity) throws ModelException {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.cylinderCapacity = cylinderCapacity;
+        this.items = new ArrayList<Item>();
     }
 
     public int getVehicleId() {
@@ -71,11 +73,19 @@ public class Vehicle {
         this.year = year;
     }
 
-    public String getCylinderCapacity() {
+    public int getCylinderCapacity() {
         return cylinderCapacity;
     }
 
-    public void setCylinderCapacity(String cylinderCapacity) {
+    public void setCylinderCapacity(int cylinderCapacity) {
         this.cylinderCapacity = cylinderCapacity;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

@@ -13,15 +13,16 @@ import java.util.List;
 public class Quotation {
 
     @Id
-    @GeneratedValue
-    @Column(name = "QUOTATION_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "QUOTATION_ID")
     private int quotationId;
 
     @Column(name = "CREATION_DATE", nullable = false, columnDefinition = "DATE")
     private LocalDate creationDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "STATUS", nullable = false)
-    private String status;
+    private QuotationStatus status;
 
     @Column(name = "TOTAL", nullable = false)
     private Double total;
@@ -35,13 +36,9 @@ public class Quotation {
     private List<Item> items;
 
     public Quotation() {
-    }
-
-    public Quotation(int quotationId, LocalDate creationDate, String status, Double total) {
-        this.quotationId = quotationId;
-        this.creationDate = creationDate;
-        this.status = status;
-        this.total = total;
+        this.creationDate = LocalDate.now();
+        this.status = QuotationStatus.CREADO;
+        this.total = 0.0;
         this.items = new ArrayList<Item>();
     }
 
@@ -61,12 +58,8 @@ public class Quotation {
         this.creationDate = creationDate;
     }
 
-    public String getStatus() {
+    public QuotationStatus getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Double getTotal() {
@@ -81,16 +74,16 @@ public class Quotation {
         return -1.0;
     }
 
-    public void updateStatus(){
-
+    public void updateStatus(QuotationStatus status){
+        this.status = status;
     }
 
     public void addItem(Item item){
         items.add(item);
     }
 
-    public void deleteItem(){
-
+    public void deleteItem(Item item){
+        items.remove(item);
     }
 
     public List<Item> getItems(){

@@ -1,7 +1,9 @@
 package co.edu.eci.cvds.model;
 
+import co.edu.eci.cvds.exceptions.ModelException;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,8 +11,8 @@ import java.util.List;
 public class Item {
 
     @Id
-    @GeneratedValue
-    @Column(name = "ITEM_ID", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ITEM_ID")
     private int itemId;
 
     @Column(name = "ITEM_NAME", nullable = false)
@@ -58,8 +60,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(int itemId, String name, String shortDescription, String technicalDescription, String image, Double value, Double currency, Double discount, Boolean availability, Double tax) {
-        this.itemId = itemId;
+    public Item(String name, String shortDescription, String technicalDescription, String image, Double value, Double currency, Double discount, Boolean availability, Double tax, Category category) throws ModelException {
         this.name = name;
         this.shortDescription = shortDescription;
         this.technicalDescription = technicalDescription;
@@ -69,6 +70,9 @@ public class Item {
         this.discount = discount;
         this.availability = availability;
         this.tax = tax;
+        this.category = category;
+        this.quotations = new ArrayList<Quotation>();
+        this.vehicles = new ArrayList<Vehicle>();
     }
 
     public int getItemId() {
@@ -151,6 +155,30 @@ public class Item {
         this.availability = availability;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void addCategory(Category category){
+        this.category = category;
+    }
+
+    public List<Quotation> getQuotations() {
+        return quotations;
+    }
+
+    public void setQuotations(List<Quotation> quotations) {
+        this.quotations = quotations;
+    }
+
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
     public Double calculateSubtotal(){
         return -1.0;
     }
@@ -161,9 +189,5 @@ public class Item {
 
     public boolean isAvailable(){
         return availability;
-    }
-
-    public void addCategory(Category category){
-
     }
 }
