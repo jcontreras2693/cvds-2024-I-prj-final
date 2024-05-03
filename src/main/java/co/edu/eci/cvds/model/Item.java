@@ -1,5 +1,5 @@
 package co.edu.eci.cvds.model;
 
-public class Quotation {
+public class Item {
 
 }
