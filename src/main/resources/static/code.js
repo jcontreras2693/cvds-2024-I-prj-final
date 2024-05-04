@@ -17,6 +17,11 @@ var marcas = [
     { src: 'images/marcas/hyundai.png', alt: 'Hyundai' }
 ];
 
+var arraysByBrand = {
+    'audi': audi
+    // Agrega más marcas y sus arrays asociados según necesites
+};
+
 var audi = [
     { src: 'images/audi/A1.png', alt: 'a1' },
     { src: 'images/audi/A1_TDI.png', alt: 'a1_tdi' },
@@ -34,13 +39,10 @@ var audi = [
     { src: 'images/audi/S3_Performance.png', alt: 's3_performance' }
 ];
 
-
 var lastBrandClicked = null;
 
 // agregar una imagen al contenedor con un ID único y evento de clic
 function agregarImagen(src, alt) {
-    document.getElementById('marca').classList.add('active');
-
     var idUnique = alt.toLowerCase(); // generar ID
     
     var rectangle = crearRectangulo(idUnique); // crear rectángulo
@@ -78,21 +80,41 @@ function agregarEventoClic(img, id, rectangle) {
             rect.classList.remove('active');
         });
         rectangle.classList.add('active');
-        lastBrandClicked = seleccionarMarca();
+        lastBrandClicked = seleccionarMarca(id);
     });
 }
 
 // cargar las imágenes al iniciar la página
 window.onload = function() {
-    for (var i = 0; i < marcas.length; i++) {
-        agregarImagen(marcas[i].src, marcas[i].alt);
-    }
+    document.getElementById('marca').classList.add('active');
+    createImagesGrid(marcas);
 }
 
-function seleccionarMarca() {
+function seleccionarMarca(choice) {
     document.getElementById('marca').classList.remove('active');
     document.getElementById('modelo').classList.add('active');
+    clearImagesGrid();
+    createImagesGrid(audi);
 }
 
+// Crea la cuadrícula de imagenes según la opción seleccionada
+function createImagesGrid(choice) {
+        /*
+        if (!Array.isArray(choice)) {
+            choice = arraysByBrand[choice];
+        }
+        console.log(choice.length);
+        console.log(choice[0].alt);
+        */
+        for (var i = 0; i < choice.length; i++) {
+            agregarImagen(choice[i].src, choice[i].alt);
+        }
+}
 
-
+//Borra los contenedores de la cuadrícula de imagenes
+function clearImagesGrid() {
+    var contenedor = document.getElementById('rectangle-grid');
+    while (contenedor.firstChild) {
+        contenedor.removeChild(contenedor.firstChild);
+    }
+}

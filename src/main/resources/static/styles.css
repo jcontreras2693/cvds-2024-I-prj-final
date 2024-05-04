@@ -32,12 +32,13 @@
     text-align: center;
 }
 
-
 .logo a img[src$=".svg"] {
     width: 18%;
     vertical-align: middle;
     display: inline-block;
 }
+
+/*Contenedor más grande*/
 .rectangle {
     width: 65%;
     height: 70%;
@@ -58,13 +59,13 @@
     line-height: 120px; /* altura de línea para centrar verticalmente */
     letter-spacing: 3px;
 }
+
 .botones {
     display: flex;
     justify-content: space-between; /* distribuye los botones horizontalmente */
     margin-left: 50px;
     margin-right: 50px;
     margin-top: 1%;
-    
 }
 
 .botones button {
@@ -94,7 +95,7 @@
     border: 0;
 }
 
-
+/*Contenedor de la cuadrícula*/
 .rectangle-grid {
     margin-left: 50px;
     display: grid;
@@ -106,10 +107,11 @@
     margin-right: 5%;
     padding-right: 15px; /* margen al lado derecho */
     padding-left: 15px; /* margen al lado derecho */
-    overflow-y: scroll;
+    overflow: auto;
     max-height: 60%;
-    
 }
+
+/* Contenedor del fondo de la imagen*/
 .rectanglee {
     /*background-color: transparent;
     border: 1px solid #D91F28;
@@ -120,6 +122,7 @@
     justify-content: center; /* Centra horizontalmente */
 }
 
+/*Contenedor del fondo de la imagen cuándo la imagen es seleccioanda*/
 .rectanglee.active {
     background-color: transparent;
     border: 1px solid #D91F28;
@@ -127,6 +130,7 @@
     box-shadow: 0px 0px 15px rgba(217, 31, 40, 0.5);
 }
 
+/*Contenedor de la imagen*/
 .rectanglee img {
     max-width: 80%;
     max-height: 80%;
@@ -141,6 +145,7 @@
 .rectangle-grid img:hover {
     transform: scale(1.1); /* aumenta el tamaño de la imagen al pasar el mouse sobre ella */
 }
+
 .rectangle-grid::-webkit-scrollbar{
     width: 7px;
 }
