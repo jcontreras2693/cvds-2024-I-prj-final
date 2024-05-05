@@ -99,13 +99,19 @@ public class QuotationService {
     }
 
     public void deleteItem(Quotation quotation, Item item){
-        quotation.deleteItem(item); //completar metodo
+        if(quotation != null){
+            List<Item> items = quotation.getItems();
+            for(Item i:items) {  //Implementar metodo que retorne un unico item
+                if (i == item) {
+                    quotation.deleteItem(item);
+                    break; //evitar eliminar todos los elementos agregados de ese item
+                }
+            }
+        }
     }
 
     public void deleteItem(int id, Item item){
         Quotation quotation = getQuotation(id);
-        if(quotation != null){
-            quotation.deleteItem(item); //completar metodo
-        }
+        deleteItem(quotation, item);
     }
 }
