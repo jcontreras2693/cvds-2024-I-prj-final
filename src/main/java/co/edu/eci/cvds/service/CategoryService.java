@@ -1,5 +1,6 @@
 package co.edu.eci.cvds.service;
 
+import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Category;
 import co.edu.eci.cvds.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,12 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
-    public Category getCategory(int id){
+    public Category getCategory(int id) throws ServiceException {
         Optional<Category> result = categoryRepository.findById(id);
-        if(result.isPresent()){
-            return result.get();
+        if(result.isEmpty()){
+            throw new ServiceException(ServiceException.nonExistentCategory);
         }
-        return null;
+        return result.get();
     }
 
     public List<Category> getAllCategories(){

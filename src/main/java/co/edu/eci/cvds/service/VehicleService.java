@@ -1,5 +1,6 @@
 package co.edu.eci.cvds.service;
 
+import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,19 +39,17 @@ public class VehicleService {
         return vehicleRepository.findDistinctCylinderCapacityByBrandAndModelAndYear(brand, model, year);
     }
 
-    public Vehicle getVehicle(int id){
+    public Vehicle getVehicle(int id) throws ServiceException {
         Optional<Vehicle> result = vehicleRepository.findById(id);
-        if(result.isPresent()){
-            return result.get();
+        if(result.isEmpty()){
+            throw new ServiceException(ServiceException.nonExistentVehicle);
         }
-        return null;
+        return result.get();
     }
 
-    public Vehicle updateVehicle(Vehicle vehicle){
+    public Vehicle updateVehicle(Vehicle vehicle) throws ServiceException {
         Vehicle update = getVehicle(vehicle.getVehicleId());
-        if(vehicle!=null){
-            vehicleRepository.delete(update);
-        }
+        vehicleRepository.delete(update);
         return vehicleRepository.save(vehicle);
     }
 
@@ -58,7 +57,7 @@ public class VehicleService {
         vehicleRepository.delete(vehicle);
     }
 
-    public void deleteVehicle(int id){
+    public void deleteVehicle(int id) throws ServiceException {
         Vehicle vehicle = getVehicle(id);
         deleteVehicle(vehicle);
     }

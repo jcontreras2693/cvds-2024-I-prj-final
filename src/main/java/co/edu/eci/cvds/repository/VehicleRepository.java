@@ -22,7 +22,4 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     @Query("SELECT DISTINCT v.cylinderCapacity FROM Vehicle v WHERE v.brand = :brand AND v.model = :model AND v.year = :year")
     List<String> findDistinctCylinderCapacityByBrandAndModelAndYear(String brand, String model, int year);
 
-
-
-
 }

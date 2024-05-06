@@ -1,5 +1,6 @@
 package co.edu.eci.cvds.service;
 
+import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Category;
 import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.repository.ItemRepository;
@@ -23,23 +24,21 @@ public class ItemService {
         return itemRepository.save(item);
     }
 
-    public Item getItem(int id){
+    public Item getItem(int id) throws ServiceException{
         Optional<Item> result = itemRepository.findById(id);
-        if(result.isPresent()){
-            return result.get();
+        if(result.isEmpty()){
+            throw new ServiceException(ServiceException.nonExistentItem);
         }
-        return null;
+        return result.get();
     }
 
     public List<Item> getAllItem(){
         return itemRepository.findAll();
     }
 
-    public Item updateItem(Item item){
+    public Item updateItem(Item item) throws ServiceException {
         Item update = getItem(item.getItemId());
-        if(update!=null){
-            itemRepository.delete(update);
-        }
+        itemRepository.delete(update);
         return addItem(item);
     }
 
@@ -47,41 +46,36 @@ public class ItemService {
         itemRepository.delete(item);
     }
 
-    public void deleteItem(int id){
+    public void deleteItem(int id) throws ServiceException {
         Item item = getItem(id);
-        if(item!=null) {
-            itemRepository.delete(item);
-        }
+        itemRepository.delete(item);
     }
 
     public double calculateSubtotal(Item item){
         return item.getValue();
     }
 
-    public double calculateSubtotal(int id){
+    public double calculateSubtotal(int id) throws ServiceException {
         Item item = getItem(id);
-        if(item==null){
-            return 0; //excepcion
-        }
-        return item.getValue();
+        double value = item.getValue();
+        double discount = value * (item.getDiscount() / 100);
+        return value - discount;
     }
 
     public double calculateTotal(Item item){
         double value = item.getValue();
         double discount = value * (item.getDiscount() / 100);
+        double valueWithDiscount = value - discount;
         double tax = value * (item.getTax() / 100);
-        return value + tax - discount;
+        return valueWithDiscount + tax;
     }
 
     public boolean isAvalible(Item item){
         return item.getAvailability();
     }
 
-    public boolean isAvalible(int id){
+    public boolean isAvalible(int id) throws ServiceException {
         Item item = getItem(id);
-        if(item==null) {
-            return false; //Excepcion
-        }
         return item.getAvailability();
     }
 
@@ -89,11 +83,9 @@ public class ItemService {
         item.addCategory(category);
     }
 
-    public void addCategory(int id, Category category){
+    public void addCategory(int id, Category category) throws ServiceException {
         Item item = getItem(id);
-        if(item != null) {
-            item.addCategory(category);
-        }
+        item.addCategory(category);
     }
 
 }

@@ -1,5 +1,6 @@
 package co.edu.eci.cvds.service;
 
+import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.model.Quotation;
 import co.edu.eci.cvds.model.QuotationStatus;
@@ -24,23 +25,21 @@ public class QuotationService {
         return  quotationRepository.save(quotation);
     }
 
-    public Quotation getQuotation(int id){
+    public Quotation getQuotation(int id) throws ServiceException{
         Optional<Quotation> result = quotationRepository.findById(id);
-        if(result.isPresent()){
-            return result.get();
+        if(result.isEmpty()){
+            throw new ServiceException(ServiceException.nonExistentQuotation);
         }
-        return null;
+        return result.get();
     }
 
     public List<Quotation> getAllQuotation(){
         return quotationRepository.findAll();
     }
 
-    public Quotation updateQuotation(Quotation quotation){
+    public Quotation updateQuotation(Quotation quotation) throws ServiceException {
         Quotation update = getQuotation(quotation.getQuotationId());
-        if(update != null){
-            quotationRepository.delete(update);
-        }
+        quotationRepository.delete(update);
         return quotationRepository.save(quotation);
     }
 
@@ -48,11 +47,9 @@ public class QuotationService {
         quotationRepository.delete(quotation);
     }
 
-    public void deleteQuotation(int id){
+    public void deleteQuotation(int id) throws ServiceException {
         Quotation quotation = getQuotation(id);
-        if(quotation!=null){
-            quotationRepository.delete(quotation);
-        }
+        quotationRepository.delete(quotation);
     }
 
     public double calculateTotal(Quotation quotation){
@@ -60,42 +57,51 @@ public class QuotationService {
         double total = 0;
         for(Item item : items){
             double value = item.getValue();
-            double tax = value * (item.getTax() / 100);
             double discount = value * (item.getDiscount() / 100);
-            double totalValue = value + tax - discount;
-            total += totalValue;
+            double valueWithDiscount = value - discount;
+            double tax = valueWithDiscount * (item.getTax() / 100);
+            total += valueWithDiscount + tax;
         }
         return total;
     }
 
-    public double calculateTotal(int id){
+    public double calculateTotal(int id) throws ServiceException {
         Quotation quotation = getQuotation(id);
-        if(quotation == null){
-            return 0; //excepcion
-        }
         return calculateTotal(quotation);
+    }
+
+    public double calculateSubTotal(Quotation quotation){
+        List<Item> items = quotation.getItems();
+        double total=0;
+        for(Item i: items){
+            double value = i.getValue();
+            double discount = value * (i.getDiscount() / 100);
+            total += value - discount;
+        }
+        return total;
+    }
+
+    public double calculateSubTotal(int id) throws ServiceException {
+        Quotation quotation = getQuotation(id);
+        return calculateSubTotal(quotation);
     }
 
     public void updateStatus(Quotation quotation, QuotationStatus status){
         quotation.updateStatus(status);
     }
 
-    public void updateStatus(int id, QuotationStatus status){
+    public void updateStatus(int id, QuotationStatus status) throws ServiceException {
         Quotation quotation = getQuotation(id);
-        if(quotation != null){
-            quotation.updateStatus(status);
-        }
+        quotation.updateStatus(status);
     }
 
     public void addItem(Quotation quotation, Item item){
         quotation.addItem(item);
     }
 
-    public void addItem(int id, Item item){
+    public void addItem(int id, Item item) throws ServiceException {
         Quotation quotation = getQuotation(id);
-        if(quotation != null) {
-            quotation.addItem(item);
-        }
+        quotation.addItem(item);
     }
 
     public void deleteItem(Quotation quotation, Item item){
@@ -110,7 +116,7 @@ public class QuotationService {
         }
     }
 
-    public void deleteItem(int id, Item item){
+    public void deleteItem(int id, Item item) throws ServiceException {
         Quotation quotation = getQuotation(id);
         deleteItem(quotation, item);
     }
