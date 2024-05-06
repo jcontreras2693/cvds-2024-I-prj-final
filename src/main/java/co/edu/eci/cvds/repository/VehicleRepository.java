@@ -10,13 +10,19 @@ import java.util.List;
 @Repository
 public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
 
+    @Query("SELECT DISTINCT v.brand FROM Vehicle v")
     List<String> findDistinctBrand();
 
+    @Query("SELECT DISTINCT v.model FROM Vehicle v WHERE v.brand = :brand")
     List<String> findDistinctModelByBrand(String brand);
 
+    @Query("SELECT DISTINCT v.year FROM Vehicle v WHERE v.brand = :brand AND v.model = :model")
     List<Integer> findDistinctYearByBrandAndModel(String brand, String model);
 
-    List<String> findDistinctcylinderCapacityByBrandAndModelAndYear(String brand, String model, int year);
+    @Query("SELECT DISTINCT v.cylinderCapacity FROM Vehicle v WHERE v.brand = :brand AND v.model = :model AND v.year = :year")
+    List<String> findDistinctCylinderCapacityByBrandAndModelAndYear(String brand, String model, int year);
+
+
 
 
 }

@@ -35,7 +35,7 @@ public class VehicleService {
     }
 
     public List<String> getCylinders(String brand, String model, int year){
-        return vehicleRepository.findDistinctcylinderCapacityByBrandAndModelAndYear(brand, model, year);
+        return vehicleRepository.findDistinctCylinderCapacityByBrandAndModelAndYear(brand, model, year);
     }
 
     public Vehicle getVehicle(int id){
