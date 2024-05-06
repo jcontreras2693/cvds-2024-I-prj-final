@@ -111,7 +111,7 @@ class ItemTest {
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 10.0, true, 10.0, category);
             double total = item.calculateSubtotal();
-            assertEquals(total, 107100.0, 0.01);
+            assertEquals(total, 90000.0, 0.01);
         }
         catch(ModelException modelException){
             fail();
@@ -124,7 +124,7 @@ class ItemTest {
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 100.0, true, 10.0, category);
             double total = item.calculateTotal();
-            assertEquals(total, 0.0, 0.01);
+            assertEquals(total, 0., 0.01);
         }
         catch(ModelException modelException){
             fail();

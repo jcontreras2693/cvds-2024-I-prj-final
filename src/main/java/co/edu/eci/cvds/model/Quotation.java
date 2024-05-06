@@ -71,7 +71,21 @@ public class Quotation {
     }
 
     public Double calculateTotal(){
-        return -1.0;
+        List<Item> items = getItems();
+        double totalCost = 0;
+        for(Item item : items){
+            totalCost += item.calculateTotal();
+        }
+        return totalCost;
+    }
+
+    public Double calculateSubtotal(){
+        List<Item> items = getItems();
+        double subtotal = 0;
+        for(Item item : items){
+            subtotal += item.calculateSubtotal();
+        }
+        return subtotal;
     }
 
     public void updateStatus(QuotationStatus status){

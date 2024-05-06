@@ -61,6 +61,10 @@ public class Item {
     }
 
     public Item(String name, String shortDescription, String technicalDescription, String image, Double value, Double currency, Double discount, Boolean availability, Double tax, Category category) throws ModelException {
+        if(value <= 0) throw new ModelException(ModelException.ITEM_INVALID_VALUE);
+        if(currency <= 0) throw new ModelException(ModelException.ITEM_INVALID_CURRENCY);
+        if(discount < 0 || discount > 100) throw new ModelException(ModelException.ITEM_INVALID_DISCOUNT);
+        if(tax < 0) throw new ModelException(ModelException.ITEM_INVALID_TAX);
         this.name = name;
         this.shortDescription = shortDescription;
         this.technicalDescription = technicalDescription;
@@ -180,11 +184,17 @@ public class Item {
     }
 
     public Double calculateSubtotal(){
-        return -1.0;
+        double value = getValue();
+        double discount = value * (getDiscount() / 100);
+        return value - discount;
     }
 
     public Double calculateTotal(){
-        return -1.0;
+        double value = getValue();
+        double discount = value * (getDiscount() / 100);
+        double valueWithDiscount = value - discount;
+        double tax = valueWithDiscount * (getTax() / 100);
+        return valueWithDiscount + tax;
     }
 
     public boolean isAvailable(){

@@ -34,6 +34,8 @@ public class Vehicle {
     }
 
     public Vehicle(String brand, String model, int year, int cylinderCapacity) throws ModelException {
+        if(year <= 0) throw new ModelException(ModelException.VEHICLE_INVALID_YEAR);
+        if(cylinderCapacity <= 0) throw new ModelException(ModelException.VEHICLE_INVALID_CYLINDER_CAPACITY);
         this.brand = brand;
         this.model = model;
         this.year = year;
