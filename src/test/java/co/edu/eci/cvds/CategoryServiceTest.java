@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /*import org.junit.jupiter.api.Test;*/
@@ -31,9 +33,10 @@ class CategoryServiceTest {
     @Test
     void shouldGetACategoryById() {
         Category category = new Category("category");
-        categoryService.addCategory(category);
+        //categoryService.addCategory(category);
         try{
             Category newCategory = categoryService.getCategory(1);
+            System.out.println(category.getCategoryId());
             assertEquals(category.getName(), newCategory.getName());
         }
         catch (ServiceException serviceException){
