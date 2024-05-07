@@ -17,11 +17,6 @@ var marcas = [
     { src: 'images/marcas/hyundai.png', alt: 'Hyundai' }
 ];
 
-var arraysByBrand = {
-    'audi': audi
-    // Agregar más marcas y sus arrays asociados
-};
-
 var audi = [
     { src: 'images/audi/A1.png', alt: 'a1' },
     { src: 'images/audi/A1_TDI.png', alt: 'a1_tdi' },
@@ -38,6 +33,11 @@ var audi = [
     { src: 'images/audi/Q7_TFSI.png', alt: 'q7_tfsi' },
     { src: 'images/audi/S3_Performance.png', alt: 's3_performance' }
 ];
+
+var arraysByBrand = {
+    'audi': audi
+    // Agregar más marcas y sus arrays asociados
+};
 
 var lastBrandClicked = null;
 
@@ -94,11 +94,7 @@ function seleccionarMarca(choice) {
     document.getElementById('marca').classList.remove('active');
     document.getElementById('modelo').classList.add('active');
     clearImagesGrid();
-    var arrayBrand = arraysByBrand[choice]
-    console.log(choice);
-    console.log(typeof choice);
-    console.log(typeof arrayBrand);
-    createImagesGrid(arrayBrand);
+    createImagesGrid(arraysByBrand[choice]);
 }
 
 // Crea la cuadrícula de imagenes según la opción seleccionada
