@@ -183,20 +183,6 @@ public class Item {
         this.vehicles = vehicles;
     }
 
-    public Double calculateSubtotal(){
-        double value = getValue();
-        double discount = value * (getDiscount() / 100);
-        return value - discount;
-    }
-
-    public Double calculateTotal(){
-        double value = getValue();
-        double discount = value * (getDiscount() / 100);
-        double valueWithDiscount = value - discount;
-        double tax = valueWithDiscount * (getTax() / 100);
-        return valueWithDiscount + tax;
-    }
-
     public boolean isAvailable(){
         return availability;
     }

@@ -32,7 +32,7 @@ public class ItemService {
         return result.get();
     }
 
-    public List<Item> getAllItem(){
+    public List<Item> getAllItems(){
         return itemRepository.findAll();
     }
 
@@ -52,7 +52,9 @@ public class ItemService {
     }
 
     public double calculateSubtotal(Item item){
-        return item.getValue();
+        double value = item.getValue();
+        double discount = value * (item.getDiscount() / 100);
+        return value - discount;
     }
 
     public double calculateSubtotal(int id) throws ServiceException {
@@ -70,11 +72,11 @@ public class ItemService {
         return valueWithDiscount + tax;
     }
 
-    public boolean isAvalible(Item item){
+    public boolean isAvailable(Item item){
         return item.getAvailability();
     }
 
-    public boolean isAvalible(int id) throws ServiceException {
+    public boolean isAvailable(int id) throws ServiceException {
         Item item = getItem(id);
         return item.getAvailability();
     }
