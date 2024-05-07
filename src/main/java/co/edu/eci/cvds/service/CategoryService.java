@@ -35,19 +35,15 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category updateCategory(Category category){
-        Optional<Category> update = categoryRepository.findById(category.getCategoryId());
-        if(update.isPresent()){
-            categoryRepository.delete(update.get());
-        }
+    public Category updateCategory(Category category) throws ServiceException {
+        Category update = getCategory(category.getCategoryId());
+        categoryRepository.delete(update);
         return categoryRepository.save(category);
     }
 
-    public void deleteCategory(int id){
-        Optional<Category> delete = categoryRepository.findById(id);
-        if(Optional.empty().isPresent()){
-            categoryRepository.delete(delete.get());
-        }
+    public void deleteCategory(int id) throws ServiceException {
+        Category category = getCategory(id);
+        categoryRepository.delete(category);
     }
 
     public void deleteCategory(Category category){
