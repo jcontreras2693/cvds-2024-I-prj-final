@@ -79,7 +79,7 @@
     box-shadow: 0px 0px 15px #050709;
 }
 
-.botones .etapa {
+.botones .stage {
     width: 264px;
     height: 39px;
     border-radius: 8px;
@@ -90,7 +90,7 @@
     box-shadow: 0px 0px 15px #050709;
 }
 
-.botones .etapa.active {
+.botones .stage.active {
     background-color: #FF0000;
     border: 0;
 }
