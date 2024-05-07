@@ -19,7 +19,7 @@ var marcas = [
 
 var arraysByBrand = {
     'audi': audi
-    // Agrega más marcas y sus arrays asociados según necesites
+    // Agregar más marcas y sus arrays asociados
 };
 
 var audi = [
@@ -84,7 +84,7 @@ function agregarEventoClic(img, id, rectangle) {
     });
 }
 
-// cargar las imágenes al iniciar la página
+// cargar la página inicial
 window.onload = function() {
     document.getElementById('marca').classList.add('active');
     createImagesGrid(marcas);
@@ -94,18 +94,15 @@ function seleccionarMarca(choice) {
     document.getElementById('marca').classList.remove('active');
     document.getElementById('modelo').classList.add('active');
     clearImagesGrid();
-    createImagesGrid(audi);
+    var arrayBrand = arraysByBrand[choice]
+    console.log(choice);
+    console.log(typeof choice);
+    console.log(typeof arrayBrand);
+    createImagesGrid(arrayBrand);
 }
 
 // Crea la cuadrícula de imagenes según la opción seleccionada
 function createImagesGrid(choice) {
-        /*
-        if (!Array.isArray(choice)) {
-            choice = arraysByBrand[choice];
-        }
-        console.log(choice.length);
-        console.log(choice[0].alt);
-        */
         for (var i = 0; i < choice.length; i++) {
             agregarImagen(choice[i].src, choice[i].alt);
         }
