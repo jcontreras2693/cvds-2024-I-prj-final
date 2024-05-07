@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /*import org.junit.jupiter.api.Test;*/
 
 @SpringBootTest
-class VehicleTest {
+class VehicleServiceTest {
 
     @Autowired
     private VehicleService vehicleService;
