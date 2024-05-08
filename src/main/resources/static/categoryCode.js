@@ -36,20 +36,31 @@ var audi = [
 ];
 
 // array con los años del modelo a1 de audi
-var a1Years = [
+var a1 = [
     '2020', '2021', '2022', '2024', '2025'
 ];
 
-// array de mapeo entre nombre y array
+// array con los cilindrajes del año 2020 del modelo a1 de audi
+var year2020 = [
+    '1.0L', '1.6L', '2.0L', '2.5L'
+];
+
+// array de mapeo entre nombre y array de las marcas
 var arraysByBrand = {
     'audi': audi
-    // Agregar más brands y sus arrays asociados
+    // Agregar más marcas y sus arrays asociados
 };
 
-// array de mapeo entre nombre y array
+// array de mapeo entre nombre y array de los modelos
 var arraysByModel = {
-    'a1': audi
-    // Agregar más brands y sus arrays asociados
+    'a1': a1
+    // Agregar más modelos y sus arrays asociados
+};
+
+// array de mapeo entre nombre y array de los años
+var arraysByYear = {
+    '2020': year2020
+    // Agregar más años y sus arrays asociados
 };
 
 var lastBrandClicked = null;
@@ -68,6 +79,17 @@ function addImage(src, alt) {
     addClickEvent(img, idUnique, rectangle); // agregar evento de clic a la imagen
 }
 
+// agregar un cuadro de texto al container con un ID único y evento de clic
+function addText(content) {
+    var idUnique = content.toLowerCase(); // generar ID
+    var rectangle = createRectangle(idUnique); // crear rectángulo
+    var text = createText(content); // crear cuadro de texto
+    rectangle.appendChild(text); // agregar el cuadro de texto al rectángulo
+    var container = document.getElementById('rectangle-grid'); // obtener container
+    container.appendChild(rectangle); // agregar rectángulo al container
+    addClickEvent(content, idUnique, rectangle); // agregar evento de clic a la imagen
+}
+
 // crear un rectángulo
 function createRectangle(id) {
     var rectangle = document.createElement('div');
@@ -84,19 +106,34 @@ function createImage(src, alt) {
     return img;
 }
 
-// evento de clic a una imagen
-function addClickEvent(img, id, rectangle) {
-    img.addEventListener('click', function() {
+// crea un cuadro de texto
+function createText(content) {
+    var text = document.createElement('span');
+    text.content = content;
+    return text;
+}
+
+// evento de clic a una opción
+function addClickEvent(option, id, rectangle) {
+    option.addEventListener('click', function() {
         var rectangles = document.querySelectorAll('.rectanglee');
         rectangles.forEach(function(rect) {
             rect.classList.remove('active');
         });
         rectangle.classList.add('active');
-        /*lastBrandClicked = chooseBrand(id);*/
+        if (brands.includes(id)) {
+            chooseBrand(id);
+        } else if(audi.includes(id)) {
+            chooseModel(id);
+        }else if (a1.includes(id)) {
+            chooseYear(id);
+        }else {
+            chooseCylinder(id);
+        }
     });
 }
 
-// cargar la página inicial
+// Carga la página inicial
 window.onload = function() {
     document.getElementById('brand').classList.add('active');
     createImagesGrid(brands);
@@ -126,11 +163,11 @@ function chooseYear(choice) {
     unselectAllCategories();
     document.getElementById('cylinder').classList.add('active');
     clearGrid();
-    createTextGrid(arraysByModel[choice]);
+    createTextGrid(arraysByYear[choice]);
 }
 
 // Acción de escoger un cilindraje
-function chooseYear(choice) {
+function chooseCylinder(choice) {
     lastCylinderClickedClicked = choice;
 }
 
@@ -147,7 +184,7 @@ function clickModel() {
     unselectAllCategories();
     document.getElementById('model').classList.add('active');
     clearGrid();
-    createImagesGrid(lastBrandClicked);
+    createImagesGrid(arraysByBrand[lastBrandClicked]);
 }
 
 // Configura la página para la opción año
@@ -155,7 +192,7 @@ function clickYear() {
     unselectAllCategories();
     document.getElementById('year').classList.add('active');
     clearGrid();
-    createTextGrid(lastModelClicked);
+    createTextGrid(arraysByModel[lastModelClicked]);
 }
 
 // Configura la página para la opción cilindraje
@@ -163,7 +200,7 @@ function clickCylinder() {
     unselectAllCategories();
     document.getElementById('cylinder').classList.add('active');
     clearGrid();
-    createTextGrid(lastYearClicked);
+    createTextGrid(arraysByYear[lastYearClicked]);
 }
 
 // Crea la cuadrícula de imagenes según la opción seleccionada
@@ -176,7 +213,7 @@ function createImagesGrid(choice) {
 // Crea la cuadrícula con texto según la opción seleccionada
 function createTextGrid(choice) {
         for (var i = 0; i < choice.length; i++) {
-            addText(choice[i].src, choice[i].alt);
+            addText(choice[i].content);
         }
 }
 
