@@ -21,8 +21,8 @@ public class QuotationService {
         this.quotationRepository = quotationRepository;
     }
 
-    public Quotation addQuotation(Quotation quotation){
-        return  quotationRepository.save(quotation);
+    public void addQuotation(Quotation quotation){
+        quotationRepository.save(quotation);
     }
 
     public Quotation getQuotation(int id) throws ServiceException{
