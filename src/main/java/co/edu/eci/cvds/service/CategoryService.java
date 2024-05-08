@@ -19,8 +19,8 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category addCategory(Category category){
-        return categoryRepository.save(category);
+    public void addCategory(Category category){
+        categoryRepository.save(category);
     }
 
     public Category getCategory(int id) throws ServiceException {
@@ -35,10 +35,12 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category updateCategory(Category category) throws ServiceException {
+    public void updateCategory(Category category) throws ServiceException {
         Category update = getCategory(category.getCategoryId());
+        int id = update.getCategoryId();
         categoryRepository.delete(update);
-        return categoryRepository.save(category);
+        categoryRepository.save(category);
+        category.setCategoryId(id);
     }
 
     public void deleteCategory(int id) throws ServiceException {
