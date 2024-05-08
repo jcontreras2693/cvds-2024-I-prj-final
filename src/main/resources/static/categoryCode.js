@@ -113,6 +113,14 @@ function createText(content) {
     return text;
 }
 
+// crear un rectángulo que será la categoria
+function createCategory(id) {
+    var rectangle = document.createElement('button');
+    rectangle.className = 'stage';
+    rectangle.id = id;
+    return rectangle;
+}
+
 // evento de clic a una opción
 function addClickEvent(option, id, rectangle) {
     option.addEventListener('click', function() {
@@ -121,15 +129,17 @@ function addClickEvent(option, id, rectangle) {
             rect.classList.remove('active');
         });
         rectangle.classList.add('active');
-        if (brands.includes(id)) {
+        if (containsIdBrands(id)) {
             chooseBrand(id);
-        } else if(audi.includes(id)) {
+        } else if(containsIdAudi(id)) {
             chooseModel(id);
-        }else if (a1.includes(id)) {
+        } else if (containsIdA1(id)) {
             chooseYear(id);
-        }else {
+        } else {
             chooseCylinder(id);
         }
+        console.log(containsIdAudi(id));
+        alert('Has clickeado: ' + id);
     });
 }
 
@@ -213,7 +223,7 @@ function createImagesGrid(choice) {
 // Crea la cuadrícula con texto según la opción seleccionada
 function createTextGrid(choice) {
         for (var i = 0; i < choice.length; i++) {
-            addText(choice[i].content);
+            addText(choice[i]);
         }
 }
 
@@ -231,4 +241,44 @@ function unselectAllCategories() {
     document.getElementById('model').classList.remove('active');
     document.getElementById('year').classList.remove('active');
     document.getElementById('cylinder').classList.remove('active');
+}
+
+// Halla si un id se encuentra en brands
+function containsIdBrands(id) {
+    for (var i = 0; i < brands.length; i++) {
+        if (brands[i].alt.toLowerCase() === id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Halla si un id se encuentra en audi
+function containsIdAudi(id) {
+    for (var i = 0; i < audi.length; i++) {
+        if (audi[i].alt.toLowerCase() === id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Halla si un id se encuentra en a1
+function containsIdA1(id) {
+    for (var i = 0; i < a1.length; i++) {
+        if (a1[i].content.toLowerCase() === id) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Halla si un id se encuentra en year2020
+function containsIdYear2020(id) {
+    for (var i = 0; i < year2020.length; i++) {
+        if (year2020[i].content.toLowerCase() === id) {
+            return true;
+        }
+    }
+    return false;
 }
