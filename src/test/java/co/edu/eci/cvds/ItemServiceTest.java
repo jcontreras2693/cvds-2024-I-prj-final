@@ -6,10 +6,14 @@ import co.edu.eci.cvds.model.Category;
 import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.service.CategoryService;
 import co.edu.eci.cvds.service.ItemService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,14 +28,20 @@ class ItemServiceTest {
     @Autowired
     private CategoryService categoryService;
 
+    private Category category;
+
+    @BeforeEach
+    void initializeValues(){
+        category = new Category("category");
+        categoryService.addCategory(category);
+    }
+
     @Test
     void contextLoads() {
     }
 
     @Test
     void shouldAddItem() {
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
             itemService.addItem(item);
@@ -44,12 +54,10 @@ class ItemServiceTest {
 
     @Test
     void shouldGetItemById(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
             itemService.addItem(item);
-            Item newItem = itemService.getItem(1);
+            Item newItem = itemService.getItem(itemService.getAllItems().get(0).getItemId());
             assertEquals("name", newItem.getName());
         }
         catch(ModelException modelException){
@@ -73,8 +81,6 @@ class ItemServiceTest {
 
     @Test
     void shouldGetAllItems() {
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
             Item item2 = new Item("name1", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
@@ -91,14 +97,12 @@ class ItemServiceTest {
 
     @Test
     void shouldUpdateAnItem(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
             itemService.addItem(item);
             item.setDiscount(100.0);
             itemService.updateItem(item);
-            Item newItem = itemService.getItem(1);
+            Item newItem = itemService.getItem(itemService.getAllItems().get(0).getItemId());
             assertEquals(100.0, newItem.getDiscount());
         }
         catch(ModelException modelException){
@@ -111,8 +115,6 @@ class ItemServiceTest {
 
     @Test
     void shouldNotUpdateAnItem(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             itemService.updateItem(new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category));
             fail();
@@ -127,41 +129,22 @@ class ItemServiceTest {
 
     @Test
     void shouldDeleteItem() {
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
             itemService.addItem(item);
             itemService.deleteItem(item);
             assertEquals(0, itemService.getAllItems().size());
-        }
-        catch(ModelException modelException){
+        } catch (ModelException modelException) {
             fail();
         }
     }
 
-    /**@Test
-    void shouldNotDeleteItem() {
-        Category category = new Category("category");
-        try {
-            Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
-            itemService.deleteItem(item);
-            fail();
-        }
-        catch(ModelException modelException){
-            fail();
-        }
-
-    }**/
-
     @Test
     void shouldDeleteItemById() {
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
             itemService.addItem(item);
-            itemService.deleteItem(1);
+            itemService.deleteItem(itemService.getAllItems().get(0).getItemId());
             assertEquals(0, itemService.getAllItems().size());
         }
         catch(ModelException modelException){
@@ -185,8 +168,6 @@ class ItemServiceTest {
 
     @Test
     void shouldCalculateSubtotal(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 10.0, true, 10.0, category);
             itemService.addItem(item);
@@ -200,12 +181,10 @@ class ItemServiceTest {
 
     @Test
     void shouldCalculateSubtotalById(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 10.0, true, 10.0, category);
             itemService.addItem(item);
-            double subtotal = itemService.calculateSubtotal(1);
+            double subtotal = itemService.calculateSubtotal(itemService.getAllItems().get(0).getItemId());
             assertEquals(90000.0, subtotal, 0.01);
         }
         catch(ModelException modelException){
@@ -229,8 +208,6 @@ class ItemServiceTest {
 
     @Test
     void shouldCalculateTotal(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 10.0, true, 19.0, category);
             itemService.addItem(item);
@@ -244,12 +221,10 @@ class ItemServiceTest {
 
     @Test
     void shouldBeAvailableById(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 10.0, true, 19.0, category);
             itemService.addItem(item);
-            boolean availability = itemService.isAvailable(1);
+            boolean availability = itemService.isAvailable(itemService.getAllItems().get(0).getItemId());
             assertTrue(availability);
         }
         catch(ModelException modelException){
@@ -274,14 +249,12 @@ class ItemServiceTest {
     @Test
     void shouldAddCategory(){
         Category newCategory = new Category("newCategory");
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         categoryService.addCategory(newCategory);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 10.0, true, 19.0, category);
             itemService.addItem(item);
             itemService.addCategory(item, newCategory);
-            assertEquals("newCategory", itemService.getItem(1).getCategory().getName());
+            assertEquals("newCategory", itemService.getItem(itemService.getAllItems().get(0).getItemId()).getCategory().getName());
         }
         catch(ModelException modelException){
             fail();
@@ -294,14 +267,12 @@ class ItemServiceTest {
     @Test
     void shouldAddCategoryById(){
         Category newCategory = new Category("newCategory");
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         categoryService.addCategory(newCategory);
         try {
             Item item = new Item("name", "shortDescription", "image", "technical", 100000.0, 10.0, 10.0, true, 19.0, category);
             itemService.addItem(item);
-            itemService.addCategory(1, newCategory);
-            assertEquals("newCategory", itemService.getItem(1).getCategory().getName());
+            itemService.addCategory(itemService.getAllItems().get(0).getItemId(), newCategory);
+            assertEquals("newCategory", itemService.getItem(itemService.getAllItems().get(0).getItemId()).getCategory().getName());
         }
         catch(ModelException modelException){
             fail();
@@ -313,14 +284,24 @@ class ItemServiceTest {
 
     @Test
     void shouldNotAddCategoryById(){
-        Category category = new Category("category");
-        categoryService.addCategory(category);
         try {
             itemService.addCategory(1, category);
             fail();
         }
         catch(ServiceException serviceException){
             assertEquals(ServiceException.nonExistentItem, serviceException.getMessage());
+        }
+    }
+
+    @AfterEach
+    public void deleteValues(){
+        List<Item> itemList = itemService.getAllItems();
+        List<Category> categoryList = categoryService.getAllCategories();
+        for(Item item: itemList){
+            itemService.deleteItem(item);
+        }
+        for(Category category: categoryList){
+            categoryService.deleteCategory(category);
         }
     }
 

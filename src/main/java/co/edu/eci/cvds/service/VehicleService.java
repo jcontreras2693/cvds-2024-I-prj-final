@@ -47,6 +47,10 @@ public class VehicleService {
         return result.get();
     }
 
+    public List<Vehicle> getAllVehicles(){
+        return vehicleRepository.findAll();
+    }
+
     public void updateVehicle(Vehicle vehicle) throws ServiceException {
         Vehicle update = getVehicle(vehicle.getVehicleId());
         update.setBrand(vehicle.getBrand());
@@ -54,7 +58,7 @@ public class VehicleService {
         update.setYear(vehicle.getYear());
         update.setCylinderCapacity(vehicle.getCylinderCapacity());
         update.setItems(vehicle.getItems());
-
+        vehicleRepository.save(update);
     }
 
     public void deleteVehicle(Vehicle vehicle){

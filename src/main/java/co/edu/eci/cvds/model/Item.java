@@ -46,7 +46,7 @@ public class Item {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    @ManyToMany(mappedBy = "items")
+    @ManyToMany(mappedBy = "items", fetch = FetchType.EAGER)
     private List<Quotation> quotations;
 
     @ManyToMany
@@ -175,6 +175,10 @@ public class Item {
 
     public void setQuotations(List<Quotation> quotations) {
         this.quotations = quotations;
+    }
+
+    public void addQuotation(Quotation quotation){
+        quotations.add(quotation);
     }
 
     public List<Vehicle> getVehicles() {

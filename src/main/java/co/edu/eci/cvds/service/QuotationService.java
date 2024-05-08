@@ -43,6 +43,7 @@ public class QuotationService {
         update.updateStatus(quotation.getStatus());
         update.setTotal(quotation.getTotal());
         update.setItems(quotation.getItems());
+        quotationRepository.save(update);
     }
 
     public void deleteQuotation(Quotation quotation){
@@ -90,31 +91,36 @@ public class QuotationService {
 
     public void updateStatus(Quotation quotation, QuotationStatus status){
         quotation.updateStatus(status);
+        quotationRepository.save(quotation);
     }
 
     public void updateStatus(int id, QuotationStatus status) throws ServiceException {
         Quotation quotation = getQuotation(id);
         quotation.updateStatus(status);
+        quotationRepository.save(quotation);
     }
 
     public void addItem(Quotation quotation, Item item){
         quotation.addItem(item);
+        quotationRepository.save(quotation);
     }
 
     public void addItem(int id, Item item) throws ServiceException {
         Quotation quotation = getQuotation(id);
         quotation.addItem(item);
+        quotationRepository.save(quotation);
     }
 
     public void deleteItem(Quotation quotation, Item item){
         if(quotation != null){
             List<Item> items = quotation.getItems();
             for(Item i:items) {  //Implementar metodo que retorne un unico item
-                if (i == item) {
-                    quotation.deleteItem(item);
+                if (i.getName() == item.getName()) {
+                    quotation.deleteItem(i);
                     break; //evitar eliminar todos los elementos agregados de ese item
                 }
             }
+            quotationRepository.save(quotation);
         }
     }
 
