@@ -1,12 +1,17 @@
+
 @font-face {
-    font-family: 'Conamore';
+    font-family: 'Conamore Regular';
+    src: url('fonts/Conamore-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Conamore Bold';
     src: url('fonts/Conamore-Bold.woff') format('woff');
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Conamore';
     box-sizing: border-box;
 }
 
@@ -52,6 +57,7 @@
 }
 
 .text {
+    font-family: 'Conamore Bold', sans-serif;
     margin-top: 15px;
     font-size: 200%;
     color: #FFFFFF;
@@ -69,6 +75,7 @@
 }
 
 .botones button {
+    font-family: 'Conamore Bold', sans-serif;
     width: 20%;
     height: 20%;
     border-radius: 8px;
@@ -158,3 +165,108 @@
     background: #D91F28;
     border-radius: 5px;
 }
+
+
+
+/* Cotización */
+
+.allContainer{
+    width: 100vw;
+    height: 100vh;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #292C33;
+}
+
+.header {
+    width: 100vw;
+    height: 12vh;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #0D131A;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: space-between; /* Distribuir los elementos */
+    padding: 0 5%; /* Añadir un poco de espacio a los lados */
+}
+
+.selectedBar {
+    width: 35%;
+    height: 20%;
+    background-color: transparent;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    padding-right: 120px;
+}
+
+/* Estilos para cada elemento dentro de la .selectedBar */
+.selectedBar div {
+    font-family: 'Conamore Regular', sans-serif;
+    color: #FFCF28;
+    font-size: 120%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #ccc; /* Borde derecho entre columnas */
+}
+
+/* Elimina el borde derecho del último elemento */
+.selectedBar div:last-child {
+    border-right: none;
+}
+
+.cart {
+    width: 3%;
+    height: 40%;
+    background-color: #292C33;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart img:hover {
+    transition: transform 0.3s ease; 
+    transform: scale(1.15); /* aumenta el tamaño de la imagen al pasar el mouse sobre ella */
+}
+
+.search {
+    position: relative; /* Establece la posición relativa para posicionar el icono */
+    width: 35%;
+    height: 4%;
+    background-color: #69727D;
+    border-radius: 20px;
+    margin: 20px auto; /* Margen superior e inferior de 20px y centrado horizontal */
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 15px #0D131A;
+}
+
+.search input {
+    font-family: 'Conamore Regular', sans-serif;
+    color: #E3E6EC;
+    width: calc(100% - 40px); /* Resta el ancho del icono del ancho total */
+    height: 100%; /* Ocupa toda la altura disponible */
+    border: none; /* Elimina el borde */
+    background: transparent; /* Establece un fondo transparente */
+    font-size: 17px;
+    padding: 7px 40px 7px 20px; /* Añadir padding horizontal de 20px y vertical de 7px */
+}
+
+.search img {
+    left: 10px; /* Ajusta la distancia desde el borde izquierdo */
+    width: 20px; /* Ajusta el ancho del icono según sea necesario */
+    height: auto; /* Para mantener la proporción de la imagen */
+}
+
+.search input::placeholder {
+    color: #ccc;
+}
+
+.search input:focus {
+    outline: none; /* Elimina el contorno predeterminado del input en el enfoque */
+    border-color: #7a151a; /* Cambia el color del borde al escribir en el input */
+}
+
+
