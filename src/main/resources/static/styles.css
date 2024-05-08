@@ -95,6 +95,10 @@
     border: 0;
 }
 
+.botones .stage:hover {
+    transform: scale(1.1);
+}
+
 /*Contenedor de la cuadrícula*/
 .rectangle-grid {
     margin-left: 50px;
