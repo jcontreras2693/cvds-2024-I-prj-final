@@ -24,29 +24,49 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/category/getCategories")
-    @ResponseBody
-    public List<Category> getCategories(Model model){
+    @GetMapping("/category/getAllCategories")
+    public void getAllCategories(Model model){
         model.addAttribute("categories", categoryService.getAllCategories());
-        return categoryService.getAllCategories();
     }
 
     @PostMapping("/category/putCategory")
-    @ResponseBody
-    public List<Category> addCategory(@RequestBody Category category){
+    public void addCategory(@RequestBody Category category, Model model){
         categoryService.addCategory(category);
-        return categoryService.getAllCategories();
+        //model.addAttribute("categories", categoryService.getAllCategories());
     }
 
     @GetMapping("/category/getCategory/{id}")
-    @ResponseBody
-    public Category getCategory(@PathVariable int id){
+    public void getCategory(@PathVariable int id, Model model){
         try {
-            return categoryService.getCategory(id);
+            model.addAttribute("category", categoryService.getCategory(id));
         }
         catch (ServiceException e){
-            return null; //Verificar como se van a tratar las excepciones
+            System.out.println("error");
         }
     }
+
+    @PostMapping("/category/updateCategory")
+    public void updateCategory(@RequestBody Category category){
+        try {
+            categoryService.updateCategory(category);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PostMapping("/category/deleteCategory")
+    public void deleteCategory(@RequestBody Category category){
+        categoryService.deleteCategory(category);
+    }
+
+    @PostMapping("/category/deleteCategoryById/{id}")
+    public void deleteCategoryById(@PathVariable int id){
+        try {
+            categoryService.deleteCategory(id);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }

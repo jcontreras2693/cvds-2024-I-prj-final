@@ -20,8 +20,8 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public Item addItem(Item item){
-        return itemRepository.save(item);
+    public void addItem(Item item){
+        itemRepository.save(item);
     }
 
     public Item getItem(int id) throws ServiceException{
@@ -80,6 +80,11 @@ public class ItemService {
         double valueWithDiscount = value - discount;
         double tax = value * (item.getTax() / 100);
         return valueWithDiscount + tax;
+    }
+
+    public double calculateTotal(int id) throws ServiceException {
+        Item item = getItem(id);
+        return calculateTotal(item);
     }
 
     public boolean isAvailable(Item item){
