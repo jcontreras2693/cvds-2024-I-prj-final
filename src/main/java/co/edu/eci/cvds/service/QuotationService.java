@@ -37,10 +37,12 @@ public class QuotationService {
         return quotationRepository.findAll();
     }
 
-    public Quotation updateQuotation(Quotation quotation) throws ServiceException {
+    public void updateQuotation(Quotation quotation) throws ServiceException {
         Quotation update = getQuotation(quotation.getQuotationId());
-        quotationRepository.delete(update);
-        return quotationRepository.save(quotation);
+        update.setCreationDate(quotation.getCreationDate());
+        update.updateStatus(quotation.getStatus());
+        update.setTotal(quotation.getTotal());
+        update.setItems(quotation.getItems());
     }
 
     public void deleteQuotation(Quotation quotation){

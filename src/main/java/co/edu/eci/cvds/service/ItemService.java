@@ -36,10 +36,20 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Item updateItem(Item item) throws ServiceException {
+    public void updateItem(Item item) throws ServiceException {
         Item update = getItem(item.getItemId());
-        itemRepository.delete(update);
-        return addItem(item);
+        update.setName(item.getName());
+        update.setShortDescription(item.getShortDescription());
+        update.setTechnicalDescription(item.getTechnicalDescription());
+        update.setImage(item.getImage());
+        update.setValue(item.getValue());
+        update.setCurrency(item.getCurrency());
+        update.setDiscount(item.getDiscount());
+        update.setAvailability(item.getAvailability());
+        update.setTax(item.getTax());
+        update.setCategory(item.getCategory());
+        update.setQuotations(item.getQuotations());
+        update.setVehicles(item.getVehicles());
     }
 
     public void deleteItem(Item item){

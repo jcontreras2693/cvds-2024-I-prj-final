@@ -86,4 +86,8 @@ public class Quotation {
         return items;
     }
 
+    public void setItems(List<Item> items){
+        this.items = items;
+    }
+
 }

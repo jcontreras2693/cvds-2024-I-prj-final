@@ -95,6 +95,8 @@ public class Item {
         this.name = name;
     }
 
+    public void setCategory(Category category){this.category = category;}
+
     public String getShortDescription() {
         return shortDescription;
     }

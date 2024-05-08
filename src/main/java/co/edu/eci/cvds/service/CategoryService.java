@@ -37,10 +37,8 @@ public class CategoryService {
 
     public void updateCategory(Category category) throws ServiceException {
         Category update = getCategory(category.getCategoryId());
-        int id = update.getCategoryId();
-        categoryRepository.delete(update);
-        categoryRepository.save(category);
-        category.setCategoryId(id);
+        update.setName(category.getName());
+
     }
 
     public void deleteCategory(int id) throws ServiceException {
