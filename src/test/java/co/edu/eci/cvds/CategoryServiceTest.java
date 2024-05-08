@@ -3,16 +3,12 @@ package co.edu.eci.cvds;
 import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.service.CategoryService;
 import co.edu.eci.cvds.model.Category;
-import org.aspectj.lang.annotation.After;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +37,6 @@ class CategoryServiceTest {
         categoryService.addCategory(category);
         try{
             Category newCategory = categoryService.getCategory(categoryService.getAllCategories().get(0).getCategoryId());
-            System.out.println(category.getCategoryId());
             assertEquals(category.getName(), newCategory.getName());
         }
         catch (ServiceException serviceException){
@@ -74,7 +69,6 @@ class CategoryServiceTest {
 
     @Test
     void shouldUpdateACategory() {
-        System.out.println(categoryService.getAllCategories().size());
         Category category = new Category("category");
         categoryService.addCategory(category);
         try {
@@ -131,7 +125,7 @@ class CategoryServiceTest {
         assertEquals(0,categoryService.getAllCategories().size());
     }
 
-    @BeforeEach
+    @AfterEach
     public void deleteValues(){
         List<Category> categoryList = categoryService.getAllCategories();
         for(Category category:categoryList){

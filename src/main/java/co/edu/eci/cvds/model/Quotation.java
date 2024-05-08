@@ -27,7 +27,7 @@ public class Quotation {
     @Column(name = "TOTAL", nullable = false)
     private Double total;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "QUOTATION_ITEM",
             joinColumns = @JoinColumn(name = "QUOTATION_ID"),

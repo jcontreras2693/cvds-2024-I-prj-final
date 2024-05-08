@@ -38,7 +38,7 @@ public class CategoryService {
     public void updateCategory(Category category) throws ServiceException {
         Category update = getCategory(category.getCategoryId());
         update.setName(category.getName());
-
+        categoryRepository.save(update);
     }
 
     public void deleteCategory(int id) throws ServiceException {

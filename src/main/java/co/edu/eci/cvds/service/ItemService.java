@@ -50,6 +50,7 @@ public class ItemService {
         update.setCategory(item.getCategory());
         update.setQuotations(item.getQuotations());
         update.setVehicles(item.getVehicles());
+        itemRepository.save(update);
     }
 
     public void deleteItem(Item item){
@@ -78,7 +79,7 @@ public class ItemService {
         double value = item.getValue();
         double discount = value * (item.getDiscount() / 100);
         double valueWithDiscount = value - discount;
-        double tax = value * (item.getTax() / 100);
+        double tax = valueWithDiscount * (item.getTax() / 100);
         return valueWithDiscount + tax;
     }
 
@@ -98,11 +99,13 @@ public class ItemService {
 
     public void addCategory(Item item, Category category){
         item.addCategory(category);
+        itemRepository.save(item);
     }
 
     public void addCategory(int id, Category category) throws ServiceException {
         Item item = getItem(id);
         item.addCategory(category);
+        itemRepository.save(item);
     }
 
 }

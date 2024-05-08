@@ -4,9 +4,12 @@ import co.edu.eci.cvds.exceptions.ModelException;
 import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.service.VehicleService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,7 +30,7 @@ class VehicleServiceTest {
         try{
             Vehicle vehicle = new Vehicle("AUDI", "A1", 2022, 200);
             vehicleService.addVehicle(vehicle);
-            assertEquals("AUDI", vehicleService.getVehicle(1).getBrand());
+            assertEquals("AUDI", vehicleService.getVehicle(vehicleService.getAllVehicles().get(0).getVehicleId()).getBrand());
         }
         catch(ModelException modelException){
             fail();
@@ -42,7 +45,7 @@ class VehicleServiceTest {
         try{
             Vehicle vehicle = new Vehicle("AUDI", "A1", 2022, 200);
             vehicleService.addVehicle(vehicle);
-            assertEquals("AUDI", vehicleService.getVehicle(1).getBrand());
+            assertEquals("AUDI", vehicleService.getVehicle(vehicleService.getAllVehicles().get(0).getVehicleId()).getBrand());
         }
         catch(ModelException modelException){
             fail();
@@ -135,7 +138,7 @@ class VehicleServiceTest {
             vehicleService.addVehicle(vehicleAudi);
             vehicleAudi.setYear(2020);
             vehicleService.updateVehicle(vehicleAudi);
-            assertEquals(2020, vehicleService.getVehicle(1).getYear());
+            assertEquals(2020, vehicleService.getVehicle(vehicleService.getAllVehicles().get(0).getVehicleId()).getYear());
         }
         catch(ModelException modelException){
             fail();
@@ -178,7 +181,7 @@ class VehicleServiceTest {
         try{
             Vehicle vehicleAudi = new Vehicle("AUDI", "A1", 2022, 100);
             vehicleService.addVehicle(vehicleAudi);
-            vehicleService.deleteVehicle(1);
+            vehicleService.deleteVehicle(vehicleService.getAllVehicles().get(0).getVehicleId());
             assertEquals(0, vehicleService.getBrands().size());
         }
         catch(ModelException modelException){
@@ -197,6 +200,14 @@ class VehicleServiceTest {
         }
         catch(ServiceException serviceException){
             assertEquals(ServiceException.nonExistentVehicle, serviceException.getMessage());
+        }
+    }
+
+    @AfterEach
+    public void deleteValues(){
+        List<Vehicle> vehicleList = vehicleService.getAllVehicles();
+        for(Vehicle vehicle: vehicleList){
+            vehicleService.deleteVehicle(vehicle);
         }
     }
 
