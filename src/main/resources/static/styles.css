@@ -168,16 +168,17 @@
 
 
 
-/* Cotización */
+/* Página Cotización */
 
+/* fondo */
 .allContainer{
+    position: relative;
     width: 100vw;
     height: 100vh;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     background: #292C33;
 }
 
+/* encabezado */
 .header {
     width: 100vw;
     height: 12vh;
@@ -190,6 +191,7 @@
     padding: 0 5%; /* Añadir un poco de espacio a los lados */
 }
 
+/* carro seleccionado */
 .selectedBar {
     width: 35%;
     height: 20%;
@@ -200,7 +202,7 @@
     padding-right: 120px;
 }
 
-/* Estilos para cada elemento dentro de la .selectedBar */
+/* categorias del carro escogido */
 .selectedBar div {
     font-family: 'Conamore Regular', sans-serif;
     color: #FFCF28;
@@ -211,11 +213,12 @@
     border-right: 1px solid #ccc; /* Borde derecho entre columnas */
 }
 
-/* Elimina el borde derecho del último elemento */
+/* quitar ultima barra vertical */
 .selectedBar div:last-child {
     border-right: none;
 }
 
+/* fondo carrito de compras */
 .cart {
     width: 3%;
     height: 40%;
@@ -224,49 +227,276 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+
 }
 
-.cart img:hover {
-    transition: transform 0.3s ease; 
-    transform: scale(1.15); /* aumenta el tamaño de la imagen al pasar el mouse sobre ella */
+/* hace que el contenedor salga desde abajo :D */
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+@keyframes slideOutToBottom {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+
+.cart-content {
+    display: none;
+    background-color: #BCBCBC;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 0px 15px rgb(5, 7, 9); 
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    height: 95vh;
+    width: 20vw;
+    z-index: 1;
+    right: 20px; 
+    bottom: 20px; 
+    position: fixed;
+}
+
+
+.cart-content.show {
+    display: block;
+    animation: slideInFromBottom 0.5s ease forwards;
+
+    opacity: 1;
+}
+.cart-content.hide {
+    animation: slideOutToBottom 0.5s ease forwards; /* Aplica la animación al cerrar el contenedor */
+}
+
+.cart:focus {
+    border-color: #ccb118; 
+    box-shadow: 0px 0px 15px #ccb11894;
+}
+
+.header-cart {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: space-between; /* Distribuye los elementos horizontalmente */
+}
+
+#close-button {
+    background-color: transparent;
+    border: none;
+    padding-left: 5px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+#close-button img {
+    height: 2.5vh;
+}
+
+#main-text-cart {
+    font-family: 'Conamore Bold', sans-serif;
+    font-size: 130%;
+    margin: 0 auto;
 }
 
 .search {
-    position: relative; /* Establece la posición relativa para posicionar el icono */
+    position: relative; 
     width: 35%;
     height: 4%;
     background-color: #69727D;
     border-radius: 20px;
-    margin: 20px auto; /* Margen superior e inferior de 20px y centrado horizontal */
+    margin: 30px auto; /* margen superior e inferior y centrado horizontal */
     display: flex;
     align-items: center;
     box-shadow: 0px 0px 15px #0D131A;
+    
 }
 
 .search input {
     font-family: 'Conamore Regular', sans-serif;
     color: #E3E6EC;
-    width: calc(100% - 40px); /* Resta el ancho del icono del ancho total */
-    height: 100%; /* Ocupa toda la altura disponible */
-    border: none; /* Elimina el borde */
-    background: transparent; /* Establece un fondo transparente */
+    width: calc(100% - 40px);
+    height: 100%;
+    border: none;
+    background: transparent;
     font-size: 17px;
-    padding: 7px 40px 7px 20px; /* Añadir padding horizontal de 20px y vertical de 7px */
+    padding: 7px 40px 7px 20px;
 }
 
+/* icono de busqueda */
 .search img {
-    left: 10px; /* Ajusta la distancia desde el borde izquierdo */
-    width: 20px; /* Ajusta el ancho del icono según sea necesario */
-    height: auto; /* Para mantener la proporción de la imagen */
+    left: 10px;
+    width: 20px;
+    height: auto; /* para mantener la proporción de la imagen */
 }
 
-.search input::placeholder {
-    color: #ccc;
-}
-
+/* elimina el contorno por defecto */
 .search input:focus {
-    outline: none; /* Elimina el contorno predeterminado del input en el enfoque */
-    border-color: #7a151a; /* Cambia el color del borde al escribir en el input */
+    outline: none; 
 }
 
+.content {
+    display: flex;
+    padding: 10px;
+    height: calc(100% - 25% - 12vh);
+}
 
+.categories-box {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    flex: 1; 
+    margin-right: 10px;
+}
+
+.title {
+    font-family: 'Conamore Regular', sans-serif;
+    color:#FFCF28;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 100px;
+}
+
+.categories {
+    width: 55%;
+    height: 45%;
+    background-color: #0D131A;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #0D131A;
+    border: 1px solid #b0c0d150;
+    display: flex;
+    flex-direction: column; /* Alinear los divs verticalmente uno debajo del otro */
+    justify-content: space-evenly;
+}
+
+/* categorias del carro escogido */
+.categories button {
+    font-family: 'Conamore Regular', sans-serif;
+    color: #FFFFFF;
+    font-size: 18px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 40px;
+    background-color: transparent;
+    border: 2px solid transparent; /* Establece un borde transparente por defecto */
+    transition: border-color 0.3s ease; /* Aplica una transición suave al cambio de color del borde */
+    padding: 7px 20px 7px 20px; /* Añadir padding horizontal de 20px y vertical de 7px */
+    cursor: pointer;
+}
+
+.categories button:focus {
+    border-color: red; /* Cambia el color del borde a rojo cuando el botón está seleccionado */
+    box-shadow: 0px 0px 15px #d80d0d62;
+}
+
+.services-box {
+    flex: 2;
+    /*align-items: center;
+    justify-content: center; /* centrar horizontalmente el contenido */
+    display: flex; 
+}
+
+.services-grid{
+    width: 80%;
+    height: 120%;
+    background-color: #BCBCBC;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #000000;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
+    grid-auto-rows: 30%;
+    grid-gap: 50px; /* espacio vertical y horizontal entre elementos*/
+    padding: 50px;
+    overflow: auto;
+}
+.services-grid::-webkit-scrollbar{
+    width: 7px;
+}
+
+.services-grid::-webkit-scrollbar-thumb{
+    background: #69727d;
+    border-radius: 10px;
+}
+.cajas {
+    display: flex;
+    flex-direction: column;
+    background-color: #0D131A;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 15px #000000;
+    align-items: center; /* Centra horizontalmente los elementos */
+}
+
+.image {
+    flex: 1;
+    display: flex;
+    align-items: center; /* Ccntra verticalmente la imagen */
+    justify-content: center; /* Centra horizontalmente la imagen */
+}
+
+.image img {
+    padding-top: 5px;
+    height: 7vh;
+}
+
+.info {
+    width: 90%; /* Ancho en porcentaje */
+    max-width: 110px; /* Ancho máximo en píxeles */
+    flex: 1;
+    background-color: #BCBCBC;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    height: 7vh;
+}
+
+.service-type-text {
+    padding: 7px;
+    font-family: 'Conamore Regular', sans-serif;
+    color: #0D131A;
+    font-size: 12px;
+    text-align: center;
+}
+
+.price-add {
+    display: flex;
+    flex-direction: row; /* Alinea los elementos en fila */
+}
+
+.price {
+    flex: 2;
+    padding: 8px;
+    font-family: 'Conamore Bold', sans-serif;
+    color: #0D131A;
+    font-size: 12px;
+}
+
+.add {
+    display: flex;
+    flex: 1;
+    width: 30px;
+    height: 30px;
+    background-color: #0D131A;
+    box-sizing: border-box;
+    margin-right: 7px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.add:hover {
+    transform: scale(1.01);
+}
