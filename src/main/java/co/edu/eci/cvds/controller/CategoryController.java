@@ -24,18 +24,18 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/category/getAllCategories")
+    @GetMapping("/getAllCategories")
     public void getAllCategories(Model model){
         model.addAttribute("categories", categoryService.getAllCategories());
     }
 
-    @PostMapping("/category/putCategory")
+    @PostMapping("/putCategory")
     public void addCategory(@RequestBody Category category, Model model){
         categoryService.addCategory(category);
         //model.addAttribute("categories", categoryService.getAllCategories());
     }
 
-    @GetMapping("/category/getCategory/{id}")
+    @GetMapping("/getCategory/{id}")
     public void getCategory(@PathVariable int id, Model model){
         try {
             model.addAttribute("category", categoryService.getCategory(id));
@@ -45,7 +45,7 @@ public class CategoryController {
         }
     }
 
-    @PostMapping("/category/updateCategory")
+    @PostMapping("/updateCategory")
     public void updateCategory(@RequestBody Category category){
         try {
             categoryService.updateCategory(category);
@@ -54,12 +54,12 @@ public class CategoryController {
         }
     }
 
-    @PostMapping("/category/deleteCategory")
+    @PostMapping("/deleteCategory")
     public void deleteCategory(@RequestBody Category category){
         categoryService.deleteCategory(category);
     }
 
-    @PostMapping("/category/deleteCategoryById/{id}")
+    @PostMapping("/deleteCategoryById/{id}")
     public void deleteCategoryById(@PathVariable int id){
         try {
             categoryService.deleteCategory(id);
@@ -67,6 +67,5 @@ public class CategoryController {
             throw new RuntimeException(e);
         }
     }
-
-
+    
 }

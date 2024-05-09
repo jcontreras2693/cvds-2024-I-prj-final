@@ -21,12 +21,12 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @PostMapping("/item/addItem")
+    @PostMapping("/addItem")
     public void addItem(@RequestBody Item item){
         itemService.addItem(item);
     }
 
-    @GetMapping("/item/getItem/{id}")
+    @GetMapping("/getItem/{id}")
     public void getItem(@PathVariable int id, Model model) {
         try {
             model.addAttribute("item", itemService.getItem(id));
@@ -35,12 +35,12 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/item/getAllItems")
+    @GetMapping("/getAllItems")
     public void getAllItems(Model model){
         model.addAttribute("items", itemService.getAllItems());
     }
 
-    @PostMapping("/item/updateItem")
+    @PostMapping("/updateItem")
     public void updateItem(@RequestBody Item item){
         try {
             itemService.updateItem(item);
@@ -49,12 +49,12 @@ public class ItemController {
         }
     }
 
-    @PostMapping("/item/deleteItem")
+    @PostMapping("/deleteItem")
     public void deleteItem(@RequestBody Item item){
         itemService.deleteItem(item);
     }
 
-    @PostMapping("/item/deleteItemById/{id}")
+    @PostMapping("/deleteItemById/{id}")
     public void deleteItemById(@PathVariable int id){
         try {
             itemService.deleteItem(id);
@@ -63,12 +63,12 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/item/getSubTotal")
+    @GetMapping("/getSubTotal")
     public void getSubTotal(@RequestBody Item item, Model model){
         model.addAttribute("subTotal", itemService.calculateSubtotal(item));
     }
 
-    @GetMapping("/item/getSubTotalById/{id}")
+    @GetMapping("/getSubTotalById/{id}")
     public void getSubtotalById(@PathVariable int id, Model model){
         try {
             model.addAttribute("subTotal", itemService.calculateSubtotal(id));
@@ -77,12 +77,12 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/item/getTotal")
+    @GetMapping("/getTotal")
     public void getTotal(@RequestBody Item item, Model model){
         model.addAttribute("total", itemService.calculateTotal(item));
     }
 
-    @GetMapping("/item/getTotalById/{id}")
+    @GetMapping("/getTotalById/{id}")
     public void getTotalById(@PathVariable int id, Model model){
         try {
             model.addAttribute("total", itemService.calculateTotal(id));
@@ -91,12 +91,12 @@ public class ItemController {
         }
     }
 
-    @PostMapping("/item/addCategory")
+    @PostMapping("/addCategory")
     public void addCategory(@RequestBody Item item, @RequestBody Category category){
         itemService.addCategory(item, category);
     }
 
-    @PostMapping("/item/addCategoryById/{id}")
+    @PostMapping("/addCategoryById/{id}")
     public void addCategoryById(@PathVariable int id, @RequestBody Category category){
         try {
             itemService.addCategory(id, category);

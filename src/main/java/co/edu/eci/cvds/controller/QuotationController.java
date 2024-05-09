@@ -21,12 +21,12 @@ public class QuotationController {
         this.quotationService = quotationService;
     }
 
-    @PostMapping("/quotation/addQuotation")
+    @PostMapping("/addQuotation")
     public void addQuotation(@RequestBody Quotation quotation, Model model){
         quotationService.addQuotation(quotation);
     }
 
-    @GetMapping("/quotation/getQuotation/{id}")
+    @GetMapping("/getQuotation/{id}")
     public void getQuotation(@PathVariable int id, Model model){
         try {
             model.addAttribute("quotation", quotationService.getQuotation(id));
@@ -35,12 +35,12 @@ public class QuotationController {
         }
     }
 
-    @GetMapping("/quotation/getAllQuotations")
+    @GetMapping("/getAllQuotations")
     public void getAllQuotations(Model model){
         model.addAttribute("quotations", quotationService.getAllQuotation());
     }
 
-    @PostMapping("/quotation/updateQuotation")
+    @PostMapping("/updateQuotation")
     public void updateQuotation(@RequestBody Quotation quotation, Model model){
         try {
             quotationService.updateQuotation(quotation);
@@ -50,12 +50,12 @@ public class QuotationController {
         }
     }
 
-    @PostMapping("/quotation/deleteQuotation")
+    @PostMapping("/deleteQuotation")
     public void deleteQuotation(@RequestBody Quotation quotation){
         quotationService.deleteQuotation(quotation);
     }
 
-    @PostMapping("/quotation/deleteQuotationById/{id}")
+    @PostMapping("/deleteQuotationById/{id}")
     public void deleteQuotation(@PathVariable int id){
         try {
             quotationService.deleteQuotation(id);
@@ -64,12 +64,12 @@ public class QuotationController {
         }
     }
 
-    @GetMapping("/quotation/getTotal")
+    @GetMapping("/getTotal")
     public void calculateTotal(@RequestBody Quotation quotation, Model model){
         model.addAttribute("total", quotationService.calculateTotal(quotation));
     }
 
-    @GetMapping("/quotation/getTotalById/{id}")
+    @GetMapping("/getTotalById/{id}")
     public void calculateTotalById(@PathVariable int id, Model model){
         try {
             model.addAttribute("total", quotationService.calculateTotal(id));
@@ -78,12 +78,12 @@ public class QuotationController {
         }
     }
 
-    @GetMapping("/quotation/getSubTotal")
+    @GetMapping("/getSubTotal")
     public void calculateSubTotal(@RequestBody Quotation quotation, Model model){
         model.addAttribute("subTotal", quotationService.calculateSubTotal(quotation));
     }
 
-    @GetMapping("/quotation/getSubTotalById/{id}")
+    @GetMapping("/getSubTotalById/{id}")
     public void calculateSubTotalById(@PathVariable int id, Model model){
         try {
             model.addAttribute("subTotal", quotationService.calculateSubTotal(id));
@@ -92,13 +92,13 @@ public class QuotationController {
         }
     }
 
-    @PostMapping("/quotation/updateStatus")
+    @PostMapping("/updateStatus")
     public void updateStatus(@RequestBody Quotation quotation, @RequestBody QuotationStatus status, Model model){
         quotationService.updateStatus(quotation, status);
         model.addAttribute("quotation", quotation);
     }
 
-    @PostMapping("/quotation/updateStatusById/{id}")
+    @PostMapping("/updateStatusById/{id}")
     public void updateStatusById(@PathVariable int id, @RequestBody QuotationStatus status, Model model){
         try {
             quotationService.updateStatus(id, status);
@@ -108,13 +108,13 @@ public class QuotationController {
         }
     }
 
-    @PostMapping("/quotation/addItem")
+    @PostMapping("/addItem")
     public void addItem(@RequestBody Quotation quotation, @RequestBody Item item, Model model){
         quotationService.addItem(quotation, item);
         model.addAttribute("quotation", quotation);
     }
 
-    @PostMapping("/quotation/addItemById/{id}")
+    @PostMapping("/addItemById/{id}")
     public void addItemById(@PathVariable int id, @RequestBody Item item, Model model){
         try {
             quotationService.addItem(id, item);
@@ -124,13 +124,13 @@ public class QuotationController {
         }
     }
 
-    @PostMapping("/quotation/deleteItem")
+    @PostMapping("/deleteItem")
     public void deleteItem(@RequestBody Quotation quotation, @RequestBody Item item, Model model){
         quotationService.deleteItem(quotation, item);
         model.addAttribute("quotation", quotation);
     }
 
-    @PostMapping("/quotation/deleteItemById/{id}")
+    @PostMapping("/deleteItemById/{id}")
     public void deleteItemById(@PathVariable int id, Item item, Model model){
         try {
             quotationService.deleteItem(id, item);
