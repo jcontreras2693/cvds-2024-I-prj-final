@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/vehicle")
 public class VehicleController {
 
     private final VehicleService vehicleService;
@@ -23,81 +22,96 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
-    @PostMapping("/vehicle/addVehicle")
+    @PostMapping("/addVehicle")
     public void addVehicle(@RequestBody Vehicle vehicle){
         vehicleService.addVehicle(vehicle);
     }
 
-    @GetMapping("/vehicle/getBrands")
+    @GetMapping("/")
     public String getBrands(Model model){
         List<String> brands = vehicleService.getBrands();
         model.addAttribute("brands", brands);
-        return "vehicles";
+        return "brands";
     }
 
-    @GetMapping("/vehicle/getModels/{brand}")
+    @PostMapping("/getModels/{brand}")
     public String getModels(@PathVariable String brand, Model model){
         List<String> models = vehicleService.getModels(brand);
+        model.addAttribute("brand", brand);
         model.addAttribute("models", models);
-        return "vehicles";
+        return "models";
     }
 
-    @GetMapping("/vehicle/getYears/{brand}/{model}")
-    public String getYears(@PathVariable String brand, @PathVariable String modelVehicle, Model model){
+    @PostMapping("/getYears/{modelVehicle}")
+    public String getYears(String brand, @PathVariable String modelVehicle, Model model){
         List<Integer> years = vehicleService.getYears(brand, modelVehicle);
+        model.addAttribute("brand", brand);
+        model.addAttribute("model", modelVehicle);
         model.addAttribute("years", years);
-        return "vehicles";
+        return "years";
     }
 
-    @GetMapping("/vehicle/getCylinderCapacity/{brand}/{model}/{year}")
-    public String getCylinderCapacity(@PathVariable String brand, @PathVariable String modelVehicle, @PathVariable int year, Model model){
+    @PostMapping("/getCylinderCapacity/{year}")
+    public String getCylinderCapacity(String brand, String modelVehicle, @PathVariable int year, Model model){
         List<String> cylinders = vehicleService.getCylinders(brand, modelVehicle, year);
+        model.addAttribute("brand", brand);
+        model.addAttribute("modelVehicle", modelVehicle);
+        model.addAttribute("year", year);
         model.addAttribute("cylinders", cylinders);
-        return "vehicles";
+        return "cylinders";
     }
 
-    @GetMapping("/vehicle/getAllVehicles")
+    @GetMapping("/quotation")
+    public String quotation(String brand, String modelVehicle, int year, int cylinder, Model model){
+        model.addAttribute("brand", brand);
+        model.addAttribute("modelVehicle", modelVehicle);
+        model.addAttribute("year", year);
+        model.addAttribute("cylinder", cylinder);
+        return "quote";
+    }
+
+    @GetMapping("/getAllVehicles")
     public String getAllVehicles(Model model){
         List<Vehicle> vehicles = vehicleService.getAllVehicles();
         model.addAttribute("vehicles", vehicles);
-        return "vehicles";
+        return "/";
     }
 
-    @GetMapping("/vehicle/getVehicleById/{id}")
+    @GetMapping("/getVehicleById/{id}")
     public String getVehicleById(@PathVariable int id, Model model){
         try{
             Vehicle vehicle = vehicleService.getVehicle(id);
             model.addAttribute("vehicle", vehicle);
-            return "vehicles";
+            return "/";
         }
         catch(ServiceException serviceException){
             throw new RuntimeException(serviceException);
         }
     }
 
-    @PostMapping("/vehicle/updateVehicle")
+    @PostMapping("/updateVehicle")
     public String updateVehicle(@RequestBody Vehicle vehicle, Model model){
         try{
             vehicleService.updateVehicle(vehicle);
             model.addAttribute("vehicle", vehicle);
-            return "vehicles";
+            return "/";
         }
         catch(ServiceException serviceException){
             throw new RuntimeException(serviceException);
         }
     }
 
-    @PostMapping("/vehicle/deleteVehicle")
+    @PostMapping("/deleteVehicle")
     public String deleteVehicle(@RequestBody Vehicle vehicle){
         vehicleService.deleteVehicle(vehicle);
-        return "vehicles";
+        return "/";
     }
 
-    @PostMapping("/vehicle/deleteVehicle/{id}")
+    @PostMapping("/deleteVehicle/{id}")
     public String deleteVehicleById(@PathVariable int id){
         try{
             vehicleService.deleteVehicle(id);
-            return "vehicles";
+            return "/";
         }
         catch(ServiceException serviceException){
             throw new RuntimeException(serviceException);

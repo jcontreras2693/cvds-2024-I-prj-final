@@ -1,0 +1,32 @@
+    <!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización</title>
+    <link rel="stylesheet" href="../static/styles.css">
+
+</head>
+<body>
+    <div class="allContainer">
+        <div class="header">
+            <div class="logo2">
+                <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg"  height="45">
+            </div>
+            <div class="selectedBar">
+                <div th:text="${brand}" class="brand"></div>
+                <div th:text="${modelVehicle}" class="model"></div>
+                <div th:text="${year}" class="year"></div>
+                <div th:text="${cylinder}" class="cylinder"></div>
+            </div>
+            <div class="cart">
+                <img src="images/shopping-cart.png" alt="" height="20" id="shoppingcartIcon">
+            </div>
+        </div>
+        <div class="search">
+            <input type="text">
+            <img src="images/search.png" alt="" id="searchIcon">
+        </div>
+    </div>
+</body>
+</html>
