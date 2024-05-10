@@ -76,8 +76,6 @@
 
 .botones button {
     font-family: 'Conamore Bold', sans-serif;
-    width: 20%;
-    height: 20%;
     border-radius: 8px;
     border: 1px solid #69727D;
     background-color: #292C33;
@@ -87,7 +85,7 @@
 }
 
 .botones .stage {
-    width: 264px;
+    width: 13vw;
     height: 39px;
     border-radius: 8px;
     border: 1px solid #69727D;

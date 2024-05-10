@@ -76,8 +76,6 @@
 
 .botones button {
     font-family: 'Conamore Bold', sans-serif;
-    width: 20%;
-    height: 20%;
     border-radius: 8px;
     border: 1px solid #69727D;
     background-color: #292C33;
@@ -87,7 +85,7 @@
 }
 
 .botones .stage {
-    width: 264px;
+    width: 13vw;
     height: 39px;
     border-radius: 8px;
     border: 1px solid #69727D;
@@ -107,7 +105,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-auto-rows: 150px;
-    grid-gap: 30px; /* espacio vertical y horizontal entre elementos*/
+    grid-gap: 2%; /* espacio vertical y horizontal entre elementos*/
     margin-top: 5%;
     margin-left: 5%;
     margin-right: 5%;
@@ -115,17 +113,15 @@
     padding-left: 15px;
     overflow-y: scroll;
     max-height: 60%;
-
+    overflow: hidden; 
     grid-auto-flow: row;
 }
 
 .rectangle-grid button {
     background-color: transparent ;
-
     width: 160px; /* Botones ocupan todo el ancho de la celda */
     height: 120px;
     border-radius: 15px;
-    
 }
 
 /*Contenedor del fondo de la imagen cuándo la imagen es seleccioanda*/
@@ -172,6 +168,7 @@
 }
 .rectangle-grid::-webkit-scrollbar{
     width: 7px;
+    max-height: 1px;
 }
 
 .rectangle-grid::-webkit-scrollbar-thumb{
