@@ -1,12 +1,12 @@
 
 @font-face {
     font-family: 'Conamore Regular';
-    src: url('fonts/Conamore-Regular.woff') format('woff');
+    src: url('../fonts/Conamore-Regular.woff') format('woff');
 }
 
 @font-face {
     font-family: 'Conamore Bold';
-    src: url('fonts/Conamore-Bold.woff') format('woff');
+    src: url('../fonts/Conamore-Bold.woff') format('woff');
 }
 
 * {
@@ -59,7 +59,7 @@
 .text {
     font-family: 'Conamore Bold', sans-serif;
     margin-top: 15px;
-    font-size: 200%;
+    font-size: 2vw;
     color: #FFFFFF;
     text-align: center;
     line-height: 120px; /* altura de línea para centrar verticalmente */
