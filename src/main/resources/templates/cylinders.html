@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotización</title>
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/css/cylinders.css">
 
 </head>
 <body>
-<div class="container">
-    <div class="centered">
-        <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg" alt="" width="" height="57" class="logo">
-        <div class="rectangle">
-            <div class="text"> Realiza tu Cotización</div>
-            <div class="botones">
-            </div>
-            <div class="rectangle-grid" id="rectangle-grid">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Cilindraje</th>
-                    </tr>
-                    </thead>
+    <div class="container">
+        <div class="centered">
+            <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg" alt="" width="" height="57" class="logo">
+            <div class="rectangle">
+                <div class="text"> Realiza tu Cotización</div>
+                <div class="botones">
+                    <button class="stage" id="brand">Marca</button>
+                    <button class="stage" id="model">Modelo</button>
+                    <button class="stage" id="year">Año</button>
+                    <button class="stage active" id="cylinder">Cilindraje</button>
+                </div>
+
+                <div class="rectangle-grid">
                     <tbody>
-                    <tr th:each="cylinder : ${cylinders}">
-                        <td>
-                            <form th:action="@{/quotation}" method="get">
-                                <input type="hidden" id="brand" name="brand" th:value="${brand}">
-                                <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${modelVehicle}">
-                                <input type="hidden" id="year" name="year" th:value="${year}">
-                                <input type="hidden" id="cylinder" name="cylinder" th:value="${cylinder}">
-                                <button type="submit" th:text="${cylinder}"></button>
-                            </form>
-                        </td>
-                    </tr>
+                        <tr th:each="cylinder : ${cylinders}">
+                            <td>
+                                <form th:action="@{/quotation}" method="get">
+                                    <input type="hidden" id="brand" name="brand" th:value="${brand}">
+                                    <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${modelVehicle}">
+                                    <input type="hidden" id="year" name="year" th:value="${year}">
+                                    <input type="hidden" id="cylinder" name="cylinder" th:value="${cylinder}">
+                                    <button type="submit">
+                                        <span th:text="${cylinder}"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     </tbody>
-                </table>
-            </div>
+                </div>
         </div>
     </div>
 </div>

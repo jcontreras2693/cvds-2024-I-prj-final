@@ -25,6 +25,9 @@
                     <tr th:each="model : ${models}">
                         <td>
                             <form th:action="@{'/getYears/' + ${model}}" method="post">
+
+                                <input type="hidden" id="brand" name="brand" th:value="${brand}">
+
                                 <button type="submit">
                                     <img th:src="@{'../static/images/' + ${brand.toLowerCase()} + '/' + ${model.toUpperCase()} + '.png'}" th:alt="${model}" />
                                     <span th:text="${model.replace('_', ' ')}"></span>
