@@ -14,31 +14,27 @@
         <div class="rectangle">
             <div class="text"> Realiza tu Cotización</div>
             <div class="botones">
-                <button class="stage" id="brand">Marca</button>
+                <button class="stage active" id="brand">Marca</button>
                 <button class="stage" id="model">Modelo</button>
                 <button class="stage" id="year">Año</button>
                 <button class="stage" id="cylinder">Cilindraje</button>
             </div>
-            <div class="rectangle-grid" id="rectangle-grid">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Marca</th>
-                    </tr>
-                    </thead>
+            <div class="rectangle-grid">
                     <tbody>
-                    <tr th:each="brand : ${brands}">
-                        <td>
-                            <form th:action="@{'/getModels/' + ${brand}}" method="post">
-                                <button class="stage" type="submit" th:text="${brand}"></button>
-                            </form>
-                        </td>
-                    </tr>
+                        <tr th:each="brand : ${brands}">
+                            <td>
+                                <form th:action="@{'/getModels/' + ${brand}}" method="post">
+                                    <button type="submit">
+                                        <img th:src="@{'../static/images/brands/' + ${brand.toLowerCase()} + '.png'}" th:alt="${brand}" >
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                     </tbody>
-                </table>
             </div>
         </div>
     </div>
 </div>
+<script src="../static/brands.js"></script>
 </body>
 </html>
