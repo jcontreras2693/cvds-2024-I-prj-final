@@ -32,45 +32,42 @@
 .logo {
     position: absolute;
     top: 50px;
-    left: calc(50% - 33%);
+    height: 6vh;
+    left: 20%;
     text-align: center;
 }
 
 .logo a img[src$=".svg"] {
-    width: 18%;
     vertical-align: middle;
     display: inline-block;
 }
 
 /*Contenedor más grande*/
 .rectangle {
-    width: 65%;
-    height: 70%;
+    width: 65vw;
+    height: 70vh;
     background-color: #0D131A;
     border: 1px solid #D91F28;
     border-radius: 25px;
-    position: absolute;
-    top: calc(50px + 57px + 30px); /* calcula la posición para que el rectángulo esté debajo del logo */
-    left: calc(50% - 33%); /* calcula la posición para que el rectángulo esté centrado horizontalmente */
-    box-shadow: 0px 0px 15px #050709; /* sombra*/
+    box-shadow: 0px 0px 15px #050709ef; /* sombra*/
 }
 
 .text {
     font-family: 'Conamore Bold', sans-serif;
-    margin-top: 15px;
     font-size: 2vw;
     color: #FFFFFF;
     text-align: center;
-    line-height: 120px; /* altura de línea para centrar verticalmente */
-    letter-spacing: 3px;
+    line-height: 10vh; /* altura de línea para centrar verticalmente */
+    letter-spacing: 2px;
+    padding-top: 2vh;
 }
 
 .botones {
     display: flex;
     justify-content: space-between; /* distribuye los botones horizontalmente */
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 1%;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    margin-top: 1vh;
 }
 
 .botones button {
@@ -85,14 +82,16 @@
 
 .botones .stage {
     width: 13vw;
-    height: 39px;
+    height: 4vh;
     border-radius: 8px;
     border: 1px solid #69727D;
     background-color: #292C33;
     color: #E3E6EC;
-    letter-spacing: 1px;
     box-shadow: 0px 0px 15px #050709;
+    font-size: 0.8vw; /* Tamaño de fuente responsive */
+    padding: 1vh 2vw; /* Padding responsive */
 }
+
 
 .botones .stage.active {
     background-color: #D91F28;
