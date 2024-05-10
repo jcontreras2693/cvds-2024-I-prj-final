@@ -329,32 +329,39 @@
 .price-add {
     display: flex;
     flex-direction: row; /* Alinea los elementos en fila */
+    justify-items: center;
+    padding-top: 0.5vh;
 }
 
 .price {
-    flex: 2;
-    padding: 8px;
+    flex: 1;
+    padding-left: 1vw;
+    padding-top: 1.4vh;
     font-family: 'Conamore Bold', sans-serif;
     color: #0D131A;
-    font-size: 12px;
+    font-size: 1.4vh;
+    
 }
 
 .add {
     display: flex;
     flex: 1;
-    width: 30px;
-    height: 30px;
-    background-color: #0D131A;
+    width: 40px;
+    height: 40px;
     box-sizing: border-box;
-    margin-right: 7px;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
     border: none;
     transition: transform 0.3s ease;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.add:hover {
-    transform: scale(1.01);
+.add img{
+    height: 2.9vh;
 }
+.add:hover {
+    transform: scale(1.05);
+}
+
