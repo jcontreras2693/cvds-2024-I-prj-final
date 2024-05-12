@@ -31,6 +31,8 @@ public class User {
     //private List<Quotation> quotations;
 
 
+    public User(){}
+
     public User(String userName, int identificationNumber, int telephoneNumber, String email, String password) {
         this.userName = userName;
         this.identificationNumber = identificationNumber;
