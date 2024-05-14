@@ -11,6 +11,11 @@
     src: url('../fonts/Conamore-Bold.woff') format('woff');
 }
 
+@font-face {
+    font-family: 'Conamore Semi Bold';
+    src: url('../fonts/Conamore-Semi-Bold.woff') format('woff');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -146,6 +151,7 @@
     padding-left: 5px;
     padding-top: 5px;
     cursor: pointer;
+    height: 4vh;
 }
 
 #close-button img {
@@ -153,9 +159,88 @@
 }
 
 #main-text-cart {
-    font-family: 'Conamore Bold', sans-serif;
-    font-size: 130%;
+    font-family: 'Conamore Semi Bold', sans-serif;
+    font-size: 2.5vh;
     margin: 0 auto;
+}
+
+.services-items{
+    height: 150px;
+}
+.separator{
+    padding-top: 20px;
+    border-bottom: 1px solid black;
+}
+
+.items{
+    height: 150px;
+}
+
+#services-text{
+    font-family: 'Conamore Semi Bold', sans-serif;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.5vh;
+    letter-spacing: 1px;
+}
+
+.item{
+    display: grid;
+    width: (20vw-1);
+    height: 6vh;
+    place-items: center;
+}
+
+.item-icon{
+    display: flex;
+    grid-column: 1;
+    background-color: #0D131A;
+    height: 5vh;
+    width: 2.5vw;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.item-icon img{
+    height: 3.5vh;
+}
+
+.item-description{
+    grid-column: 2;
+    width: 140px;
+    height: 50px;
+    font-family: 'Conamore Regular', sans-serif;
+    font-size: 1.4vh;
+    align-content: center;
+    padding-left: 0.3vw;
+    padding-right: 0.3vw;
+
+}
+
+.item-price{
+    grid-column: 3;
+    min-width: 45px;
+    min-height: 50px;
+    font-family: 'Conamore Semi Bold', sans-serif;
+    font-size: 1.4vh;
+    align-content: center;
+    padding-right: 0.3vw;
+}
+
+.item-delete{
+    display: flex;
+    grid-column: 4;
+    background-color: #922525;
+    height: 30px;
+    width: 25px;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-delete img{
+    height: 2vh;
+    width: auto;
 }
 
 .search {
@@ -247,6 +332,11 @@
     padding: 7px 20px 7px 20px; /* Añadir padding horizontal de 20px y vertical de 7px */
     cursor: pointer;
     text-align: left;
+}
+
+.categories button.active{
+    border-color: red; /* Cambia el color del borde a rojo cuando el botón está seleccionado */
+    box-shadow: 0px 0px 15px #d80d0d62;
 }
 
 .categories button:focus {
