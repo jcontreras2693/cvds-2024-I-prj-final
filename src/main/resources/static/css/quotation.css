@@ -139,6 +139,8 @@
     box-shadow: 0px 0px 15px #ccb11894;
 }
 
+/*carrito por dentro*/
+
 .header-cart {
     display: flex;
     align-items: center; /* Centra verticalmente los elementos */
@@ -164,11 +166,14 @@
     margin: 0 auto;
 }
 
+#info-cart{
+    height:85vh;
+}
 .services-items{
     height: 150px;
 }
 .separator{
-    padding-top: 20px;
+    height: 3vh;
     border-bottom: 1px solid black;
 }
 
@@ -243,6 +248,81 @@
     width: auto;
 }
 
+.subtotal{
+    display: grid;
+    height: 3vh;
+    padding: 5px;
+}
+
+#subtotal-text{
+    grid-column: 1;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.5vh;
+    letter-spacing: 1px;
+}
+
+#subtotal-items{
+    grid-column: 2;
+    padding: 10px;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+    justify-self: center;
+}
+
+.taxes{
+    height: 4vh;
+}
+
+#taxes-text{
+    grid-column: 1;
+    grid-row: 1;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+    padding: 10px;
+    padding-left: 20px;
+}
+#taxes-grid{
+    display: grid;
+    height: 3vh;
+    padding: 5px;
+    padding-left: 20px;
+}
+
+#tax{
+    grid-column: 1;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+}
+#tax-per-item{
+    grid-column: 2;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+    justify-self: center;
+}
+
+.total{
+    height: 5vh;
+    display: grid;
+    padding: 15px;
+    padding-left: 20px;
+}
+
+#total-text{
+    grid-column: 1;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+}
+
+#total-count{
+    grid-column: 2;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+    justify-self: center;
+}
+/* Fin carrito ------------------------ */
+
 .search {
     position: relative; 
     width: 35%;
@@ -253,7 +333,6 @@
     display: flex;
     align-items: center;
     box-shadow: 0px 0px 15px #0D131A;
-    
 }
 
 .search input {
