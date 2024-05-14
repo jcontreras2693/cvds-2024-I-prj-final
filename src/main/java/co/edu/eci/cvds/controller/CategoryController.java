@@ -25,14 +25,20 @@ public class CategoryController {
     }
 
     @GetMapping("/getAllCategories")
-    public void getAllCategories(Model model){
+    public String getAllCategories(String brand, String modelVehicle, int year, int cylinder, Model model){
+        model.addAttribute("brand", brand);
+        model.addAttribute("modelVehicle", modelVehicle);
+        model.addAttribute("year", year);
+        model.addAttribute("cylinder", cylinder);
         model.addAttribute("categories", categoryService.getAllCategories());
+        return "quote";
     }
 
     @PostMapping("/putCategory")
-    public void addCategory(@RequestBody Category category, Model model){
+    public String addCategory(@RequestBody Category category, Model model){
         categoryService.addCategory(category);
         //model.addAttribute("categories", categoryService.getAllCategories());
+        return "redirect://quote";
     }
 
     @GetMapping("/getCategory/{id}")
