@@ -3,6 +3,7 @@ package co.edu.eci.cvds.service;
 import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Category;
 import co.edu.eci.cvds.model.Item;
+import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -106,6 +107,15 @@ public class ItemService {
         Item item = getItem(id);
         item.addCategory(category);
         itemRepository.save(item);
+    }
+
+    public void addVehicle(Item item, Vehicle vehicle){
+        item.addVehicle(vehicle);
+        try {
+            updateItem(item);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

@@ -27,7 +27,7 @@ public class Vehicle {
     @Column(name = "CYLINDER_CAPACITY", nullable = false)
     private Integer cylinderCapacity;
 
-    @ManyToMany(mappedBy = "vehicles")
+    @ManyToMany(mappedBy = "vehicles", fetch = FetchType.EAGER)
     private List<Item> items;
 
     public Vehicle() {
@@ -89,5 +89,9 @@ public class Vehicle {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public void addItem(Item item){
+        items.add(item);
     }
 }

@@ -1,6 +1,7 @@
 package co.edu.eci.cvds.service;
 
 import co.edu.eci.cvds.exceptions.ServiceException;
+import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,15 @@ public class VehicleService {
     public void deleteVehicle(int id) throws ServiceException {
         Vehicle vehicle = getVehicle(id);
         deleteVehicle(vehicle);
+    }
+
+    public void addItem(Vehicle vehicle, Item item){
+        vehicle.addItem(item);
+        try {
+            updateVehicle(vehicle);
+        } catch (ServiceException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

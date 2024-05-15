@@ -192,4 +192,8 @@ public class Item {
     public boolean isAvailable(){
         return availability;
     }
+
+    public void addVehicle(Vehicle vehicle){
+        vehicles.add(vehicle);
+    }
 }
