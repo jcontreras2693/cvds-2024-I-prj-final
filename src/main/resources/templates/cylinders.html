@@ -24,7 +24,7 @@
                     <tbody>
                         <tr th:each="cylinder : ${cylinders}">
                             <td>
-                                <form th:action="@{/category/getAllCategories}" method="get">
+                                <form th:action="@{/quotation}" method="get">
                                     <input type="hidden" id="brand" name="brand" th:value="${brand}">
                                     <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${modelVehicle}">
                                     <input type="hidden" id="year" name="year" th:value="${year}">

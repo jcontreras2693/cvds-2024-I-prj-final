@@ -35,7 +35,7 @@ public class VehicleService {
         return vehicleRepository.findDistinctYearByBrandAndModel(brand, model);
     }
 
-    public List<String> getCylinders(String brand, String model, int year){
+    public List<Integer> getCylinders(String brand, String model, int year){
         return vehicleRepository.findDistinctCylinderCapacityByBrandAndModelAndYear(brand, model, year);
     }
 
@@ -63,6 +63,10 @@ public class VehicleService {
 
     public void deleteVehicle(Vehicle vehicle){
         vehicleRepository.delete(vehicle);
+    }
+
+    public Vehicle getVehicleByParameters(String brand, String model, Integer year, Integer cylinderCapacity){
+        return vehicleRepository.findByBrandAndModelAndYearAndCylinderCapacity(brand, model, year, cylinderCapacity);
     }
 
     public void deleteVehicle(int id) throws ServiceException {

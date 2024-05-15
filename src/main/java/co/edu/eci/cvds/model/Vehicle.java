@@ -22,10 +22,10 @@ public class Vehicle {
     private String model;
 
     @Column(name = "VEHICLE_YEAR", nullable = false)
-    private int year;
+    private Integer year;
 
     @Column(name = "CYLINDER_CAPACITY", nullable = false)
-    private int cylinderCapacity;
+    private Integer cylinderCapacity;
 
     @ManyToMany(mappedBy = "vehicles")
     private List<Item> items;
@@ -33,7 +33,7 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(String brand, String model, int year, int cylinderCapacity) throws ModelException {
+    public Vehicle(String brand, String model, Integer year, Integer cylinderCapacity) throws ModelException {
         if(year <= 0) throw new ModelException(ModelException.VEHICLE_INVALID_YEAR);
         if(cylinderCapacity <= 0) throw new ModelException(ModelException.VEHICLE_INVALID_CYLINDER_CAPACITY);
         this.brand = brand;
@@ -67,7 +67,7 @@ public class Vehicle {
         this.model = model;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
@@ -75,7 +75,7 @@ public class Vehicle {
         this.year = year;
     }
 
-    public int getCylinderCapacity() {
+    public Integer getCylinderCapacity() {
         return cylinderCapacity;
     }
 

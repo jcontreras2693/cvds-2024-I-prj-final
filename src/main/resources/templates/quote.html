@@ -16,10 +16,10 @@
                 <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg" class="logo">
             </div>
             <div class="selectedBar">
-                <div class="brand" th:text="${brand}"></div>
-                <div class="model" th:text="${modelVehicle}"></div>
-                <div class="year" th:text="${year}"></div>
-                <div class="cylinder" th:text="${cylinder}"></div>
+                <div class="brand" th:text="${vehicle.getBrand()}"></div>
+                <div class="model" th:text="${vehicle.getModel()}"></div>
+                <div class="year" th:text="${vehicle.getYear()}"></div>
+                <div class="cylinder" th:text="${vehicle.getCylinderCapacity()}"></div>
             </div>
             <button class="cart">
                 <img src="../images/shopping-cart.png" alt="" height="20" id="shoppingcartIcon">
