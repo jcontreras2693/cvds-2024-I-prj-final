@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/item")
 public class ItemController {
@@ -33,6 +35,13 @@ public class ItemController {
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/{categoryId}/{vehicleId}")
+    public String getItemsByCategoryIdAndVehicleId(@PathVariable int categoryId, @PathVariable int vehicleId, Model model){
+        List<Item> items = itemService.getItemsByVehicleIdAndCategoryId(categoryId, vehicleId);
+        model.addAttribute("items", items);
+        return "quote_items";
     }
 
     @GetMapping("/getAllItems")

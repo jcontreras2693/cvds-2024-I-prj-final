@@ -19,20 +19,10 @@ import java.util.Arrays;
 @SpringBootApplication
 @Slf4j
 public class SpringApplicationCvds {
-	private final VehicleService vehicleService;
-	private final ItemService itemService;
-	private final CategoryService categoryService;
-
 
 	@Autowired
-	public SpringApplicationCvds(
-			VehicleService vehicleService,
-			ItemService itemService,
-			CategoryService categoryService
-	) {
-		this.vehicleService = vehicleService;
-		this.itemService = itemService;
-		this.categoryService = categoryService;
+	public SpringApplicationCvds() {
+
 	}
 
 	public static void main(String[] args) {
@@ -43,15 +33,6 @@ public class SpringApplicationCvds {
 	public CommandLineRunner run() {
 		return (args) -> {
 			System.out.println("Running...");
-			Vehicle vehicle = new Vehicle("BMW", "A3-COU", 2022, 100);
-			vehicleService.addVehicle(vehicle);
-			Category category = new Category("Mantenimiento preventivo");
-			categoryService.addCategory(category);
-			Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
-			itemService.addItem(item);
-			vehicleService.addItem(vehicle, item);
-			itemService.addVehicle(item, vehicle);
-			System.out.println(vehicleService.getAllVehicles().get(0).getItems());
 		};
 	}
 

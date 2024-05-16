@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/category")
@@ -25,6 +26,18 @@ public class CategoryController {
     public String getAllCategories(@ModelAttribute("vehicle") Vehicle vehicle, Model model){
         model.addAttribute("categories", categoryService.getAllCategories());
         return "quote";
+    }
+
+    @PostMapping("/getAllCategoriesPost")
+    public String getAllCategories(int vehicleId, String brand, String vehicleModel, int year, int cylinderCapacity,
+                                   int categoryId, Model model, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("categories", categoryService.getAllCategories());
+        redirectAttributes.addFlashAttribute("vehicleId", vehicleId);
+        redirectAttributes.addFlashAttribute("brand", brand);
+        redirectAttributes.addFlashAttribute("vehicleModel", vehicleModel);
+        redirectAttributes.addFlashAttribute("year", year);
+        redirectAttributes.addFlashAttribute("cylinderCapacity", cylinderCapacity);
+        return "redirect:/item/" + categoryId + "/" + vehicleId;
     }
 
     @PostMapping("/putCategory")

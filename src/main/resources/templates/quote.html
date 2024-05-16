@@ -25,7 +25,6 @@
                 <img src="../images/shopping-cart.png" alt="" height="20" id="shoppingcartIcon">
             </button>
 
-
         </div>
 
         <div class="search">
@@ -37,12 +36,16 @@
         <div class="content">
             <div class="categories-box">
                 <div class="title"> ¿Qué servicios necesita <br> tu vehículo? </div>
-                <div class="categories">
-                    <ul th:each="category : ${categories}">
-                        <li>
-                            <button type="button" th:text="${category.getName()}"></button>
-                        </li>
-                    </ul>
+                <div class="categories" th:each="category : ${categories}">
+                    <form th:action="@{'/category/getAllCategoriesPost'}" method="post">
+                        <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
+                        <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
+                        <input type="hidden" id="vehicleModel" name="vehicleModel" th:value="${vehicle.getModel()}">
+                        <input type="hidden" id="year" name="year" th:value="${vehicle.getYear()}">
+                        <input type="hidden" id="cylinderCapacity" name="cylinderCapacity" th:value="${vehicle.getCylinderCapacity()}">
+                        <input type="hidden" id="categoryId" name="categoryId" th:value="${category.getCategoryId()}">
+                        <button type="submit" th:text="${category.getName()}"></button>
+                    </form>
                 </div>
             </div>
             <div class="services-box">
@@ -51,6 +54,7 @@
                         <div class="image">
                             <img src="../images\servicios\mantenimiento-preventivo\correa-reparticion.png" alt="">
                         </div>
+
                         <div class="info">
                             <div class="service-type-text">Cambio de Correa de Repartición</div>
                             <div class="price-add">

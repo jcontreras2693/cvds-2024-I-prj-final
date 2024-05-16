@@ -118,4 +118,8 @@ public class ItemService {
         }
     }
 
+    public List<Item> getItemsByVehicleIdAndCategoryId(Integer categoryId, Integer vehicleId){
+        return itemRepository.findItemsByVehicleIdAndCategoryId(categoryId, vehicleId);
+    }
+
 }
