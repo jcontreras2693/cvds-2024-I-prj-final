@@ -414,12 +414,12 @@
 }
 
 .categories button.active{
-    border: 2px solid red; /* Cambia el color del borde a rojo cuando el botón está seleccionado */
+    border-color: red; /* Cambia el color del borde a rojo cuando el botón está seleccionado */
     box-shadow: 0px 0px 15px #d80d0d62;
 }
 
 .categories button:focus {
-    border: 2px solid red; /* Cambia el color del borde a rojo cuando el botón está seleccionado */
+    border-color: red; /* Cambia el color del borde a rojo cuando el botón está seleccionado */
     box-shadow: 0px 0px 15px #d80d0d62;
 }
 
@@ -479,7 +479,7 @@
 
 .info {
     width: 8.5vw;
-    height: 20px;
+    height: 7vh;
     flex: 1;
     background-color: #BCBCBC;
     border-radius: 10px;

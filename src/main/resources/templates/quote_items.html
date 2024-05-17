@@ -45,17 +45,19 @@
                     <input type="hidden" id="year" name="year" th:value="${year}">
                     <input type="hidden" id="cylinderCapacity" name="cylinderCapacity" th:value="${cylinderCapacity}">
                     <input type="hidden" id="categoryId" name="categoryId" th:value="${category.getCategoryId()}">
-                    <button type="submit" th:text="${category.getName()}" th:classappend="${category.getCategoryId() == activeCategoryId} ? 'active' : ''"></button>
+                    <button type="submit" th:text="${category.name}"
+                    th:classappend="${category.categoryId == activeCategoryId} ? 'active' : ''"></button>                
                 </form>
             </div>
         </div>
         <div class="services-box">
             <div class="services-grid">
                 <div class="cajas" th:each="item : ${items}">
-                    <div class="info">
+                    
                         <div class="image">
                             <img th:src="@{/static/images/servicios/mantenimiento-preventivo/cambio-amortiguador.png}" alt="Cambio Amortiguador">
                         </div>
+                        <div class="info">
                         <div class="service-type-text" th:text="${item.getName()}"></div>
                         <div class="price-add">
                             <div class="price" th:text="${item.getValue()}"></div>
