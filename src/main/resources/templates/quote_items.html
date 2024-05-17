@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotización</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/quotation.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/quotation_items.css">
 
 
 </head>
@@ -22,7 +22,7 @@
             <div class="cylinder" th:text="${cylinderCapacity}"></div>
         </div>
         <button class="cart">
-            <img src="../images/shopping-cart.png" alt="" height="20" id="shoppingcartIcon">
+            <img th:src="@{/static/images/shopping-cart.png}" alt="Shopping Cart" height="20" id="shoppingcartIcon">
         </button>
 
 
@@ -30,7 +30,7 @@
 
     <div class="search">
         <input type="text">
-        <img src="../images/search.png" alt="" id="searchIcon">
+        <img th:src="@{/static/images/search.png}" alt="" id="searchIcon">
     </div>
 
 
@@ -45,7 +45,7 @@
                     <input type="hidden" id="year" name="year" th:value="${year}">
                     <input type="hidden" id="cylinderCapacity" name="cylinderCapacity" th:value="${cylinderCapacity}">
                     <input type="hidden" id="categoryId" name="categoryId" th:value="${category.getCategoryId()}">
-                    <button type="submit" th:text="${category.getName()}"></button>
+                    <button type="submit" th:text="${category.getName()}" th:classappend="${category.getCategoryId() == activeCategoryId} ? 'active' : ''"></button>
                 </form>
             </div>
         </div>
@@ -53,63 +53,20 @@
             <div class="services-grid">
                 <div class="cajas" th:each="item : ${items}">
                     <div class="info">
+                        <div class="image">
+                            <img th:src="@{/static/images/servicios/mantenimiento-preventivo/cambio-amortiguador.png}" alt="Cambio Amortiguador">
+                        </div>
                         <div class="service-type-text" th:text="${item.getName()}"></div>
                         <div class="price-add">
                             <div class="price" th:text="${item.getValue()}"></div>
                             <a class="add">
-                                <img src="../images\servicios\add.png" alt="">
+                                <img th:src="@{/static/images/servicios/add.png}" alt="add">
                             </a>
                         </div>
                     </div>
                 </div>
-                <!--<div class="cajas">
-                    <div class="image">
-                        <img src="../images\servicios\mantenimiento-preventivo\correa-reparticion.png" alt="">
-                    </div>
-
-                    <div class="info">
-                        <div class="service-type-text">Cambio de Correa de Repartición</div>
-                        <div class="price-add">
-                            <div class="price">$50,000</div>
-                            <a class="add">
-                                <img src="../images\servicios\add.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="cajas">
-                    <div class="image">
-                        <img src="../images\servicios\mantenimiento-preventivo\cambio-amortiguador.png" alt="">
-                    </div>
-                    <div class="info">
-                        <div class="service-type-text">Cambio de amortiguadores</div>
-                        <div class="price-add">
-                            <div class="price">$50,000</div>
-                            <a class="add">
-                                <img src="../images\servicios\add.png" alt="">
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="cajas">
-                    <div class="image">
-                        <img src="../images\servicios\mantenimiento-preventivo\cambio-aceite.png" alt="" >
-                    </div>
-                    <div class="info">
-                        <div class="service-type-text">Cambios de aceite y filtros</div>
-                        <div class="price-add">
-                            <div class="price">$50,000</div>
-                            <a class="add">
-                                <img src="../images\servicios\add.png" alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>-->
             </div>
-
         </div>
-
     </div>
 
     <!--Carrito-->
@@ -117,7 +74,7 @@
     <div class="cart-content">
         <div class="header-cart">
             <button id="close-button">
-                <img src="../images/servicios/close.png" alt="">
+                <img th:src="@{/static/images/servicios/close.png}" alt="close">
             </button>
             <div id="main-text-cart">Tu Carrito</div>
         </div>
@@ -133,7 +90,7 @@
                         <div class="item-description">Cambio de Correa de Repartición</div>
                         <div class="item-price">$50.000</div>
                         <div class="item-delete">
-                            <img src="../images\servicios\delete.png" alt="" >
+                            <img th:src="@{/static/images/servicios/delete.png}" alt="delete">
                         </div>
                     </div>
                     <div class="item"> <!-- ejemplo servicio agregado al carrito -->
