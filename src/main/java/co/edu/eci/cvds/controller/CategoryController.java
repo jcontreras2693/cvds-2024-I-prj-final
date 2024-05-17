@@ -47,6 +47,7 @@ public class CategoryController {
         return "redirect://quote";
     }
 
+
     @GetMapping("/getCategory/{id}")
     public void getCategory(@PathVariable int id, Model model){
         try {

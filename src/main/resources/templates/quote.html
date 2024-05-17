@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotización</title>
-    <link rel="stylesheet" href="../static/css/quotation.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/quotation.css">
 
 
 </head>
@@ -36,8 +36,8 @@
         <div class="content">
             <div class="categories-box">
                 <div class="title"> ¿Qué servicios necesita <br> tu vehículo? </div>
-                <div class="categories" th:each="category : ${categories}">
-                    <form th:action="@{'/category/getAllCategoriesPost'}" method="post">
+                <div class="categories" >
+                    <form th:each="category : ${categories}" th:action="@{'/category/getAllCategoriesPost'}" method="post">
                         <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
                         <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
                         <input type="hidden" id="vehicleModel" name="vehicleModel" th:value="${vehicle.getModel()}">
@@ -161,7 +161,7 @@
                 </div>
             </div>
     </div>
-    <script src="../categoryCode.js"></script>
+    <script src="/static/categoryCode.js"></script>
 
 </body>
 </html>
