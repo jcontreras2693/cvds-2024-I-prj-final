@@ -22,14 +22,14 @@
                 <div class="cylinder" th:text="${vehicle.getCylinderCapacity()}"></div>
             </div>
             <button class="cart">
-                <img src="../images/shopping-cart.png" alt="" height="20" id="shoppingcartIcon">
+                <img th:src="@{/images/shopping-cart.png}" alt="" height="20" id="shoppingcartIcon">
             </button>
 
         </div>
 
         <div class="search">
             <input type="text">
-            <img src="../images/search.png" alt="" id="searchIcon">
+            <img th:src="@{/images/search.png}" alt="" id="searchIcon">
         </div>
 
 
@@ -37,20 +37,36 @@
             <div class="categories-box">
                 <div class="title"> ¿Qué servicios necesita <br> tu vehículo? </div>
                 <div class="categories" >
-                    <form th:each="category : ${categories}" th:action="@{'/category/getAllCategoriesPost'}" method="post">
-                        <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
+                    <form th:each="category : ${categories}" th:action="@{'/quotation'}" method="get">
                         <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
-                        <input type="hidden" id="vehicleModel" name="vehicleModel" th:value="${vehicle.getModel()}">
+                        <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${vehicle.getModel()}">
                         <input type="hidden" id="year" name="year" th:value="${vehicle.getYear()}">
-                        <input type="hidden" id="cylinderCapacity" name="cylinderCapacity" th:value="${vehicle.getCylinderCapacity()}">
+                        <input type="hidden" id="cylinder" name="cylinder" th:value="${vehicle.getCylinderCapacity()}">
                         <input type="hidden" id="categoryId" name="categoryId" th:value="${category.getCategoryId()}">
-                        <button type="submit" th:text="${category.getName()}"></button>
+                        <button type="submit" th:text="${category.name}"
+                                th:classappend="${category.categoryId == activeCategoryId} ? 'active' : ''"></button>
                     </form>
                 </div>
             </div>
             <div class="services-box">
                 <div class="services-grid">
-                    <div class="cajas">
+
+                    <div class="cajas" th:each="item : ${items}">
+                        <div class="image">
+                            <img th:src="@{/static/images/servicios/mantenimiento-preventivo/cambio-amortiguador.png}" alt="Cambio Amortiguador">
+                        </div>
+                        <div class="info">
+                            <div class="service-type-text" th:text="${item.getName()}"></div>
+                            <div class="price-add">
+                                <div class="price" th:text="${item.getValue()}"></div>
+                                <a class="add">
+                                    <img th:src="@{/static/images/servicios/add.png}" alt="add">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="cajas" th:else>
                         <div class="image">
                             <img src="../images\servicios\mantenimiento-preventivo\correa-reparticion.png" alt="">
                         </div>
@@ -93,7 +109,7 @@
                                 </a>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
             </div>
@@ -102,7 +118,7 @@
             <div class="cart-content">
                 <div class="header-cart">
                     <button id="close-button">
-                        <img src="../images/servicios/close.png" alt="">
+                        <img th:src="@{/images/servicios/close.png}" alt="">
                         </button>
                     <div id="main-text-cart">Tu Carrito</div>
                 </div>
@@ -113,22 +129,22 @@
                             <div id="services-text">Servicios</div>
                             <div class="item"> <!-- ejemplo servicio agregado al carrito -->
                                 <div class="item-icon">
-                                    <img src="../images\servicios\mantenimiento-preventivo\cambio-aceite.png" alt="" >
+                                    <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-aceite.png}" alt="" >
                                 </div>
                                 <div class="item-description">Cambio de Correa de Repartición</div>
                                 <div class="item-price">$50.000</div>
                                 <div class="item-delete">
-                                    <img src="../images\servicios\delete.png" alt="" >
+                                    <img th:src="@{/images\servicios\delete.png}" alt="" >
                                 </div>
                             </div>
                             <div class="item"> <!-- ejemplo servicio agregado al carrito -->
                                 <div class="item-icon">
-                                    <img src="../images\servicios\mantenimiento-preventivo\cambio-amortiguador.png" alt="" >
+                                    <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-amortiguador.png}" alt="" >
                                 </div>
                                 <div class="item-description">Cambio de Amortiguadores</div>
                                 <div class="item-price">$50.000</div>
                                 <div class="item-delete">
-                                    <img src="../images\servicios\delete.png" alt="" >
+                                    <img th:src="@{/images\servicios\delete.png}" alt="" >
                                 </div>
                             </div>
                         </div>
@@ -161,7 +177,7 @@
                 </div>
             </div>
     </div>
-    <script src="/static/categoryCode.js"></script>
+    <script th:src="@{/static/categoryCode.js}"></script>
 
 </body>
 </html>
