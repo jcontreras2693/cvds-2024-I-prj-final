@@ -57,10 +57,10 @@
                         <div class="info">
                             <div class="service-type-text" th:text="${item.getName()}"></div>
                             <div class="price-add">
-                                <div class="price" th:text="${item.getValue()}"></div>
-                                <a class="add">
+                                <div class="price" th:text="'$' + ${item.getValue()}"></div>
+                                <button class="add">
                                     <img th:src="@{/static/images/servicios/add.png}" alt="add">
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -77,9 +77,7 @@
                 <div id="main-text-cart">Tu Carrito</div>
             </div>
             <div id="info-cart">
-                <div class="separator"></div>
                 <div class="services-items">
-                    <div class="items"> <!-- muestra de servicios -->
                         <div id="services-text">Servicios</div>
                         <div class="item"> <!-- ejemplo servicio agregado al carrito -->
                             <div class="item-icon">
@@ -87,9 +85,9 @@
                             </div>
                             <div class="item-description">Cambio de Correa de Repartición</div>
                             <div class="item-price">$50.000</div>
-                            <div class="item-delete">
+                            <button class="item-delete">
                                 <img th:src="@{/images\servicios\delete.png}" alt="" >
-                            </div>
+                            </button>
                         </div>
                         <div class="item"> <!-- ejemplo servicio agregado al carrito -->
                             <div class="item-icon">
@@ -97,20 +95,17 @@
                             </div>
                             <div class="item-description">Cambio de Amortiguadores</div>
                             <div class="item-price">$50.000</div>
-                            <div class="item-delete">
+                            <button class="item-delete">
                                 <img th:src="@{/images\servicios\delete.png}" alt="" >
-                            </div>
+                            </button>
                         </div>
-                    </div>
+                    
                 </div>
-                <div class="separator"></div>
                 <div class="subtotal">
                     <div id="subtotal-text">Subtotal</div>
                     <div id="subtotal-items">$50.000</div>
-
                 </div>
-                <div class="separator"></div>
-
+                
                 <div class="taxes">
                     <div id="taxes-text">Impuestos</div>
                     <div id="taxes-grid">
@@ -119,14 +114,12 @@
                     </div>
                 </div>
 
-                <div class="separator"></div>
-
                 <div class="total">
                     <div id="total-text">Total</div>
                     <div id="total-count">$120.000</div>
                 </div>
                 <div id="finish">
-                    <button id="finish-button"></button>
+                    <button id="finish-button">CONTINUAR</button>
                 </div>
             </div>
         </div>

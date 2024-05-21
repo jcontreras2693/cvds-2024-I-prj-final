@@ -109,7 +109,8 @@
 }
 
 .cart-content {
-    display: none;
+    display: none; 
+    flex-direction: column;
     background-color: #BCBCBC;
     border-radius: 10px;
     padding: 10px;
@@ -125,7 +126,7 @@
 
 
 .cart-content.show {
-    display: block;
+    display: flex;
     animation: slideInFromBottom 0.5s ease forwards;
     opacity: 1;
 }
@@ -144,6 +145,8 @@
     display: flex;
     align-items: center; /* Centra verticalmente los elementos */
     justify-content: space-between; /* Distribuye los elementos horizontalmente */
+    border-bottom: 1px solid black;
+    height: 5vh;
 }
 
 #close-button {
@@ -156,7 +159,7 @@
 }
 
 #close-button img {
-    height: 2.5vh;
+    height: 2vh;
 }
 
 #main-text-cart {
@@ -169,15 +172,13 @@
     height:85vh;
 }
 .services-items{
-    height: 150px;
-}
-.separator{
-    height: 3vh;
+    height: 18.5vh;
     border-bottom: 1px solid black;
+
 }
 
 .items{
-    height: 150px;
+    height: 17vh;
 }
 
 #services-text{
@@ -231,29 +232,57 @@
     padding-right: 0.3vw;
 }
 
-.item-delete{
-    display: flex;
+.item-delete {
     grid-column: 4;
+    display: flex;
     background-color: #922525;
     height: 30px;
-    width: 25px;
+    width: 1.4vw;
     border-radius: 6px;
     justify-content: center;
     align-items: center;
+    border:none;
 }
 
 .item-delete img{
     height: 2vh;
     width: auto;
 }
-
+.item-delete:focus,
+.item-delete:active {
+    transform: scale(1.02);
+}
 .subtotal{
     display: grid;
-    height: 3vh;
-    padding: 5px;
+    height: 6vh;
+    border-bottom: 1px solid black;
+    align-items: center;
 }
 
 #subtotal-text{
+    grid-column: 1;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+    letter-spacing: 1px;
+    padding-left: 25px;
+}
+
+#subtotal-items{
+    grid-column: 2;
+    font-family: 'Conamore Semi Bold', 'sans-serif';
+    font-size: 1.5vh;
+    justify-self: center;
+    padding-right: 20px;
+}
+
+.taxes{
+    height: 9vh;
+    border-bottom: 1px solid black;
+    padding: 5px;
+
+}
+
+#taxes-text{
     grid-column: 1;
     font-family: 'Conamore Semi Bold', 'sans-serif';
     padding: 10px;
@@ -262,26 +291,6 @@
     letter-spacing: 1px;
 }
 
-#subtotal-items{
-    grid-column: 2;
-    padding: 10px;
-    font-family: 'Conamore Semi Bold', 'sans-serif';
-    font-size: 1.5vh;
-    justify-self: center;
-}
-
-.taxes{
-    height: 4vh;
-}
-
-#taxes-text{
-    grid-column: 1;
-    grid-row: 1;
-    font-family: 'Conamore Semi Bold', 'sans-serif';
-    font-size: 1.5vh;
-    padding: 10px;
-    padding-left: 20px;
-}
 #taxes-grid{
     display: grid;
     height: 3vh;
@@ -302,7 +311,7 @@
 }
 
 .total{
-    height: 5vh;
+    height: 6vh;
     display: grid;
     padding: 15px;
     padding-left: 20px;
@@ -320,6 +329,31 @@
     font-size: 1.5vh;
     justify-self: center;
 }
+
+#finish {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh /* Asegúrate de que el contenedor tenga una altura definida */
+}
+
+/* BOTON CONTINUAR */
+#finish-button {
+    align-self: flex-end; /* Alinear el botón en la parte inferior del contenedor */
+    width: 10vw;
+    height: 4vh;
+    border-radius: 8px;
+    color: #FFFFFF;
+    background-color: #0D131A;
+    box-shadow: 0px 0px 8px #0D131A;
+    font-family: 'Conamore Regular', 'sans-serif';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1px;
+    font-size: 1.3vh;
+}
+
 /* Fin carrito ------------------------ */
 
 .search {
