@@ -55,4 +55,18 @@ public class UserService {
         User user = getUser(id);
         deleteUser(user);
     }
+
+    public User findByEmail(String email) throws UserException{
+        User user = userRepository.findByEmail(email);
+        if(user == null){
+            throw new UserException(UserException.userNotFound);
+        }
+        return user;
+    }
+
+    public boolean login(String email, String password) throws UserException {
+        User user = findByEmail(email);
+        return user.checkPassword(password);
+    }
+
 }

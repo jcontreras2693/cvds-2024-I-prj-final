@@ -1,6 +1,7 @@
 package co.edu.eci.cvds.model;
 
 import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class User {
         this.identificationNumber = identificationNumber;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
-        this.password = password;
+        setPassword(password);
     }
 
     public int getUserId() {
@@ -85,9 +86,13 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
+    public boolean checkPassword(String password){
+        String hashPassword = getPassword();
+        return BCrypt.checkpw(password, hashPassword);
+    }
 
     public List<Quotation> getQuotations(){
         return quotations;
