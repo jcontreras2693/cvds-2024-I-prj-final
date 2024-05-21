@@ -46,3 +46,21 @@ document.querySelectorAll('[id^="img-"]').forEach(function(img) {
 });
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById('searchInput');
+    const services = document.querySelectorAll('.cajas'); // obtener todos los elementos de servicio
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = searchInput.value.trim().toLowerCase(); // obtener el término de búsqueda y convertirlo a minúsculas
+        
+        // iterar sobre cada elemento de servicio y mostrar u ocultar según el término de búsqueda
+        services.forEach(function(service) {
+            const serviceName = service.querySelector('.service-type-text').textContent.toLowerCase();
+            if (serviceName.includes(searchTerm)) {
+                service.style.display = 'block'; // mostrar el servicio si coincide con el término de búsqueda
+            } else {
+                service.style.display = 'none'; // ocultar el servicio si no coincide con el término de búsqueda
+            }
+        });
+    });
+});
