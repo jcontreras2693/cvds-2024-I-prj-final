@@ -115,67 +115,67 @@
             </div>
 
         </div>
-            <div class="cart-content">
-                <div class="header-cart">
-                    <button id="close-button">
-                        <img th:src="@{/images/servicios/close.png}" alt="">
-                        </button>
-                    <div id="main-text-cart">Tu Carrito</div>
+        <div class="cart-content">
+            <div class="header-cart">
+                <button id="close-button">
+                    <img th:src="@{/images/servicios/close.png}" alt="">
+                    </button>
+                <div id="main-text-cart">Tu Carrito</div>
+            </div>
+            <div id="info-cart">
+                <div class="separator"></div>
+                <div class="services-items">
+                    <div class="items"> <!-- muestra de servicios -->
+                        <div id="services-text">Servicios</div>
+                        <div class="item"> <!-- ejemplo servicio agregado al carrito -->
+                            <div class="item-icon">
+                                <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-aceite.png}" alt="" >
+                            </div>
+                            <div class="item-description">Cambio de Correa de Repartición</div>
+                            <div class="item-price">$50.000</div>
+                            <div class="item-delete">
+                                <img th:src="@{/images\servicios\delete.png}" alt="" >
+                            </div>
+                        </div>
+                        <div class="item"> <!-- ejemplo servicio agregado al carrito -->
+                            <div class="item-icon">
+                                <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-amortiguador.png}" alt="" >
+                            </div>
+                            <div class="item-description">Cambio de Amortiguadores</div>
+                            <div class="item-price">$50.000</div>
+                            <div class="item-delete">
+                                <img th:src="@{/images\servicios\delete.png}" alt="" >
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div id="info-cart">
-                    <div class="separator"></div>
-                    <div class="services-items">
-                        <div class="items"> <!-- muestra de servicios -->
-                            <div id="services-text">Servicios</div>
-                            <div class="item"> <!-- ejemplo servicio agregado al carrito -->
-                                <div class="item-icon">
-                                    <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-aceite.png}" alt="" >
-                                </div>
-                                <div class="item-description">Cambio de Correa de Repartición</div>
-                                <div class="item-price">$50.000</div>
-                                <div class="item-delete">
-                                    <img th:src="@{/images\servicios\delete.png}" alt="" >
-                                </div>
-                            </div>
-                            <div class="item"> <!-- ejemplo servicio agregado al carrito -->
-                                <div class="item-icon">
-                                    <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-amortiguador.png}" alt="" >
-                                </div>
-                                <div class="item-description">Cambio de Amortiguadores</div>
-                                <div class="item-price">$50.000</div>
-                                <div class="item-delete">
-                                    <img th:src="@{/images\servicios\delete.png}" alt="" >
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="separator"></div>
-                    <div class="subtotal">
-                        <div id="subtotal-text">Subtotal</div>
-                        <div id="subtotal-items">$50.000</div>
+                <div class="separator"></div>
+                <div class="subtotal">
+                    <div id="subtotal-text">Subtotal</div>
+                    <div id="subtotal-items">$50.000</div>
 
-                    </div>
-                    <div class="separator"></div>
+                </div>
+                <div class="separator"></div>
 
-                    <div class="taxes">
-                        <div id="taxes-text">Impuestos</div>
-                        <div id="taxes-grid">
-                            <div id="tax">IVA</div>
-                            <div id="tax-per-item">$20.000</div>
-                        </div>
+                <div class="taxes">
+                    <div id="taxes-text">Impuestos</div>
+                    <div id="taxes-grid">
+                        <div id="tax">IVA</div>
+                        <div id="tax-per-item">$20.000</div>
                     </div>
+                </div>
 
-                    <div class="separator"></div>
+                <div class="separator"></div>
 
-                    <div class="total">
-                        <div id="total-text">Total</div>
-                        <div id="total-count">$120.000</div>
-                    </div>
-                    <div id="finish">
-                        <button id="finish-button"></button>
-                    </div>
+                <div class="total">
+                    <div id="total-text">Total</div>
+                    <div id="total-count">$120.000</div>
+                </div>
+                <div id="finish">
+                    <button id="finish-button"></button>
                 </div>
             </div>
+        </div>
     </div>
     <script th:src="@{/static/categoryCode.js}"></script>
 
