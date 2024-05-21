@@ -41,7 +41,7 @@ public class ItemController {
     public String getItemsByCategoryIdAndVehicleId(@PathVariable int categoryId, @PathVariable int vehicleId, Model model){
         List<Item> items = itemService.getItemsByVehicleIdAndCategoryId(categoryId, vehicleId);
         model.addAttribute("items", items);
-        return "quote_items";
+        return "quote";
     }
 
     @GetMapping("/getAllItems")

@@ -62,8 +62,10 @@ public class VehicleController {
     }
 
     @GetMapping("/quotation")
-    public String quotation(String brand, String modelVehicle, Integer year, Integer cylinder, Model model, RedirectAttributes redirectAttributes){
+    public String quotation(String brand, String modelVehicle, Integer year, Integer cylinder, Integer categoryId,
+                            Model model, RedirectAttributes redirectAttributes){
         Vehicle vehicle = vehicleService.getVehicleByParameters(brand, modelVehicle, year, cylinder);
+        redirectAttributes.addFlashAttribute("categoryId", categoryId);
         redirectAttributes.addFlashAttribute("vehicle", vehicle);
         return "redirect:/category/getAllCategories";
     }
