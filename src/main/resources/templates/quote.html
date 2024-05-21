@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotización</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/quotation.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/quotation_items.css">
 
 
 </head>
@@ -50,7 +50,6 @@
             </div>
             <div class="services-box">
                 <div class="services-grid">
-
                     <div class="cajas" th:each="item : ${items}">
                         <div class="image">
                             <img th:src="@{/static/images/servicios/mantenimiento-preventivo/cambio-amortiguador.png}" alt="Cambio Amortiguador">
@@ -65,51 +64,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--
-                    <div class="cajas" th:else>
-                        <div class="image">
-                            <img src="../images\servicios\mantenimiento-preventivo\correa-reparticion.png" alt="">
-                        </div>
-
-                        <div class="info">
-                            <div class="service-type-text">Cambio de Correa de Repartición</div>
-                            <div class="price-add">
-                                <div class="price">$50,000</div>
-                                <a class="add">
-                                    <img src="../images\servicios\add.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cajas">
-                        <div class="image">
-                            <img src="../images\servicios\mantenimiento-preventivo\cambio-amortiguador.png" alt="">
-                        </div>
-                        <div class="info">
-                            <div class="service-type-text">Cambio de amortiguadores</div>
-                            <div class="price-add">
-                                <div class="price">$50,000</div>
-                                <a class="add">
-                                    <img src="../images\servicios\add.png" alt="">
-                                </a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="cajas">
-                        <div class="image">
-                            <img src="../images\servicios\mantenimiento-preventivo\cambio-aceite.png" alt="" >
-                        </div>
-                        <div class="info">
-                            <div class="service-type-text">Cambios de aceite y filtros</div>
-                            <div class="price-add">
-                                <div class="price">$50,000</div>
-                                <a class="add">
-                                    <img src="../images\servicios\add.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
 
             </div>
@@ -177,7 +131,7 @@
             </div>
         </div>
     </div>
-    <script th:src="@{/static/categoryCode.js}"></script>
+    <script th:src="@{/static/js/categoryCode.js}"></script>
 
 </body>
 </html>
