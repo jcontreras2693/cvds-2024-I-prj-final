@@ -172,9 +172,9 @@
     height:85vh;
 }
 .services-items{
-    height: 18.5vh;
+    height: auto;
     border-bottom: 1px solid black;
-
+    padding-bottom: 5px;
 }
 
 .items{
