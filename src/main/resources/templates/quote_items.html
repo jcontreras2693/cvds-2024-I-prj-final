@@ -55,7 +55,8 @@
                 <div class="cajas" th:each="item : ${items}">
                     
                         <div class="image">
-                            <img th:src="@{/static/images/servicios/mantenimiento-preventivo/cambio-amortiguador.png}" alt="Cambio Amortiguador">
+                            <img th:src="@{'/static/images/servicios/' + ${categoria} + '/' + ${servicio} + '.png'}" >
+                            <div th:text="${servicio}"></div>
                         </div>
                         <div class="info">
                         <div class="service-type-text" th:text="${item.getName()}"></div>
