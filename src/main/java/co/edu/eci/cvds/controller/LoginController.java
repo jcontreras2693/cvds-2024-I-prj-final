@@ -37,16 +37,22 @@ public class LoginController {
 
     @GetMapping("/test")
     public String loginTest() {
-        return "login";
+        return "login_oficial";
     }
 
     @PostMapping("/correct")
-    public String loginCorrect(@RequestParam("usuario") String email, @RequestParam("contrasena") String password){
+    public String loginCorrect(@RequestParam("usuario") String email, @RequestParam("clave") String password){
         login(email, password);
         if(login) {
             return "login-correct";
         }
-        return "login";
+        return "login_oficial";
+    }
+
+    @GetMapping("/correct")
+    public String loginNoCorrect(){
+        login = false;
+        return "login_oficial";
     }
 
 
@@ -57,5 +63,6 @@ public class LoginController {
             login = false;
         }
     }
+
 
 }
