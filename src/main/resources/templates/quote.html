@@ -37,13 +37,14 @@
             <div class="categories-box">
                 <div class="title"> ¿Qué servicios necesita <br> tu vehículo? </div>
                 <div class="categories" >
-                    <form th:each="category : ${categories}" th:action="@{'/quotation'}" method="get">
+                    <form id="categoryForm" th:each="category : ${categories}" th:action="@{'/quotation'}" method="get">
                         <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
                         <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${vehicle.getModel()}">
                         <input type="hidden" id="year" name="year" th:value="${vehicle.getYear()}">
                         <input type="hidden" id="cylinder" name="cylinder" th:value="${vehicle.getCylinderCapacity()}">
                         <input type="hidden" id="categoryId" name="categoryId" th:value="${category.getCategoryId()}">
-                        <button type="submit" th:text="${category.name}"
+                        <input type="hidden" id="categoryName" name="categoryName" th:value="${category.name}">
+                        <button type="submit" data-category-name="${category.name}" th:text="${category.name}"
                                 th:classappend="${category.categoryId == activeCategoryId} ? 'active' : ''"></button>
                     </form>
                 </div>
@@ -52,7 +53,7 @@
                 <div class="services-grid">
                     <div class="cajas" th:each="item : ${items}">
                         <div class="image">
-                            <img th:src="@{/static/images/servicios/mantenimiento-preventivo/cambio-amortiguador.png}" alt="Cambio Amortiguador">
+                            <img th:id="'img-' + ${item.getName()}" data-category="${category.name}" alt="Imagen de servicio">
                         </div>
                         <div class="info">
                             <div class="service-type-text" th:text="${item.getName()}"></div>
