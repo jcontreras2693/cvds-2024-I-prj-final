@@ -100,7 +100,8 @@ public class QuotationController {
     }
 
     @GetMapping("/getSubTotalById")
-    public String calculateSubTotalById(Quotation quotation, Vehicle vehicle, Integer categoryId, Item item, Model model,
+    public String calculateSubTotalById(@ModelAttribute("quotation") Quotation quotation, @ModelAttribute("vehicle") Vehicle vehicle,
+                                        @ModelAttribute("categoryId") Integer categoryId, @ModelAttribute("item") Item item, Model model,
                                       RedirectAttributes redirectAttributes){
         try {
             redirectAttributes.addFlashAttribute("vehicle", vehicle);
@@ -123,7 +124,8 @@ public class QuotationController {
     }
 
     @GetMapping("/updateStatusById")
-    public String updateStatusById(Quotation quotation, Vehicle vehicle, Item item, String categoryId,
+    public String updateStatusById(@ModelAttribute("quotation") Quotation quotation, @ModelAttribute("vehicle") Vehicle vehicle,
+                                   @ModelAttribute("item") Item item, @ModelAttribute("categoryId") String categoryId,
                                    Model model, RedirectAttributes redirectAttributes){
         try {
             quotationService.updateStatus(quotation.getQuotationId(), QuotationStatus.EN_PROCESO);
@@ -167,8 +169,9 @@ public class QuotationController {
     }
 
     @GetMapping("/deleteItemById")
-    public String deleteItemById(Quotation quotation, Vehicle vehicle, Item item, String categoryId,
-                               Model model, RedirectAttributes redirectAttributes){
+    public String deleteItemById(@ModelAttribute("quotation") Quotation quotation, @ModelAttribute("vehicle") Vehicle vehicle,
+                                 @ModelAttribute("item") Item item, @ModelAttribute("categoryId") String categoryId, Model model,
+                                 RedirectAttributes redirectAttributes){
         try {
             quotationService.deleteItem(quotation.getQuotationId(), item);
             redirectAttributes.addFlashAttribute("quotation", quotationService.getQuotation(quotation.getQuotationId()));
