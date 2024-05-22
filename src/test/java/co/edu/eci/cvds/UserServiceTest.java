@@ -32,6 +32,43 @@ public class UserServiceTest{
     }
 
     @Test
+    void shouldCorrectPassword(){
+        User user = new User("Juan", 123, 123456789, "juan@gmail.com", "pswd");
+        userService.addUser(user);
+        try {
+            User check = userService.getUser(1);
+            System.out.println(check.getPassword());
+            assertTrue(check.checkPassword("pswd"));
+        } catch (UserException e) {
+            fail();
+        }
+    }
+
+    @Test
+    void shouldFindUserByEmail(){
+        User user = new User("Juan", 123, 123456789, "juan@gmail.com", "pswd");
+        userService.addUser(user);
+        try {
+            User login = userService.findByEmail("juan@gmail.com");
+        } catch (UserException e){
+            fail();
+        }
+    }
+
+    @Test
+    void shouldNotFindUserByEmail(){
+        User user = new User("Juan", 123, 123456789, "juan@gmail.com", "pswd");
+        userService.addUser(user);
+        try {
+            User login = userService.findByEmail("david@gmail.com");
+            fail();
+        } catch (UserException e){
+            assertEquals(1, userService.getAllUsers().size());
+        }
+    }
+
+
+    @Test
     public void ShouldCreationNameUserTest(){
         User user = new User("Juan", 123, 123456789, "juan@gmail.com", "pswd");
         userService.addUser(user);

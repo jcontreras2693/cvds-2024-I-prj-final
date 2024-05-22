@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Administrador</title>
+    <link rel="stylesheet" href="../static/css/admin_interface.css">
+
+</head>
+<body>
+<div class="menu-lateral">
+    <div class="text">¡Hola!</div>
+    <div class="perfil">
+        <img src="images/profile.png" alt="" height="20" class="picture">
+        <label>Alejandro</label>
+        <sublabel>Administrador</sublabel>
+    </div>
+    <form action="/user/getQuotation" method="get">
+        <button type="submit">Ver Cotizaciones</button>
+    </form>
+    <form action="/user/getItems" method="get">
+        <button>Administrar productos</button>
+    </form>
+    <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg" alt="" width="" height="57" class="logo">
+</div>
+<div class="contenido">
+    <div class="text-contenido">Items</div>
+    <div class="services-grid">
+        <div class="cajas" th:each="item : ${items}">
+            <div class="image">
+                <img th:src="@{'/static/images/servicios/' + ${categoria} + '/' + ${servicio} + '.png'}" >
+                <div th:text="${servicio}"></div>
+            </div>
+            <div class="info">
+                <div class="service-type-text" th:text="${item.getName()}"></div>
+                <div class="price-add">
+                    <div class="price" th:text="${item.getValue()}"></div>
+                    <a class="add">
+                        <img th:src="@{/static/images/servicios/add.png}" alt="add">
+                    </a>
+                </div>
+            </div>
+    </div>
+</div>
+<script src="../static/admin.js"></script>
+</body>
+</html>

@@ -1,8 +1,9 @@
 package co.edu.eci.cvds.model;
 
 import jakarta.persistence.*;
+import org.mindrot.jbcrypt.BCrypt;
 
-//import java.util.List;
+import java.util.List;
 
 @Entity
 @Table(name = "QUOTATION_USER")
@@ -27,9 +28,8 @@ public class User {
     @Column(name = "USER_PASSWORD", nullable = false)
     private String password;
 
-    //@OneToMany(mappedBy = "user")
-    //private List<Quotation> quotations;
-
+    @OneToMany(mappedBy = "user")
+    private List<Quotation> quotations;
 
     public User(){}
 
@@ -38,7 +38,7 @@ public class User {
         this.identificationNumber = identificationNumber;
         this.telephoneNumber = telephoneNumber;
         this.email = email;
-        this.password = password;
+        setPassword(password);
     }
 
     public int getUserId() {
@@ -86,20 +86,24 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
-    /**
-     public List<Quotation> getQuotations(){
-         return quotations;
-     }
+    public boolean checkPassword(String password){
+        String hashPassword = getPassword();
+        return BCrypt.checkpw(password, hashPassword);
+    }
 
-     public void setQuotations(List<Quotation> quotations){
-         this.quotations = quotations;
-     }
+    public List<Quotation> getQuotations(){
+        return quotations;
+    }
 
-     public void addQuotation(Quotation quotation){
-         quotations.add(quotation);
-     }
-     */
+    public void setQuotations(List<Quotation> quotations){
+        this.quotations = quotations;
+    }
+
+    public void addQuotation(Quotation quotation){
+        quotations.add(quotation);
+    }
+
 }

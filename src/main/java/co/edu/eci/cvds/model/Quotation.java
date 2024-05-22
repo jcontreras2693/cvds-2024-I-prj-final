@@ -41,6 +41,10 @@ public class Quotation {
     )
     private List<Item> quotationItems;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
     public Quotation() {
         this.creationDate = LocalDate.now();
         this.status = QuotationStatus.CREADO;

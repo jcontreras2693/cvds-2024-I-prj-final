@@ -52,8 +52,9 @@ public class ItemController {
     }
 
     @GetMapping("/getAllItems")
-    public void getAllItems(Model model){
+    public String getAllItems(Model model){
         model.addAttribute("items", itemService.getAllItems());
+        return "admin_items";
     }
 
     @PostMapping("/updateItem")
