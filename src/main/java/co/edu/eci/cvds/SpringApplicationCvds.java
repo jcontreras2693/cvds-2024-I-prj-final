@@ -50,22 +50,6 @@ public class SpringApplicationCvds {
 	public CommandLineRunner run() throws ModelException {
 		User user = new User("Juan", 123, 123456789, "juan@mail.com", "juan");
 		userRepository.save(user);
-		Quotation quotation = new Quotation();
-		quotation.setTotal(25000.0d);
-		quotationRepository.save(quotation);
-		Category category = new Category("categoria");
-		categoryRepository.save(category);
-		Item item = new Item("Nombre del artículo",
-				"Descripción corta del artículo",
-				"Descripción técnica del artículo",
-				"Ruta/de/la/imagen.jpg",
-				100.0, // valor
-				1.0,   // moneda
-				0.0,   // descuento
-				true,  // disponibilidad
-				0.0,   // impuesto
-				category);
-		itemRepository.save(item);
 		return (args) -> {
 			System.out.println("Running...");
 		};

@@ -128,8 +128,8 @@ INSERT INTO VEHICLE (BRAND, MODEL, VEHICLE_YEAR, CYLINDER_CAPACITY) VALUES ('For
 
 INSERT INTO CATEGORY (CATEGORY_NAME)  VALUES ('Mantenimiento preventivo');
 INSERT INTO CATEGORY (CATEGORY_NAME)  VALUES ('Reparación y reemplazo de piezas');
-INSERT INTO CATEGORY (CATEGORY_NAME)  VALUES ('Servicios de Inspección y evaluación');
-INSERT INTO CATEGORY (CATEGORY_NAME)  VALUES ('Servicios de Ajuste y equilibrio');
+INSERT INTO CATEGORY (CATEGORY_NAME)  VALUES ('Inspección y evaluación');
+INSERT INTO CATEGORY (CATEGORY_NAME)  VALUES ('Ajuste y equilibrio');
 
 -------------------- ITEMS ------------------------
 
