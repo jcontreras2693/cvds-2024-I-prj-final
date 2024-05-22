@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotización</title>
     <link rel="stylesheet" href="../static/css/cylinders.css">
-
 </head>
 <body>
     <div class="container">
-        <div class="centered">
-            <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg" alt="" width="" height="57" class="logo">
-            <div class="rectangle">
-                <div class="text"> Realiza tu Cotización</div>
-                <div class="botones">
-                    <button class="stage" id="brand">Marca</button>
-                    <button class="stage" id="model">Modelo</button>
-                    <button class="stage" id="year">Año</button>
-                    <button class="stage active" id="cylinder">Cilindraje</button>
-                </div>
-
-                <div class="rectangle-grid">
+        <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg" alt="" width="" height="57" class="logo">
+        <div class="rectangle">
+            <div class="text"> Realiza tu Cotización</div>
+            <div class="botones">
+                <button class="stage" id="brand">Marca</button>
+                <button class="stage" id="model">Modelo</button>
+                <button class="stage" id="year">Año</button>
+                <button class="stage active" id="cylinder">Cilindraje</button>
+            </div>
+            <div class="rectangle-grid">
+                <table>
                     <tbody>
                         <tr th:each="cylinder : ${cylinders}">
                             <td>
                                 <form th:action="@{/quotation}" method="get">
                                     <input type="hidden" id="brand" name="brand" th:value="${brand}">
-                                    <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${modelVehicle}">
+                                    <input type="hidden" id="model" name="modelVehicle" th:value="${modelVehicle}">
                                     <input type="hidden" id="year" name="year" th:value="${year}">
                                     <input type="hidden" id="cylinder" name="cylinder" th:value="${cylinder}">
                                     <button type="submit">
@@ -36,9 +34,28 @@
                             </td>
                         </tr>
                     </tbody>
-                </div>
+                </table>
+            </div>
+        </div>
+        <div class="loader-wrapper">
+            <img class="loader" th:src="@{/images/login/carro-deportivo.png}" alt="Cargando...">
         </div>
     </div>
-</div>
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".loader-wrapper").hide();
+
+            $("form").submit(function(event){
+                event.preventDefault(); // Previene la acción predeterminada de envío de formulario
+                $(".loader-wrapper").fadeIn("slow", function(){
+                    $(event.target).off('submit').submit(); // Permite el envío del formulario después de mostrar el loader
+                });
+            });
+        });        
+    </script>
 </body>
 </html>

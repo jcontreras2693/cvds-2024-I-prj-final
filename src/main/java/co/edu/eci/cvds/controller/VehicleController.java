@@ -5,10 +5,10 @@ import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -34,26 +34,26 @@ public class VehicleController {
         return "brands";
     }
 
-    @PostMapping("/getModels/{brand}")
-    public String getModels(@PathVariable String brand, Model model){
+    @PostMapping("/models")
+    public String getModels(String brand, Model model){
         List<String> models = vehicleService.getModels(brand);
         model.addAttribute("brand", brand);
         model.addAttribute("models", models);
         return "models";
     }
 
-    @PostMapping("/getYears/{modelVehicle}")
-    public String getYears(String brand, @PathVariable String modelVehicle, Model model){
+    @PostMapping("/years")
+    public String getYears(String brand, String modelVehicle, Model model){
         List<Integer> years = vehicleService.getYears(brand, modelVehicle);
         model.addAttribute("brand", brand);
-        model.addAttribute("model", modelVehicle);
+        model.addAttribute("modelVehicle", modelVehicle);
         model.addAttribute("years", years);
         return "years";
     }
 
-    @PostMapping("/getCylinderCapacity/{year}")
-    public String getCylinderCapacity(String brand, String modelVehicle, @PathVariable int year, Model model){
-        List<String> cylinders = vehicleService.getCylinders(brand, modelVehicle, year);
+    @PostMapping("/cylinderCapacity")
+    public String getCylinderCapacity(String brand, String modelVehicle, Integer year, Model model){
+        List<Integer> cylinders = vehicleService.getCylinders(brand, modelVehicle, year);
         model.addAttribute("brand", brand);
         model.addAttribute("modelVehicle", modelVehicle);
         model.addAttribute("year", year);
@@ -62,12 +62,12 @@ public class VehicleController {
     }
 
     @GetMapping("/quotation")
-    public String quotation(String brand, String modelVehicle, int year, int cylinder, Model model){
-        model.addAttribute("brand", brand);
-        model.addAttribute("modelVehicle", modelVehicle);
-        model.addAttribute("year", year);
-        model.addAttribute("cylinder", cylinder);
-        return "quote";
+    public String quotation(String brand, String modelVehicle, Integer year, Integer cylinder, Integer categoryId,
+                            Model model, RedirectAttributes redirectAttributes){
+        Vehicle vehicle = vehicleService.getVehicleByParameters(brand, modelVehicle, year, cylinder);
+        redirectAttributes.addFlashAttribute("categoryId", categoryId);
+        redirectAttributes.addFlashAttribute("vehicle", vehicle);
+        return "redirect:/quotation/addQuotation";
     }
 
     @GetMapping("/getAllVehicles")

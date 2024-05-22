@@ -152,3 +152,30 @@
     background: #D91F28;
     border-radius: 5px;
 }
+
+/**/
+
+.loader-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    background-color: #0D131A;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    display: inline-block;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    animation: move 2s linear infinite;
+}
+
+@keyframes move {
+    0% { transform: translateX(-50px); } /* Mueve la imagen hacia la izquierda */
+    100% { transform: translateX(50px); } /* Mueve la imagen hacia la derecha */
+}

@@ -42,6 +42,8 @@ public class QuotationService {
         update.setCreationDate(quotation.getCreationDate());
         update.updateStatus(quotation.getStatus());
         update.setTotal(quotation.getTotal());
+        update.setSubtotal(quotation.getSubtotal());
+        update.setTaxes(quotation.getTaxes());
         update.setItems(quotation.getItems());
         quotationRepository.save(update);
     }
@@ -114,8 +116,8 @@ public class QuotationService {
     public void deleteItem(Quotation quotation, Item item){
         if(quotation != null){
             List<Item> items = quotation.getItems();
-            for(Item i:items) {  //Implementar metodo que retorne un unico item
-                if (i.getName() == item.getName()) {
+            for(int i = 0; i < items.size(); i++) {  //Implementar metodo que retorne un unico item
+                if (items.get(i).getItemId() == item.getItemId()) {
                     quotation.deleteItem(i);
                     break; //evitar eliminar todos los elementos agregados de ese item
                 }

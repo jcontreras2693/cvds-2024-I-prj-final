@@ -24,10 +24,9 @@
                     <tbody>
                     <tr th:each="model : ${models}">
                         <td>
-                            <form th:action="@{'/getYears/' + ${model}}" method="post">
-
+                            <form th:action="@{'/years'}" method="post">
                                 <input type="hidden" id="brand" name="brand" th:value="${brand}">
-
+                                <input type="hidden" name="modelVehicle" id="model" th:value="${model}">
                                 <button type="submit">
                                     <img th:src="@{'../static/images/' + ${brand.toLowerCase()} + '/' + ${model.toUpperCase()} + '.png'}" th:alt="${model}" />
                                     <span th:text="${model.replace('_', ' ')}"></span>
@@ -40,6 +39,6 @@
     </div>
 </div>
 </div>
-<script src="../static/brands.js"></script>
+<script src="../static/js/brands.js"></script>
 </body>
 </html>

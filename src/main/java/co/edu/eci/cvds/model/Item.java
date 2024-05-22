@@ -13,7 +13,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ITEM_ID")
-    private int itemId;
+    private Integer itemId;
 
     @Column(name = "ITEM_NAME", nullable = false)
     private String name;
@@ -46,7 +46,7 @@ public class Item {
     @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
-    @ManyToMany(mappedBy = "items", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "quotationItems", fetch = FetchType.EAGER)
     private List<Quotation> quotations;
 
     @ManyToMany
@@ -191,5 +191,9 @@ public class Item {
 
     public boolean isAvailable(){
         return availability;
+    }
+
+    public void addVehicle(Vehicle vehicle){
+        vehicles.add(vehicle);
     }
 }
