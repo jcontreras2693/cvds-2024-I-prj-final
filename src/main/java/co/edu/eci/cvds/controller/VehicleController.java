@@ -34,25 +34,25 @@ public class VehicleController {
         return "brands";
     }
 
-    @PostMapping("/getModels/{brand}")
-    public String getModels(@PathVariable String brand, Model model){
+    @PostMapping("/models")
+    public String getModels(String brand, Model model){
         List<String> models = vehicleService.getModels(brand);
         model.addAttribute("brand", brand);
         model.addAttribute("models", models);
         return "models";
     }
 
-    @PostMapping("/getYears/{modelVehicle}")
-    public String getYears(String brand, @PathVariable String modelVehicle, Model model){
+    @PostMapping("/years")
+    public String getYears(String brand, String modelVehicle, Model model){
         List<Integer> years = vehicleService.getYears(brand, modelVehicle);
         model.addAttribute("brand", brand);
-        model.addAttribute("model", modelVehicle);
+        model.addAttribute("modelVehicle", modelVehicle);
         model.addAttribute("years", years);
         return "years";
     }
 
-    @PostMapping("/getCylinderCapacity/{year}")
-    public String getCylinderCapacity(String brand, String modelVehicle, @PathVariable Integer year, Model model){
+    @PostMapping("/cylinderCapacity")
+    public String getCylinderCapacity(String brand, String modelVehicle, Integer year, Model model){
         List<Integer> cylinders = vehicleService.getCylinders(brand, modelVehicle, year);
         model.addAttribute("brand", brand);
         model.addAttribute("modelVehicle", modelVehicle);
@@ -67,7 +67,7 @@ public class VehicleController {
         Vehicle vehicle = vehicleService.getVehicleByParameters(brand, modelVehicle, year, cylinder);
         redirectAttributes.addFlashAttribute("categoryId", categoryId);
         redirectAttributes.addFlashAttribute("vehicle", vehicle);
-        return "redirect:/category/getAllCategories";
+        return "redirect:/quotation/addQuotation";
     }
 
     @GetMapping("/getAllVehicles")

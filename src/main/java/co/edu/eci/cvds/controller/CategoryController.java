@@ -3,6 +3,7 @@ package co.edu.eci.cvds.controller;
 
 import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Category;
+import co.edu.eci.cvds.model.Quotation;
 import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,25 @@ public class CategoryController {
 //    }
 
     @GetMapping("/getAllCategories")
-    public String getAllCategories(@ModelAttribute("vehicle") Vehicle vehicle,
-                                   @ModelAttribute("categoryId") Integer categoryId, Model model, RedirectAttributes redirectAttributes){
-        redirectAttributes.addFlashAttribute("categories", categoryService.getAllCategories());
+    public String getAllCategories(@ModelAttribute("vehicle") Vehicle vehicle, @ModelAttribute("categoryId") Integer categoryId,
+                                   @ModelAttribute("quotation") Quotation quotation,
+                                   Model model, RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("quotation", quotation);
         redirectAttributes.addFlashAttribute("vehicle", vehicle);
-        categoryId = categoryId != null ? categoryId : 1;
-        return "redirect:/item/" + categoryId + "/" + vehicle.getVehicleId();
+        categoryId = (categoryId == null) ? 1 : categoryId;
+        redirectAttributes.addFlashAttribute("categoryId", categoryId);
+        redirectAttributes.addFlashAttribute("categories", categoryService.getAllCategories());
+        return "redirect:/item/";
+    }
+
+    @PostMapping("/getAllCategories")
+    public String getAllCategoriesPost(Vehicle vehicle, Integer categoryId, Quotation quotation, Model model,
+                                       RedirectAttributes redirectAttributes){
+        redirectAttributes.addFlashAttribute("quotation", quotation);
+        redirectAttributes.addFlashAttribute("vehicle", vehicle);
+        redirectAttributes.addFlashAttribute("categoryId", categoryId);
+        redirectAttributes.addFlashAttribute("categories", categoryService.getAllCategories());
+        return "redirect:/item/";
     }
 
     @PostMapping("/putCategory")

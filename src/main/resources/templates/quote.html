@@ -36,14 +36,20 @@
         <div class="content">
             <div class="categories-box">
                 <div class="title"> ¿Qué servicios necesita <br> tu vehículo? </div>
-                <div class="categories" >
-                    <form id="categoryForm" th:each="category : ${categories}" th:action="@{'/quotation'}" method="get">
+                <div class="categories">
+                    <form id="categoryForm" th:each="category : ${categories}" th:action="@{'/category/getAllCategories'}" method="post">
+                        <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
                         <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
-                        <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${vehicle.getModel()}">
+                        <input type="hidden" id="modelVehicle" name="model" th:value="${vehicle.getModel()}">
                         <input type="hidden" id="year" name="year" th:value="${vehicle.getYear()}">
-                        <input type="hidden" id="cylinder" name="cylinder" th:value="${vehicle.getCylinderCapacity()}">
+                        <input type="hidden" id="cylinder" name="cylinderCapacity" th:value="${vehicle.getCylinderCapacity()}">
                         <input type="hidden" id="categoryId" name="categoryId" th:value="${category.getCategoryId()}">
-                        <input type="hidden" id="categoryName" name="categoryName" th:value="${category.name}">
+                        <input type="hidden" id="quotationId" name="quotationId" th:value="${quotation.getQuotationId()}">
+                        <input type="hidden" id="creationDate" name="creationDate" th:value="${quotation.getCreationDate()}">
+                        <input type="hidden" id="status" name="status" th:value="${quotation.getStatus()}">
+                        <input type="hidden" id="total" name="total" th:value="${quotation.getTotal()}">
+                        <input type="hidden" id="subtotal" name="subtotal" th:value="${quotation.getSubtotal()}">
+                        <input type="hidden" id="quotationItems" name="quotationItems" th:value="${quotation.getItems()}">
                         <button type="submit" data-category-name="${category.name}" th:text="${category.name}"
                                 th:classappend="${category.categoryId == activeCategoryId} ? 'active' : ''"></button>
                     </form>
@@ -59,9 +65,24 @@
                             <div class="service-type-text" th:text="${item.getName()}"></div>
                             <div class="price-add">
                                 <div class="price" th:text="'$' + ${item.getValue()}"></div>
-                                <button class="add">
-                                    <img th:src="@{/static/images/servicios/add.png}" alt="add">
-                                </button>
+                                <form id="itemForm" th:action="@{'/quotation/updateStatusById'}" method="get">
+                                    <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
+                                    <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
+                                    <input type="hidden" id="modelVehicle" name="model" th:value="${vehicle.getModel()}">
+                                    <input type="hidden" id="year" name="year" th:value="${vehicle.getYear()}">
+                                    <input type="hidden" id="cylinder" name="cylinderCapacity" th:value="${vehicle.getCylinderCapacity()}">
+                                    <input type="hidden" id="categoryId" name="categoryId" value="1">
+                                    <input type="hidden" id="quotationId" name="quotationId" th:value="${quotation.getQuotationId()}">
+                                    <input type="hidden" id="creationDate" name="creationDate" th:value="${quotation.getCreationDate()}">
+                                    <input type="hidden" id="status" name="status" th:value="${quotation.getStatus()}">
+                                    <input type="hidden" id="total" name="total" th:value="${quotation.getTotal()}">
+                                    <input type="hidden" id="subtotal" name="subtotal" th:value="${quotation.getSubtotal()}">
+                                    <input type="hidden" id="quotationItems" name="quotationItems" th:value="${quotation.getItems()}">
+                                    <input type="hidden" id="itemId" name="itemId" th:value="${item.getItemId()}">
+                                    <button class="add" type="submit">
+                                        <img th:src="@{/static/images/servicios/add.png}" alt="add">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -80,6 +101,31 @@
             <div id="info-cart">
                 <div class="services-items">
                         <div id="services-text">Servicios</div>
+                            <div class="item" th:each="item : ${quotation.getItems()}">
+                                <div class="item-icon">
+                                    <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-amortiguador.png}" alt="" >
+                                </div>
+                                <div class="item-description" th:text="${item.getName()}"></div>
+                                <div class="item-price" th:text="'$' + ${item.getValue()}"></div>
+                                <form id="deleteForm" th:action="@{'/quotation/deleteItemById'}" method="get">
+                                    <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
+                                    <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
+                                    <input type="hidden" id="modelVehicle" name="model" th:value="${vehicle.getModel()}">
+                                    <input type="hidden" id="year" name="year" th:value="${vehicle.getYear()}">
+                                    <input type="hidden" id="cylinder" name="cylinderCapacity" th:value="${vehicle.getCylinderCapacity()}">
+                                    <input type="hidden" id="categoryId" name="categoryId" value="1">
+                                    <input type="hidden" id="quotationId" name="quotationId" th:value="${quotation.getQuotationId()}">
+                                    <input type="hidden" id="creationDate" name="creationDate" th:value="${quotation.getCreationDate()}">
+                                    <input type="hidden" id="status" name="status" th:value="${quotation.getStatus()}">
+                                    <input type="hidden" id="total" name="total" th:value="${quotation.getTotal()}">
+                                    <input type="hidden" id="subtotal" name="subtotal" th:value="${quotation.getSubtotal()}">
+                                    <input type="hidden" id="quotationItems" name="quotationItems" th:value="${quotation.getItems()}">
+                                    <input type="hidden" id="itemId" name="itemId" th:value="${item.getItemId()}">
+                                    <button class="item-delete" type="submit">
+                                        <img th:src="@{/images\servicios\delete.png}" alt="">
+                                    </button>
+                                </form>
+                            </div>
                         <!-- <div class="item"> <!-- ejemplo servicio agregado al carrito 
                             <div class="item-icon">
                                 <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-aceite.png}" alt="" >
@@ -90,7 +136,7 @@
                                 <img th:src="@{/images\servicios\delete.png}" alt="" >
                             </button>
                         </div>
-                        <div class="item"> <!-- ejemplo servicio agregado al carrito 
+                        <div class="item">
                             <div class="item-icon">
                                 <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-amortiguador.png}" alt="" >
                             </div>
@@ -104,7 +150,8 @@
                 </div>
                 <div class="subtotal">
                     <div id="subtotal-text">Subtotal</div>
-                    <div id="subtotal-items">$50.000</div>
+                    <!--<div id="subtotal-items">$50.000</div>-->
+                    <div id="subtotal-items" th:text="${quotation.getSubtotal()}"></div>
                 </div>
                 
                 <div class="taxes">
@@ -117,7 +164,8 @@
 
                 <div class="total">
                     <div id="total-text">Total</div>
-                    <div id="total-count">$120.000</div>
+                    <!--<div id="total-count" th:text="${quotation.getTotal()}">$120.000</div>-->
+                    <div id="total-count" th:text="${quotation.getTotal()}"></div>
                 </div>
                 <div id="finish">
                     <button id="finish-button">CONTINUAR</button>
@@ -126,7 +174,7 @@
         </div>
     </div>
     <script th:src="@{/static/js/categoryCode.js}"></script>
-    <script th:src="@{/static/js/shopping-cart.js}"></script>
+    <!--<script th:src="@{/static/js/shopping-cart.js}"></script>-->
 
 </body>
 </html>

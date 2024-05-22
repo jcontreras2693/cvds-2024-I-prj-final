@@ -24,6 +24,9 @@ public class Quotation {
     @Column(name = "STATUS", nullable = false)
     private QuotationStatus status;
 
+    @Column(name = "SUBTOTAL", nullable = false)
+    private Double subtotal;
+
     @Column(name = "TOTAL", nullable = false)
     private Double total;
 
@@ -33,13 +36,14 @@ public class Quotation {
             joinColumns = @JoinColumn(name = "QUOTATION_ID"),
             inverseJoinColumns = @JoinColumn(name = "ITEM_ID")
     )
-    private List<Item> items;
+    private List<Item> quotationItems;
 
     public Quotation() {
         this.creationDate = LocalDate.now();
         this.status = QuotationStatus.CREADO;
         this.total = 0.0;
-        this.items = new ArrayList<Item>();
+        this.subtotal = 0.0;
+        this.quotationItems = new ArrayList<Item>();
     }
 
     public int getQuotationId() {
@@ -70,24 +74,32 @@ public class Quotation {
         this.total = total;
     }
 
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
+    }
+
     public void updateStatus(QuotationStatus status){
         this.status = status;
     }
 
     public void addItem(Item item){
-        items.add(item);
+        quotationItems.add(item);
     }
 
     public void deleteItem(Item item){
-        items.remove(item);
+        quotationItems.remove(item);
     }
 
     public List<Item> getItems(){
-        return items;
+        return quotationItems;
     }
 
-    public void setItems(List<Item> items){
-        this.items = items;
+    public void setItems(List<Item> quotationItems){
+        this.quotationItems = quotationItems;
     }
 
 }

@@ -4,11 +4,13 @@ import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.model.Quotation;
 import co.edu.eci.cvds.model.QuotationStatus;
+import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.service.QuotationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/quotation")
@@ -21,9 +23,15 @@ public class QuotationController {
         this.quotationService = quotationService;
     }
 
-    @PostMapping("/addQuotation")
-    public void addQuotation(@RequestBody Quotation quotation, Model model){
+    @GetMapping("/addQuotation")
+    public String addQuotation(@ModelAttribute("vehicle") Vehicle vehicle, @ModelAttribute("categoryId") Integer categoryId,
+                               Model model, RedirectAttributes redirectAttributes){
+        Quotation quotation = new Quotation();
         quotationService.addQuotation(quotation);
+        redirectAttributes.addFlashAttribute("quotation", quotation);
+        redirectAttributes.addFlashAttribute("vehicle", vehicle);
+        redirectAttributes.addFlashAttribute("categoryId", categoryId);
+        return "redirect:/category/getAllCategories";
     }
 
     @GetMapping("/getQuotation/{id}")
@@ -65,14 +73,22 @@ public class QuotationController {
     }
 
     @GetMapping("/getTotal")
-    public void calculateTotal(@RequestBody Quotation quotation, Model model){
+    public void calculateTotal(Quotation quotation, Model model){
         model.addAttribute("total", quotationService.calculateTotal(quotation));
     }
 
-    @GetMapping("/getTotalById/{id}")
-    public void calculateTotalById(@PathVariable int id, Model model){
+    @GetMapping("/getTotalById")
+    public String calculateTotalById(@ModelAttribute("quotation") Quotation quotation, @ModelAttribute("vehicle") Vehicle vehicle,
+                                   @ModelAttribute("categoryId") Integer categoryId, @ModelAttribute("item") Item item, Model model,
+                                   RedirectAttributes redirectAttributes){
         try {
-            model.addAttribute("total", quotationService.calculateTotal(id));
+            redirectAttributes.addFlashAttribute("vehicle", vehicle);
+            redirectAttributes.addFlashAttribute("item", item);
+            redirectAttributes.addFlashAttribute("categoryId", categoryId);
+            quotation.setTotal(quotationService.calculateTotal(quotation));
+            quotationService.updateQuotation(quotation);
+            redirectAttributes.addFlashAttribute("quotation", quotationService.getQuotation(quotation.getQuotationId()));
+            return "redirect:/category/getAllCategories";
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
@@ -83,10 +99,18 @@ public class QuotationController {
         model.addAttribute("subTotal", quotationService.calculateSubTotal(quotation));
     }
 
-    @GetMapping("/getSubTotalById/{id}")
-    public void calculateSubTotalById(@PathVariable int id, Model model){
+    @GetMapping("/getSubTotalById")
+    public String calculateSubTotalById(Quotation quotation, Vehicle vehicle, Integer categoryId, Item item, Model model,
+                                      RedirectAttributes redirectAttributes){
         try {
-            model.addAttribute("subTotal", quotationService.calculateSubTotal(id));
+            redirectAttributes.addFlashAttribute("vehicle", vehicle);
+            redirectAttributes.addFlashAttribute("item", item);
+            redirectAttributes.addFlashAttribute("categoryId", categoryId);
+            quotation.setSubtotal(quotationService.calculateSubTotal(quotation));
+            quotationService.updateQuotation(quotation);
+            System.out.println(quotationService.calculateSubTotal(quotation));
+            redirectAttributes.addFlashAttribute("quotation", quotationService.getQuotation(quotation.getQuotationId()));
+            return "redirect:/quotation/getTotalById";
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
@@ -98,11 +122,17 @@ public class QuotationController {
         model.addAttribute("quotation", quotation);
     }
 
-    @PostMapping("/updateStatusById/{id}")
-    public void updateStatusById(@PathVariable int id, @RequestBody QuotationStatus status, Model model){
+    @GetMapping("/updateStatusById")
+    public String updateStatusById(Quotation quotation, Vehicle vehicle, Item item, String categoryId,
+                                   Model model, RedirectAttributes redirectAttributes){
         try {
-            quotationService.updateStatus(id, status);
-            model.addAttribute("quotation", quotationService.getQuotation(id));
+            quotationService.updateStatus(quotation.getQuotationId(), QuotationStatus.EN_PROCESO);
+            redirectAttributes.addFlashAttribute("quotation", quotationService.getQuotation(quotation.getQuotationId()));
+            redirectAttributes.addFlashAttribute("vehicle", vehicle);
+            redirectAttributes.addFlashAttribute("item", item);
+            Integer newCategoryId = Integer.parseInt(categoryId);
+            redirectAttributes.addFlashAttribute("categoryId", newCategoryId);
+            return "redirect:/quotation/addItemById";
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
@@ -114,11 +144,17 @@ public class QuotationController {
         model.addAttribute("quotation", quotation);
     }
 
-    @PostMapping("/addItemById/{id}")
-    public void addItemById(@PathVariable int id, @RequestBody Item item, Model model){
+    @GetMapping("/addItemById")
+    public String addItemById(@ModelAttribute("quotation") Quotation quotation, @ModelAttribute("vehicle") Vehicle vehicle,
+                            @ModelAttribute("categoryId") Integer categoryId, @ModelAttribute("item") Item item, Model model,
+                            RedirectAttributes redirectAttributes){
         try {
-            quotationService.addItem(id, item);
-            model.addAttribute("quotation", quotationService.getQuotation(id));
+            quotationService.addItem(quotation.getQuotationId(), item);
+            redirectAttributes.addFlashAttribute("quotation", quotationService.getQuotation(quotation.getQuotationId()));
+            redirectAttributes.addFlashAttribute("vehicle", vehicle);
+            redirectAttributes.addFlashAttribute("item", item);
+            redirectAttributes.addFlashAttribute("categoryId", categoryId);
+            return "redirect:/quotation/getSubTotalById";
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
@@ -130,11 +166,17 @@ public class QuotationController {
         model.addAttribute("quotation", quotation);
     }
 
-    @PostMapping("/deleteItemById/{id}")
-    public void deleteItemById(@PathVariable int id, Item item, Model model){
+    @GetMapping("/deleteItemById")
+    public String deleteItemById(Quotation quotation, Vehicle vehicle, Item item, String categoryId,
+                               Model model, RedirectAttributes redirectAttributes){
         try {
-            quotationService.deleteItem(id, item);
-            model.addAttribute("quotaion", quotationService.getQuotation(id));
+            quotationService.deleteItem(quotation.getQuotationId(), item);
+            redirectAttributes.addFlashAttribute("quotation", quotationService.getQuotation(quotation.getQuotationId()));
+            redirectAttributes.addFlashAttribute("vehicle", vehicle);
+            redirectAttributes.addFlashAttribute("item", item);
+            Integer newCategoryId = Integer.parseInt(categoryId);
+            redirectAttributes.addFlashAttribute("categoryId", newCategoryId);
+            return "redirect:/quotation/getSubTotalById";
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }

@@ -2,6 +2,7 @@ package co.edu.eci.cvds.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,7 @@ public class Category {
     public Category(String name) {
         this.categoryId = 0;
         this.name = name;
+        this.items = new ArrayList<Item>();
     }
 
     public int getCategoryId() {

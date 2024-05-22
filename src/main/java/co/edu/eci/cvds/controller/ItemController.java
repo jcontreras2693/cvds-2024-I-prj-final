@@ -4,6 +4,8 @@ package co.edu.eci.cvds.controller;
 import co.edu.eci.cvds.exceptions.ServiceException;
 import co.edu.eci.cvds.model.Category;
 import co.edu.eci.cvds.model.Item;
+import co.edu.eci.cvds.model.Quotation;
+import co.edu.eci.cvds.model.Vehicle;
 import co.edu.eci.cvds.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,9 +39,14 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/{categoryId}/{vehicleId}")
-    public String getItemsByCategoryIdAndVehicleId(@PathVariable int categoryId, @PathVariable int vehicleId, Model model){
-        List<Item> items = itemService.getItemsByVehicleIdAndCategoryId(categoryId, vehicleId);
+    @GetMapping("/")
+    public String getItemsByCategoryIdAndVehicleId(@ModelAttribute("vehicle") Vehicle vehicle, @ModelAttribute("categoryId") Integer categoryId,
+                                                   @ModelAttribute("quotation") Quotation quotation, @ModelAttribute("categories") List<Category> categories,
+                                                   Model model){
+        List<Item> items = itemService.getItemsByVehicleIdAndCategoryId(categoryId, vehicle.getVehicleId());
+        model.addAttribute("vehicle", vehicle);
+        model.addAttribute("categories", categories);
+        model.addAttribute("quotation", quotation);
         model.addAttribute("items", items);
         return "quote";
     }

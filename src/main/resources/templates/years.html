@@ -24,9 +24,10 @@
                     <tbody>
                         <tr th:each="year : ${years}">
                             <td>
-                                <form th:action="@{'/getCylinderCapacity/' + ${year}}" method="post">
+                                <form th:action="@{'/cylinderCapacity'}" method="post">
                                     <input type="hidden" id="brand" name="brand" th:value="${brand}">
-                                    <input type="hidden" id="modelVehicle" name="modelVehicle" th:value="${modelVehicle}">
+                                    <input type="hidden" id="model" name="modelVehicle" th:value="${modelVehicle}">
+                                    <input type="hidden" id="year" name="year" th:value="${year}">
                                     <button type="submit">
                                         <span th:text="${year}"></span>
                                     </button>
