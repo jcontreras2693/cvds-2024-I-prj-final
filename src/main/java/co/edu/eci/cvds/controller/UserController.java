@@ -40,4 +40,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getQuotation")
+    public String getQuotation(Model model){
+        model.addAttribute("quotations",userService.getQuotations());
+        return "admin_interface";
+    }
+
+    @GetMapping("/getItems")
+    public String getItems(Model model){
+        model.addAttribute("items", userService.getItems());
+        return "redirect:/item/getAllItems";
+    }
+
 }

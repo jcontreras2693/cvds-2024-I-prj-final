@@ -44,7 +44,7 @@ public class LoginController {
     public String loginCorrect(@RequestParam("usuario") String email, @RequestParam("clave") String password){
         login(email, password);
         if(login) {
-            return "login-correct";
+            return "redirect:/user/getQuotation";
         }
         return "login_oficial";
     }

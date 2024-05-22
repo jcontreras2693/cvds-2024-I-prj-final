@@ -24,20 +24,22 @@
     <img src="https://topgearbogota.com/wp-content/uploads/2023/09/LogoTopGear.svg" alt="" width="" height="57" class="logo">
 </div>
 <div class="contenido">
-    <div class="text-contenido">Cotizaciones</div>
+    <div class="text-contenido">Items</div>
     <div class="services-grid">
-        <div th:each="quotation : ${quotations}" class="cajas">
-            <div>
-                <span th:text="${quotation.total}"></span>
+        <div class="cajas" th:each="item : ${items}">
+            <div class="image">
+                <img th:src="@{'/static/images/servicios/' + ${categoria} + '/' + ${servicio} + '.png'}" >
+                <div th:text="${servicio}"></div>
             </div>
-           <!-- <div>
-                <span th:text="Por agregar"></span>
+            <div class="info">
+                <div class="service-type-text" th:text="${item.getName()}"></div>
+                <div class="price-add">
+                    <div class="price" th:text="${item.getValue()}"></div>
+                    <a class="add">
+                        <img th:src="@{/static/images/servicios/add.png}" alt="add">
+                    </a>
+                </div>
             </div>
-            -->
-            <div>
-                <span th:text="${quotation.creationDate}"></span>
-            </div>
-        </div>
     </div>
 </div>
 <script src="../static/admin.js"></script>
