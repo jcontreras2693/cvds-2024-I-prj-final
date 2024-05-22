@@ -24,7 +24,7 @@ import java.util.UUID;
 public class LoginController {
 
     private static final Logger log = LoggerFactory.getLogger(LoginController.class);
-    public static boolean login;
+    public static boolean login = false;
 
     @Autowired
     UserService userService;
@@ -64,5 +64,8 @@ public class LoginController {
         }
     }
 
+    public static boolean isLogin(){
+        return login;
+    }
 
 }

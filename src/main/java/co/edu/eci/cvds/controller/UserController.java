@@ -43,12 +43,18 @@ public class UserController {
     @GetMapping("/getQuotation")
     public String getQuotation(Model model){
         model.addAttribute("quotations",userService.getQuotations());
+        if(!LoginController.isLogin()){
+            return "redirect:/login/test";
+        }
         return "admin_interface";
     }
 
     @GetMapping("/getItems")
     public String getItems(Model model){
         model.addAttribute("items", userService.getItems());
+        if(!LoginController.isLogin()){
+            return "redirect:/login/test";
+        }
         return "redirect:/item/getAllItems";
     }
 

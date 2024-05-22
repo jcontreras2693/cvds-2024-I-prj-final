@@ -1,6 +1,7 @@
 package co.edu.eci.cvds.controller;
 
 import co.edu.eci.cvds.exceptions.ServiceException;
+import co.edu.eci.cvds.model.Category;
 import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.model.Quotation;
 import co.edu.eci.cvds.model.QuotationStatus;
