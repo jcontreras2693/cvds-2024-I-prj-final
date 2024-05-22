@@ -232,9 +232,11 @@
     padding-right: 0.3vw;
 }
 
-.item-delete {
+#deleteForm {
     grid-column: 4;
     display: flex;
+}
+.item-delete {
     background-color: #922525;
     height: 30px;
     width: 1.4vw;
@@ -471,9 +473,12 @@
     box-shadow: 0px 0px 15px #000000;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
-    grid-auto-rows: 30%;
-    grid-gap: 3.5vw; /* espacio vertical y horizontal entre elementos*/
-    padding: 50px;
+    grid-auto-rows: 40%;
+    padding: 20px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 35px;
+    grid-gap: 3.5vh; /* espacio vertical y horizontal entre elementos*/
     overflow: auto;
 }
 .services-grid::-webkit-scrollbar{
