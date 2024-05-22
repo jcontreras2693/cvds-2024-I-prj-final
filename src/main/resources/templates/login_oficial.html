@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal del Administrador</title>
-    <link rel="stylesheet" href="../static/css/admin.css">
-
+    <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
 <div class="container">
@@ -22,7 +21,19 @@
             </form>
         </div>
     </div>
+    <div class="loader-wrapper">
+        <img class="loader" src="images/login/carro-deportivo.png"></img>
+    </div>
 </div>
-<script src="../static/admin.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".loader-wrapper").fadeOut("slow");
+        
+        $("form").submit(function(){
+            $(".loader-wrapper").fadeIn("slow");
+        });
+    });
+</script>
 </body>
 </html>
