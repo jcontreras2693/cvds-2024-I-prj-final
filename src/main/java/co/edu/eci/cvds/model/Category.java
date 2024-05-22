@@ -12,7 +12,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CATEGORY_ID")
-    private int categoryId;
+    private Integer categoryId;
 
     @Column(name = "CATEGORY_NAME", nullable = false)
     private String name;
@@ -29,7 +29,7 @@ public class Category {
         this.items = new ArrayList<Item>();
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 

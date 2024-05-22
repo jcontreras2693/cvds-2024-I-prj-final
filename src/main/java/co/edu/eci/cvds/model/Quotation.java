@@ -27,6 +27,9 @@ public class Quotation {
     @Column(name = "SUBTOTAL", nullable = false)
     private Double subtotal;
 
+    @Column(name = "TAXES", nullable = false)
+    private Double taxes;
+
     @Column(name = "TOTAL", nullable = false)
     private Double total;
 
@@ -43,6 +46,7 @@ public class Quotation {
         this.status = QuotationStatus.CREADO;
         this.total = 0.0;
         this.subtotal = 0.0;
+        this.taxes = 0.0;
         this.quotationItems = new ArrayList<Item>();
     }
 
@@ -82,6 +86,14 @@ public class Quotation {
         this.subtotal = subtotal;
     }
 
+    public Double getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(Double taxes) {
+        this.taxes = taxes;
+    }
+
     public void updateStatus(QuotationStatus status){
         this.status = status;
     }
@@ -90,8 +102,8 @@ public class Quotation {
         quotationItems.add(item);
     }
 
-    public void deleteItem(Item item){
-        quotationItems.remove(item);
+    public void deleteItem(int index){
+        quotationItems.remove(index);
     }
 
     public List<Item> getItems(){

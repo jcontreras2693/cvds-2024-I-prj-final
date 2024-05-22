@@ -30,26 +30,27 @@ public class CategoryController {
 //    }
 
     @GetMapping("/getAllCategories")
-    public String getAllCategories(@ModelAttribute("vehicle") Vehicle vehicle, @ModelAttribute("categoryId") Integer categoryId,
+    public String getAllCategories(@ModelAttribute("vehicle") Vehicle vehicle, @ModelAttribute("category") Category category,
                                    @ModelAttribute("quotation") Quotation quotation,
                                    Model model, RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("quotation", quotation);
         redirectAttributes.addFlashAttribute("vehicle", vehicle);
-        categoryId = (categoryId == null) ? 1 : categoryId;
+        Integer categoryId = (category.getCategoryId() == null) ? 1 : category.getCategoryId();
         redirectAttributes.addFlashAttribute("categoryId", categoryId);
         redirectAttributes.addFlashAttribute("categories", categoryService.getAllCategories());
-        return "redirect:/item/";
+        return "redirect:/quotation/getQuotation";
     }
 
-    @PostMapping("/getAllCategories")
-    public String getAllCategoriesPost(Vehicle vehicle, Integer categoryId, Quotation quotation, Model model,
-                                       RedirectAttributes redirectAttributes){
-        redirectAttributes.addFlashAttribute("quotation", quotation);
-        redirectAttributes.addFlashAttribute("vehicle", vehicle);
-        redirectAttributes.addFlashAttribute("categoryId", categoryId);
-        redirectAttributes.addFlashAttribute("categories", categoryService.getAllCategories());
-        return "redirect:/item/";
-    }
+//    @PostMapping("/getAllCategories")
+//    public String getAllCategoriesPost(@ModelAttribute("vehicle") Vehicle vehicle, @ModelAttribute("category") Category category,
+//                                       @ModelAttribute("quotation") Quotation quotation, Model model,
+//                                       RedirectAttributes redirectAttributes){
+//        redirectAttributes.addFlashAttribute("quotation", quotation);
+//        redirectAttributes.addFlashAttribute("vehicle", vehicle);
+//        redirectAttributes.addFlashAttribute("categoryId", category.getCategoryId());
+//        redirectAttributes.addFlashAttribute("categories", categoryService.getAllCategories());
+//        return "redirect:/item/";
+//    }
 
     @PostMapping("/putCategory")
     public String addCategory(@RequestBody Category category, Model model){
