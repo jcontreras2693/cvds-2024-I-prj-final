@@ -37,7 +37,7 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public void updateItem(Item item) throws ServiceException {
+    public void updateItem(Item item) throws ServiceException, NullPointerException {
         Item update = getItem(item.getItemId());
         update.setName(item.getName());
         update.setShortDescription(item.getShortDescription());

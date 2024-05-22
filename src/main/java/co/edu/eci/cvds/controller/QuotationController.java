@@ -122,7 +122,7 @@ public class QuotationController {
     }
 
     @PostMapping("/updateStatus")
-    public void updateStatus(@RequestBody Quotation quotation, @RequestBody QuotationStatus status, Model model){
+    public void updateStatus(@RequestBody Quotation quotation, @RequestBody String status, Model model){
         quotationService.updateStatus(quotation, status);
         model.addAttribute("quotation", quotation);
     }
@@ -132,7 +132,7 @@ public class QuotationController {
                                    @ModelAttribute("item") Item item, @ModelAttribute("categoryId") String categoryId,
                                    Model model, RedirectAttributes redirectAttributes){
         try {
-            quotationService.updateStatus(quotation.getQuotationId(), QuotationStatus.EN_PROCESO);
+            quotationService.updateStatus(quotation.getQuotationId(), "EN_PROCESO");
             redirectAttributes.addFlashAttribute("quotation", quotationService.getQuotation(quotation.getQuotationId()));
             redirectAttributes.addFlashAttribute("vehicle", vehicle);
             redirectAttributes.addFlashAttribute("item", item);
@@ -206,5 +206,14 @@ public class QuotationController {
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/quotationFinished")
+    public String quotationFinish(@ModelAttribute("quotation") Quotation quotation, @ModelAttribute("vehicle") Vehicle vehicle,
+                                  Model model){
+        quotationService.updateStatus(quotation, "FINALIZADO");
+        model.addAttribute("quotation", quotation);
+        model.addAttribute("vehicle", vehicle);
+        return "imprimir";
     }
 }

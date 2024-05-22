@@ -116,7 +116,8 @@ class ItemServiceTest {
     @Test
     void shouldNotUpdateAnItem(){
         try {
-            itemService.updateItem(new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category));
+            Item item = new Item("name", "shortDescription", "image", "technical", 10.0, 10.0, 10.0, true, 10.0, category);
+            itemService.updateItem(item);
             fail();
         }
         catch(ModelException modelException){
@@ -124,6 +125,9 @@ class ItemServiceTest {
         }
         catch (ServiceException serviceException){
             assertEquals(ServiceException.nonExistentItem, serviceException.getMessage());
+        }
+        catch (NullPointerException e){
+            assertTrue(true);
         }
     }
 

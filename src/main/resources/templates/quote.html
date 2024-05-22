@@ -141,31 +141,9 @@
                                     </button>
                                 </form>
                             </div>
-                        <!-- <div class="item"> <!-- ejemplo servicio agregado al carrito 
-                            <div class="item-icon">
-                                <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-aceite.png}" alt="" >
-                            </div>
-                            <div class="item-description">Cambio de Correa de Repartición</div>
-                            <div class="item-price">$50.000</div>
-                            <button class="item-delete">
-                                <img th:src="@{/images\servicios\delete.png}" alt="" >
-                            </button>
-                        </div>
-                        <div class="item">
-                            <div class="item-icon">
-                                <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-amortiguador.png}" alt="" >
-                            </div>
-                            <div class="item-description">Cambio de Amortiguadores</div>
-                            <div class="item-price">$50.000</div>
-                            <button class="item-delete">
-                                <img th:src="@{/images\servicios\delete.png}" alt="" >
-                            </button>
-                        </div> -->
-                    
                 </div>
                 <div class="subtotal">
                     <div id="subtotal-text">Subtotal</div>
-                    <!--<div id="subtotal-items">$50.000</div>-->
                     <div id="subtotal-items" th:text="${quotation.getSubtotal()}"></div>
                 </div>
                 
@@ -173,24 +151,38 @@
                     <div id="taxes-text">Impuestos</div>
                     <div id="taxes-grid">
                         <div id="tax">IVA</div>
-                        <!--<div id="tax-per-item" th:text="${quotation.getTaxes()}">$20.000</div>-->
                         <div id="tax-per-item" th:text="${quotation.getTaxes()}"></div>
                     </div>
                 </div>
 
                 <div class="total">
                     <div id="total-text">Total</div>
-                    <!--<div id="total-count" th:text="${quotation.getTotal()}">$120.000</div>-->
                     <div id="total-count" th:text="${quotation.getTotal()}"></div>
                 </div>
                 <div id="finish">
-                    <button id="finish-button">CONTINUAR</button>
+                    <form th:action="@{'/quotation/quotationFinished'}" method="get">
+
+                        <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
+                        <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
+                        <input type="hidden" id="modelVehicle" name="model" th:value="${vehicle.getModel()}">
+                        <input type="hidden" id="year" name="year" th:value="${vehicle.getYear()}">
+                        <input type="hidden" id="cylinder" name="cylinderCapacity" th:value="${vehicle.getCylinderCapacity()}">
+
+                        <input type="hidden" id="quotationId" name="quotationId" th:value="${quotation.getQuotationId()}">
+                        <input type="hidden" id="creationDate" name="creationDate" th:value="${quotation.getCreationDate()}">
+                        <input type="hidden" id="status" name="status" th:value="${quotation.getStatus()}">
+                        <input type="hidden" id="total" name="total" th:value="${quotation.getTotal()}">
+                        <input type="hidden" id="subtotal" name="subtotal" th:value="${quotation.getSubtotal()}">
+                        <input type="hidden" id="taxes" name="taxes" th:value="${quotation.getTaxes()}">
+                        <input type="hidden" id="quotationItems" name="quotationItems" th:value="${quotation.getItems()}">
+
+                        <button id="finish-button" type="submit">CONTINUAR</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <script th:src="@{/static/js/categoryCode.js}"></script>
-    <!--<script th:src="@{/static/js/shopping-cart.js}"></script>-->
 
 </body>
 </html>
