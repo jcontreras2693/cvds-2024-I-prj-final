@@ -44,7 +44,7 @@ body {
 .text-contenido{
     font-family: 'Conamore Bold', sans-serif;
     font-size: 2.5vw;
-    color: #000000
+    color: #000000;
     text-align: left;
     letter-spacing: 2px;
     padding-top: 2vh;
@@ -136,7 +136,7 @@ sublabel {
     box-shadow: 0px 0px 15px #000000;
     align-items: center;
     justify-content: center;
-   }
+}
 
 .price {
     flex: 1;
@@ -155,7 +155,7 @@ sublabel {
 
 .date {
     flex: 1;
-    bottom: 0
+    bottom: 0;
     text-align: right;
     padding-left: 1vw;
     padding-top: 1.4vh;
