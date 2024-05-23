@@ -44,15 +44,17 @@
                         <div class="service-type-text" th:text="${item.getName()}"></div>
                         <div class="price-add">
                             <div class="price" th:text="${item.getValue()}"></div>
-                            <button class="add" type="submit">
-                                <img th:src="@{/static/images/servicios/add.png}" alt="add">
-                            </button>
+                            <form id="crudForm" th:action="@{'/item/update'}" method="get">
+                                <input type="hidden" id="itemId" name="itemId" th:value="${item.itemId}">
+                                <button class="add" type="submit">
+                                    <img th:src="@{/static/images/servicios/add.png}" alt="add">
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <script th:src="@{/static/js/admin.js}"></script>
     </body>
 </html>
