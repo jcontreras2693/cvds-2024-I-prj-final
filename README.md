@@ -1,7 +1,7 @@
 # PROYECTO FINAL - CICLO DE VIDA DEL DESARROLLO DE SOFTWARE
 
 # CONDICIONES DE ENTREGA:
-## Nombre del proyecto: 
+## Nombre del proyecto: Top Solution
 
 - **Período Académico**
   - 7 Semestre
@@ -52,16 +52,19 @@ Este cotizador se puede utilizar para cualquier propósito, esta vez se usó en 
 ![Eliminar Servicio](src/main/resources/static/images/readme/webpage/deleteService.png)
 ![Resumen Cotización](src/main/resources/static/images/readme/webpage/quotation.png)
   - Impresión de la cotización realizada.
-
+![Impresión Cotización](src/main/resources/static/images/readme/webpage/print.png)
   - Contacto con asesor para continuar con el proceso.
-
+![Contacto Asesor](src/main/resources/static/images/readme/webpage/message.png)
 - Módulo Privado
   - Login de acceso para el administrador.
 ![Login](src/main/resources/static/images/readme/webpage/login.png)
   - Visualización y detalle de las cotizaciones vigentes.
 ![Visualizar cotizaciones](src/main/resources/static/images/readme/webpage/.png)
   - Módulo CRUD para los servicios.
-![CRUD Servicios](src/main/resources/static/images/readme/webpage/.png)
+![CRUD Servicios](src/main/resources/static/images/readme/webpage/read.png)
+![CRUD Servicios](src/main/resources/static/images/readme/webpage/create.png)
+![CRUD Servicios](src/main/resources/static/images/readme/webpage/update.png)
+![CRUD Servicios](src/main/resources/static/images/readme/webpage/delete.png)
 
 ## Arquitectura y Diseño detallado:
  - Modelo E-R.
@@ -97,7 +100,16 @@ Para este proyecto se usaron las siguientes tecnologías:
 ## Descripción del proceso:
  - Breve descripción de la Metodología.
 
-    La metodología que usamos fue la metodología SCRUM en ella 
+La metodología que usamos fue la metodología SCRUM en ella se dividen distintos roles a lo largo del equipo en donde el Product Owner
+se reúne periódicamente con el cliente para conocer su opinión sobre lo que se lleva realizado del producto, el Scrum Master que 
+apoya a los developers en caso de que a estos se les presente alguna dificultad y los desarrolladores que se encargan de dar funcionamiento
+a la aplicación. Esta metodología divide las tareas a realizar para completar el proyecto final en historias de usuario de las que cada
+desarrollador se puede encargar para poco a poco ir completando la aplicación antes de que finalice un Sprint, un periodo de tiempo en el que
+se desarrolla una funcionalidad al juntar todas las historias de usuario realizadas.
+
+La división de las tareas se puede encontrar adjunta en el Backlog, la repartición de los roles ya se mencionó anteriormente y se mantuvo una
+comunicación constante entre el equipo por la medio de la realización de daily meetings para conocer el progreso de cada uno, lo que ya había
+realizado y si este presentaba algún bloqueo.
 
  - Enlace al backlog de AzureDevops.
 
