@@ -91,14 +91,20 @@ public class    QuotationService {
         return calculateSubTotal(quotation);
     }
 
-    public void updateStatus(Quotation quotation, QuotationStatus status){
-        quotation.updateStatus(status);
+    public void updateStatus(Quotation quotation, String status){
+        if(status.equals("CREADO")) quotation.updateStatus(QuotationStatus.CREADO);
+        else if(status.equals("EN_PROCESO")) quotation.updateStatus(QuotationStatus.EN_PROCESO);
+        else if(status.equals("FINALIZADO")) quotation.updateStatus(QuotationStatus.FINALIZADO);
+        else if(status.equals("ELIMINADO")) quotation.updateStatus(QuotationStatus.ELIMINADO);
         quotationRepository.save(quotation);
     }
 
-    public void updateStatus(int id, QuotationStatus status) throws ServiceException {
+    public void updateStatus(int id, String status) throws ServiceException {
         Quotation quotation = getQuotation(id);
-        quotation.updateStatus(status);
+        if(status.equals("CREADO")) quotation.updateStatus(QuotationStatus.CREADO);
+        else if(status.equals("EN_PROCESO")) quotation.updateStatus(QuotationStatus.EN_PROCESO);
+        else if(status.equals("FINALIZADO")) quotation.updateStatus(QuotationStatus.FINALIZADO);
+        else if(status.equals("ELIMINADO")) quotation.updateStatus(QuotationStatus.ELIMINADO);
         quotationRepository.save(quotation);
     }
 

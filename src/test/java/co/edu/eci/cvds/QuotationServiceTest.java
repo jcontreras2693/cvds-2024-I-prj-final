@@ -270,7 +270,7 @@ class QuotationServiceTest {
     void shouldUpdateStatus(){
         Quotation quotation = new Quotation();
         quotationService.addQuotation(quotation);
-        quotationService.updateStatus(quotation, QuotationStatus.EN_PROCESO);
+        quotationService.updateStatus(quotation, "EN_PROCESO");
         assertEquals(QuotationStatus.EN_PROCESO, quotationService.getAllQuotation().get(0).getStatus());
     }
 
@@ -279,7 +279,7 @@ class QuotationServiceTest {
         Quotation quotation = new Quotation();
         quotationService.addQuotation(quotation);
         try {
-            quotationService.updateStatus(quotationService.getAllQuotation().get(0).getQuotationId(), QuotationStatus.EN_PROCESO);
+            quotationService.updateStatus(quotationService.getAllQuotation().get(0).getQuotationId(), "EN_PROCESO");
             assertEquals(QuotationStatus.EN_PROCESO, quotationService.getAllQuotation().get(0).getStatus());
         }
         catch (ServiceException serviceException){
@@ -290,7 +290,7 @@ class QuotationServiceTest {
     @Test
     void shouldNotUpdateStatusById(){
         try {
-            quotationService.updateStatus(0, QuotationStatus.EN_PROCESO);
+            quotationService.updateStatus(0, "EN_PROCESO");
             fail();
         }
         catch (ServiceException serviceException){
