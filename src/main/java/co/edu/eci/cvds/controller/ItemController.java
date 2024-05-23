@@ -6,6 +6,7 @@ import co.edu.eci.cvds.model.Category;
 import co.edu.eci.cvds.model.Item;
 import co.edu.eci.cvds.model.Quotation;
 import co.edu.eci.cvds.model.Vehicle;
+import co.edu.eci.cvds.service.CategoryService;
 import co.edu.eci.cvds.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,15 +20,23 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public ItemController(ItemService itemService){
+    public ItemController(ItemService itemService, CategoryService categoryService){
         this.itemService = itemService;
+        this.categoryService = categoryService;
+    }
+
+    @GetMapping("/add")
+    public String addI(){
+        return "new_service";
     }
 
     @PostMapping("/addItem")
-    public void addItem(@RequestBody Item item){
+    public String addItem(@ModelAttribute Item item){
         itemService.addItem(item);
+        return "redirect:/user/getQuotation";
     }
 
     @GetMapping("/getItem/{id}")
@@ -37,6 +46,13 @@ public class ItemController {
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @GetMapping("/update/{id}")
+    public String udpateItem(Model model, @PathVariable int id) throws ServiceException {
+        model.addAttribute("item", itemService.getItem(id));
+        model.addAttribute("categories",categoryService.getAllCategories());
+        return "update_service";
     }
 
     @GetMapping("/")
@@ -58,12 +74,13 @@ public class ItemController {
     }
 
     @PostMapping("/updateItem")
-    public void updateItem(@RequestBody Item item){
+    public String updateItem(@ModelAttribute Item item){
         try {
             itemService.updateItem(item);
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
+        return "redirect:/user/getQuotation";
     }
 
     @PostMapping("/deleteItem")
