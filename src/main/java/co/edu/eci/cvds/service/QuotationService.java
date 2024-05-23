@@ -136,4 +136,8 @@ public class    QuotationService {
         Quotation quotation = getQuotation(id);
         deleteItem(quotation, item);
     }
+
+    public List<Item> getItemsByQuotationId(Integer quotationId){
+        return quotationRepository.findItemsByQuotationId(quotationId);
+    }
 }
