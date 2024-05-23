@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,10 +40,18 @@ public class ItemController {
         return "redirect:/user/getQuotation";
     }
 
-    @GetMapping("/getItem/{id}")
-    public void getItem(@PathVariable int id, Model model) {
+    @GetMapping("/getItem/")
+    public String getItem(@ModelAttribute("quotation") Quotation quotation, @ModelAttribute("vehicle") Vehicle vehicle,
+                        @ModelAttribute("items") List<Integer> items, Model model) {
         try {
-            model.addAttribute("item", itemService.getItem(id));
+            ArrayList<Item> newItems = new ArrayList<>();
+            for(Integer i : items){
+                newItems.add(itemService.getItem(i));
+            }
+            model.addAttribute("quotation", quotation);
+            model.addAttribute("vehicle", vehicle);
+            model.addAttribute("items", newItems);
+            return "imprimir";
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }

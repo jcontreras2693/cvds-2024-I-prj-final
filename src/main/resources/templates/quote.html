@@ -69,7 +69,7 @@
                         <div class="info">
                             <div class="service-type-text" th:text="${item.getName()}"></div>
                             <div class="price-add">
-                                <div class="price" th:text="'$' + ${item.getValue()}"></div>
+                                <div class="price" th:text="'$ ' + ${item.getValue()}"></div>
                                 <form id="itemForm" th:action="@{'/quotation/updateStatusById'}" method="get">
                                     <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
                                     <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
@@ -116,7 +116,7 @@
                                     <img th:src="@{/images\servicios\mantenimiento-preventivo\cambio-amortiguador.png}" alt="" >
                                 </div>
                                 <div class="item-description" th:text="${item.getName()}"></div>
-                                <div class="item-price" th:text="'$' + ${item.getValue()}"></div>
+                                <div class="item-price" th:text="'$ ' + ${item.getValue()}"></div>
                                 <form id="deleteForm" th:action="@{'/quotation/deleteItemById'}" method="get">
                                     <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
                                     <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
@@ -144,20 +144,20 @@
                 </div>
                 <div class="subtotal">
                     <div id="subtotal-text">Subtotal</div>
-                    <div id="subtotal-items" th:text="${quotation.getSubtotal()}"></div>
+                    <div id="subtotal-items" th:text="'$ ' + ${quotation.getSubtotal()}"></div>
                 </div>
                 
                 <div class="taxes">
                     <div id="taxes-text">Impuestos</div>
                     <div id="taxes-grid">
                         <div id="tax">IVA</div>
-                        <div id="tax-per-item" th:text="${quotation.getTaxes()}"></div>
+                        <div id="tax-per-item" th:text="'$ ' + ${quotation.getTaxes()}"></div>
                     </div>
                 </div>
 
                 <div class="total">
                     <div id="total-text">Total</div>
-                    <div id="total-count" th:text="${quotation.getTotal()}"></div>
+                    <div id="total-count" th:text="'$ ' + ${quotation.getTotal()}"></div>
                 </div>
                 <div id="finish">
                     <form th:action="@{'/quotation/quotationFinished'}" method="get">
@@ -173,7 +173,8 @@
                         <input type="hidden" id="total" name="total" th:value="${quotation.getTotal()}">
                         <input type="hidden" id="subtotal" name="subtotal" th:value="${quotation.getSubtotal()}">
                         <input type="hidden" id="taxes" name="taxes" th:value="${quotation.getTaxes()}">
-                        <input type="hidden" id="quotationItems" name="quotationItems" th:value="${quotation.getItems()}">
+
+                        <input type="hidden" id="quotationItems" name="quotationItems" th:value="${#strings.arrayJoin(quotation.getItems().![itemId], ',')}" />
 
                         <button id="finish-button" type="submit">CONTINUAR</button>
                     </form>
