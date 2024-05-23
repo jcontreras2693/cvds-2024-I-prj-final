@@ -59,7 +59,7 @@ Este cotizador se puede utilizar para cualquier propósito, esta vez se usó en 
   - Login de acceso para el administrador.
 ![Login](src/main/resources/static/images/readme/webpage/login.png)
   - Visualización y detalle de las cotizaciones vigentes.
-![Visualizar cotizaciones](src/main/resources/static/images/readme/webpage/.png)
+![Visualizar cotizaciones](src/main/resources/static/images/readme/webpage/quotations.png)
   - Módulo CRUD para los servicios.
 ![CRUD Servicios](src/main/resources/static/images/readme/webpage/read.png)
 ![CRUD Servicios](src/main/resources/static/images/readme/webpage/create.png)
