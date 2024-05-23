@@ -48,8 +48,8 @@ public class ItemController {
         }
     }
 
-    @GetMapping("/update")
-    public String udpateItem(Model model, @ModelAttribute int id) throws ServiceException {
+    @PostMapping("/update")
+    public String udpateItem(Model model, @RequestParam(name="itemId") int id) throws ServiceException {
         model.addAttribute("item", itemService.getItem(id));
         model.addAttribute("categories",categoryService.getAllCategories());
         return "update_service";
