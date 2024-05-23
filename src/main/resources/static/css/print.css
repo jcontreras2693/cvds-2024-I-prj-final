@@ -70,6 +70,10 @@
     font-size: 3vh;
 }
 
+#registry-info{
+    padding-bottom: 10px;
+}
+
 #text-static-date{
     height: 7vh;
     font-family: 'Conamore Regular', sans-serif;
@@ -84,16 +88,137 @@
 }
 
 #user-info-container{
-    height: 9vh;
+    height: 6vh;
     display: flex;
-    flex-direction: column;
+    margin-left: 50px;
+    margin-right: 40px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid black;
+        
 }
 
 .user-info-boxes{
+    flex: 1;
     width: 20px;
-    display: flex;
+    font-size: 1.8vh;
     align-items: center;
+    margin-top: 15px;
 }
+
+.static-text{
+    font-family: 'Conamore Regular', sans-serif;
+    font-size: 1.5vh;
+}
+
+.user-text{
+    font-family: 'Conamore Light', sans-serif;
+    font-size: 1.5vh;
+}
+
+/* summary quote*/
+
+.summary-quote{
+    height: auto;
+    display: grid;
+}
+
+.subtitle{
+    padding-top: 18px;
+    padding-left: 50px;
+    font-family: 'Conamore Semi Bold', sans-serif;
+    font-size: 2vh;
+}
+
+#items{
+    padding-top: 10px;
+    height: auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    margin-left: 50px;
+    margin-right: 40px;
+}
+
+.item{
+    padding-left: 25px;
+    font-family: 'Conamore Regular', sans-serif;
+    font-size: 1.5vh;
+}
+.item-description{
+    padding-right: 15.5vw;
+}
+
+#subtotal{
+    padding-top: 15px;
+    height: auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    margin-left: 50px;
+    margin-right: 40px;
+    height: auto;
+}
+
+#subtitle{
+    padding-top: 10px;
+    font-family: 'Conamore Semi Bold', sans-serif;
+    font-size: 1.6vh;
+    padding-right: 24.6vw;
+}
+
+#subtotal-price{
+    font-family: 'Conamore Regular', sans-serif;
+    font-size: 1.5vh;
+    text-align: right;
+}
+
+
+.taxes{
+    padding-top: 15px;
+    height: auto;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    margin-left: 50px;
+    margin-right: 40px;height: auto;
+    
+}
+
+#tax{
+    padding-top: 10px;
+    height: auto;
+    margin-left: 25px;
+    margin-right: 40px;
+    font-family: 'Conamore Regular', sans-serif;
+    font-size: 1.5vh;
+}
+#tax-description{
+    padding-right: 25.3vw;
+}
+
+
+#total{
+    padding-top: 15px;
+    height: auto;
+    padding-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 40px;height: auto;
+}
+
+#subtitle-total{
+    padding-top: 15px;
+    font-family: 'Conamore Semi Bold', sans-serif;
+    font-size: 1.6vh;
+}
+
+#total-price{
+    font-family: 'Conamore Regular', sans-serif;
+    font-size: 1.5vh;
+    padding-left: 25.8vw;
+}
+
+
+
+
+
+
 
 .text {
     position: absolute;
