@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Administrador</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/print.css">
+</head>
+
+<body>
+<div class="container">
+    <h1 class="text"> Cotización </h1>
+    <div class="centered">
+        <div class="rectangle">
+            <div id="car-selected">Audi A3 2022</div>
+            <div id="registry-info">
+                <span id="text-static-date">Fecha: </span>
+                <span id="date"></span>
+            </div>
+            <div id="user-info-container">
+                <div class="user-info-boxes">
+                    <span class="static-text-name">Nombres:</span>
+                    <span id="name"></span>
+                </div>
+                <div class="user-info-boxes">
+                    <span class="static-text-phone">Celular:</span>
+                    <span id="phone"></span>
+                </div>
+                <div class="user-info-boxes">
+                    <span class="static-text-email">Correo:</span>
+                    <span id="email"></span>
+                </div>
+            </div>
+            <div class="summary-quote">
+                <span class="subtitle"></span>
+                <span class="item-quote"></span>
+            </div>
+            <div class="subtotal">
+                <span class="subtitle"></span>
+                <span id="subtotal-price"></span>
+            </div>
+            <div class="taxes">
+                <span class="subtitle"></span>
+                <span class="tax-name"></span>
+                <span class="tax-price"></span>
+            </div>
+            <div class="total">
+                <span class="subtitle"></span>
+                <span id="total-price"></span>
+            </div>
+            
+        </div>
+        
+    </div>
+    <div id="buttons">
+        <button id="print-button" class="quotation-finish-button" type="submit">Imprimir Cotización</button>
+        <button class="quotation-finish-button" type="submit">Contactar Asesor</button>
+    </div>              
+    <div class="loader-wrapper">
+        <img class="loader" th:src="@{/images/login/carro-deportivo.png}"></img>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".loader-wrapper").fadeOut("slow");
+        
+        $("form").submit(function(){
+            $(".loader-wrapper").fadeIn("slow");
+        });
+    });
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.getDate() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear();
+    const dateElement = document.getElementById('date');
+    dateElement.textContent += formattedDate;
+
+</script>
+</body>
+</html>
