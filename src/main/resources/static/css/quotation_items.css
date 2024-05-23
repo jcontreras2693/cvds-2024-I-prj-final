@@ -249,10 +249,13 @@
 .item-delete img{
     height: 2vh;
     width: auto;
+    cursor: pointer;
 }
 .item-delete:focus,
 .item-delete:active {
     transform: scale(1.02);
+    cursor: pointer;
+
 }
 .subtotal{
     display: grid;
@@ -336,7 +339,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 8vh /* Asegúrate de que el contenedor tenga una altura definida */
+    height: 8vh; /* Asegúrate de que el contenedor tenga una altura definida */
+    cursor: pointer;
+
+    
 }
 
 /* BOTON CONTINUAR */
@@ -354,6 +360,7 @@
     align-items: center;
     letter-spacing: 1px;
     font-size: 1.3vh;
+    cursor: pointer;
 }
 
 /* Fin carrito ------------------------ */
