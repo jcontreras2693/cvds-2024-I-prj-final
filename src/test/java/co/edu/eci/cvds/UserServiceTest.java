@@ -36,7 +36,7 @@ public class UserServiceTest{
         User user = new User("Juan", 123, 123456789, "juan@gmail.com", "pswd");
         userService.addUser(user);
         try {
-            User check = userService.getUser(1);
+            User check = userService.getUser(userService.getAllUsers().get(0).getUserId());
             System.out.println(check.getPassword());
             assertTrue(check.checkPassword("pswd"));
         } catch (UserException e) {
