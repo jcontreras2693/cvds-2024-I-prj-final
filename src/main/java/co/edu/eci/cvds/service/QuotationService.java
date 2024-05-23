@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class    QuotationService {
+public class        QuotationService {
 
     private final QuotationRepository quotationRepository;
 
@@ -136,8 +136,5 @@ public class    QuotationService {
         Quotation quotation = getQuotation(id);
         deleteItem(quotation, item);
     }
-
-    public List<Item> getItemsByQuotationId(Integer quotationId){
-        return quotationRepository.findItemsByQuotationId(quotationId);
-    }
+    
 }
