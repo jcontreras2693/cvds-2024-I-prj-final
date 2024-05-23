@@ -16,8 +16,8 @@
             <div id="car-selected" th:text="${vehicle.getBrand() + ' ' + vehicle.getModel() + ' ' + vehicle.getYear()}"></div>
             <div id="quotationid" th:value="${quotation.getQuotationId()}"></div>
             <div id="registry-info">
-                <span id="text-static-date" th:text="'Fecha: ' + ${quotation.getCreationDate()}"></span>
-                <!--<span id="date"></span>-->
+                <span id="text-static-date" >Fecha: </span>
+                <span id="date" th:text="${quotation.getCreationDate()}"></span>
             </div>
             <div id="user-info-container">
                 <div class="user-info-boxes">
@@ -35,8 +35,8 @@
             </div>
             <div class="summary-quote">
                 <span class="subtitle">Servicios</span>
-                <div id="items" th:each="item : ${items}">
-                    <div class="item">
+                <div id="items" >
+                    <div class="item" th:each="item : ${items}">
                         <span class="item-description" th:text="${item.getName()}"></span>
                         <span class="item-price" th:text="'$ ' + ${item.getValue()}"></span>
                     </div>
@@ -50,7 +50,7 @@
                 <span id="subtitle">Impuestos</span>
                 <div id="tax">
                     <span id="tax-description">IVA</span>
-                    <span class="item-price" th:text="'$ ' + ${quotation.getTaxes()}"></span>
+                    <span id="tax-price" th:text="'$ ' + ${quotation.getTaxes()}"></span>
                 </div>   
             </div>
             <div id="total">
@@ -62,7 +62,7 @@
         
     </div>
     <div id="buttons">
-        <button id="print-button" class="quotation-finish-button" type='button' onclick='handlePrint()'>Imprimir Cotización</button>
+        <a id="print-button" class="quotation-finish-button" type='button' onclick='handlePrint()'>Imprimir Cotización</a>
         <a class="quotation-finish-button" href="https://wa.me/573502847357/?text=Quiero%20realizar%20una%20cotizacion" >Contactar Asesor</a>
     </div>              
     <div class="loader-wrapper">

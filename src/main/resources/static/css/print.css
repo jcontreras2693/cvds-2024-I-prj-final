@@ -55,10 +55,12 @@
 /*Contenedor más grande*/
 .rectangle {
     width: 50vw;
-    height: 60vh;
+    height: auto;
     background-color: #D9D9D9;
     box-shadow: 0px 0px 15px #000000; /* sombra*/
     border-radius: 16px; /* Bordes redondeados */
+    box-sizing: border-box;
+    overflow: auto;
 }
 
 #car-selected{ /* listo */
@@ -134,23 +136,31 @@
     height: auto;
     padding-bottom: 20px;
     border-bottom: 1px solid black;
-    margin-left: 50px;
+    margin-left:45px;
     margin-right: 40px;
 }
 
 .item{
+    display: flex;
     padding-left: 25px;
     font-family: 'Conamore Regular', sans-serif;
     font-size: 1.5vh;
 }
 .item-description{
-    padding-right: 15.5vw;
+    flex: 1;
+    text-align: left;
+}
+.item-price{
+    flex: 1;
+    text-align: right;
+
 }
 
 #subtotal{
+    display: flex;
     padding-top: 15px;
     height: auto;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     border-bottom: 1px solid black;
     margin-left: 50px;
     margin-right: 40px;
@@ -158,18 +168,17 @@
 }
 
 #subtitle{
-    padding-top: 10px;
+    flex: 1;
     font-family: 'Conamore Semi Bold', sans-serif;
     font-size: 1.6vh;
-    padding-right: 24.6vw;
 }
 
 #subtotal-price{
+    flex: 1;
     font-family: 'Conamore Regular', sans-serif;
     font-size: 1.5vh;
     text-align: right;
 }
-
 
 .taxes{
     padding-top: 15px;
@@ -177,24 +186,26 @@
     padding-bottom: 20px;
     border-bottom: 1px solid black;
     margin-left: 50px;
-    margin-right: 40px;height: auto;
-    
+    margin-right: 40px;
+    height: auto;
 }
 
 #tax{
-    padding-top: 10px;
+    display: flex;
     height: auto;
-    margin-left: 25px;
-    margin-right: 40px;
     font-family: 'Conamore Regular', sans-serif;
     font-size: 1.5vh;
 }
 #tax-description{
-    padding-right: 25.3vw;
+    flex: 1;
+}
+#tax-price{
+    flex: 1;
+    text-align: right;
 }
 
-
 #total{
+    display: flex;
     padding-top: 15px;
     height: auto;
     padding-bottom: 20px;
@@ -203,15 +214,18 @@
 }
 
 #subtitle-total{
+    flex: 1;
     padding-top: 15px;
     font-family: 'Conamore Semi Bold', sans-serif;
     font-size: 1.6vh;
 }
 
 #total-price{
+    flex: 1;
     font-family: 'Conamore Regular', sans-serif;
     font-size: 1.5vh;
     padding-left: 25.8vw;
+    text-align: right;
 }
 
 
@@ -233,7 +247,7 @@
     letter-spacing: 1px;
 }
 
-#buttons {
+#buttons{
     display: flex;
     flex-direction: row;
     height: 20vh;
@@ -251,9 +265,14 @@
     box-shadow: 0px 0px 20px #050709ef;
     font-size: 1.5vh;
     margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-.quotation-finish-button:hover{
+.quotation-finish-button:hover {
     background-color: #FFCF28;
 }
 
