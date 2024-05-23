@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal del Administrador</title>
-    <link rel="stylesheet" href="../static/css/admin_interface.css">
+    <link rel="stylesheet" href="../static/css/admin_item.css">
 
 </head>
 <body>
@@ -28,20 +28,21 @@
     <div class="services-grid">
         <div class="cajas" th:each="item : ${items}">
             <div class="image">
-                <img th:src="@{'/static/images/servicios/' + ${categoria} + '/' + ${servicio} + '.png'}" >
-                <div th:text="${servicio}"></div>
+                <img th:id="'img-' + ${item.getName()}" data-category="${category.name}" alt="Imagen de servicio">
             </div>
             <div class="info">
                 <div class="service-type-text" th:text="${item.getName()}"></div>
                 <div class="price-add">
                     <div class="price" th:text="${item.getValue()}"></div>
-                    <a class="add">
+                    <button class="add" type="submit">
                         <img th:src="@{/static/images/servicios/add.png}" alt="add">
-                    </a>
+                    </button>
                 </div>
             </div>
+        </div>
     </div>
 </div>
+
 <script src="../static/admin.js"></script>
 </body>
 </html>
