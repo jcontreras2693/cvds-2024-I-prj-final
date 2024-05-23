@@ -46,14 +46,13 @@ body {
     font-family: 'Conamore Bold', sans-serif;
     font-size: 3.5vw; /* Ajusta el tamaño de fuente */
     color: #000000;
-    text-align: center; /* Centra el texto horizontalmente */
+    text-align: left; /* Centra el texto horizontalmente */
     letter-spacing: 2px;
     padding: 2vh 0; /* Ajusta el relleno superior e inferior */
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
 }
-
 
 .picture {
     position: center;
@@ -110,7 +109,6 @@ sublabel {
 
 /*
 .services-grid {
-
     top: 7vw;
    /* Ajusta el margen izquierdo para que coincida con el ancho del menú lateral
     width: calc(100vw - 20vw); /* Ocupa el ancho restante de la ventana después del menú lateral
