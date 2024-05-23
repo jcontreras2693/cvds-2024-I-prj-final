@@ -215,6 +215,16 @@
     text-align: center;
 }
 
+.add-product-button .admin-choice {
+    padding: 10px 20px; /* Tamaño del botón */
+    font-size: 16px; /* Tamaño del texto del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    background-color: #007BFF; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
 .price-add {
     display: flex;
     flex-direction: row; /* Alinea los elementos en fila */

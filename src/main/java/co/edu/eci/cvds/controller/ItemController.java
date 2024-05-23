@@ -31,6 +31,9 @@ public class ItemController {
 
     @GetMapping("/add")
     public String addI(){
+        if (!LoginController.isLogin()){
+            return "redirect:/login/test";
+        }
         return "new_service";
     }
 
@@ -64,6 +67,11 @@ public class ItemController {
         return "update_service";
     }
 
+    @GetMapping("/update")
+    public String updateItem(){
+        return "redirect:/login/correct";
+    }
+
     @GetMapping("/")
     public String getItemsByCategoryIdAndVehicleId(@ModelAttribute("vehicle") Vehicle vehicle, @ModelAttribute("categoryId") Integer categoryId,
                                                    @ModelAttribute("quotation") Quotation quotation, @ModelAttribute("categories") List<Category> categories,
@@ -79,6 +87,9 @@ public class ItemController {
     @GetMapping("/getAllItems")
     public String getAllItems(Model model){
         model.addAttribute("items", itemService.getAllItems());
+        if (!LoginController.isLogin()){
+            return "redirect:/login/test";
+        }
         return "admin_items";
     }
 
@@ -89,6 +100,9 @@ public class ItemController {
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
+        if (!LoginController.isLogin()){
+            return "redirect:/login/test";
+        }
         return "redirect:/user/getQuotation";
     }
 
@@ -97,13 +111,14 @@ public class ItemController {
         itemService.deleteItem(item);
     }
 
-    @PostMapping("/deleteItemById/{id}")
-    public void deleteItemById(@PathVariable int id){
+    @PostMapping("/deleteItemById")
+    public String deleteItemById(@RequestParam(name="itemId") int id){
         try {
             itemService.deleteItem(id);
         } catch (ServiceException e) {
             throw new RuntimeException(e);
         }
+        return "admin_items";
     }
 
     @GetMapping("/getSubTotal")

@@ -40,31 +40,31 @@
 
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="name">Name:</label>
+                                    <label for="name">Nombre:</label>
                                     <input type="text" id="name" name="name" th:value="${item.name}" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="shortDescription">Short Description:</label>
+                                    <label for="shortDescription">Descripcion corta:</label>
                                     <input type="text" id="shortDescription" name="shortDescription" th:value="${item.shortDescription}" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="technicalDescription">Technical Description:</label>
+                                    <label for="technicalDescription">Descripcion tecnica:</label>
                                     <input type="text" id="technicalDescription" name="technicalDescription" th:value="${item.technicalDescription}" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="image">Image URL:</label>
+                                    <label for="image">Imagen:</label>
                                     <input type="text" id="image" name="image" th:value="${item.image}" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="value">Value:</label>
+                                    <label for="value">Valor:</label>
                                     <input type="number" id="value" name="value" step="0.01" th:value="${item.value}" required>
                                 </div>
                             </div>
@@ -76,28 +76,28 @@
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="discount">Discount (%):</label>
+                                    <label for="discount">Descuento (%):</label>
                                     <input type="number" id="discount" name="discount" step="0.01" th:value="${item.discount}" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="tax">Tax (%):</label>
+                                    <label for="tax">Impuestos (%):</label>
                                     <input type="number" id="tax" name="tax" step="0.01" th:value="${item.tax}" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="availability">Availability:</label>
+                                    <label for="availability">Disponibilidad:</label>
                                     <select id="availability" name="availability" th:value="${item.availability}" required>
-                                        <option value="true" th:selected="${item.availability == 'true'}">Available</option>
-                                        <option value="false" th:selected="${item.availability == 'false'}">Unavailable</option>
+                                        <option value="true" th:selected="${item.availability == 'true'}">Disponible</option>
+                                        <option value="false" th:selected="${item.availability == 'false'}">No disponible</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="service-type-text">
-                                    <label for="category">Category:</label>
+                                    <label for="category">Categoria:</label>
                                     <select id="category" name="category" th:value="${item.category}" required>
                                         <option value="1" th:selected="${item.category == 1}">Mantenimiento preventivo</option>
                                         <option value="2" th:selected="${item.category == 2}">Reparación y reemplazo de piezas</option>
@@ -112,6 +112,15 @@
                                 </button>
                             </div>
                         </div>
+                    </form>
+
+                    <form action="/item/deleteItemById" method="POST">
+                        <div class="service-type-text">
+                        <input type="hidden" id="itemId" name="itemId" th:value="${item.itemId}">
+                        </div>
+                        <button type="submit">
+                            <img src="update-icon.png" alt="Eliminar">
+                        </button>
                     </form>
 
                 </div>
