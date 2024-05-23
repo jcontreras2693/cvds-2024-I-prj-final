@@ -108,7 +108,7 @@
                     </button>
                 <div id="main-text-cart">Tu Carrito</div>
             </div>
-            <div id="info-cart">
+            <div class="info-cart" id="items-quotation">
                 <div class="services-items">
                         <div id="services-text">Servicios</div>
                             <div class="item" th:each="item : ${quotation.getItems()}">
@@ -161,7 +161,6 @@
                 </div>
                 <div id="finish">
                     <form th:action="@{'/quotation/quotationFinished'}" method="get">
-
                         <input type="hidden" id="vehicleId" name="vehicleId" th:value="${vehicle.getVehicleId()}">
                         <input type="hidden" id="brand" name="brand" th:value="${vehicle.getBrand()}">
                         <input type="hidden" id="modelVehicle" name="model" th:value="${vehicle.getModel()}">
@@ -178,6 +177,18 @@
 
                         <button id="finish-button" type="submit">CONTINUAR</button>
                     </form>
+                </div>
+            </div>
+            <div id="quotation-content" class="info-cart" style="display: none;">
+                <div class="header-cart">
+                    <button id="close-button-quotation">
+                        <img src="/images/servicios/close.png" alt="">
+                    </button>
+                    <div id="main-text-cart">Cotización</div>
+                </div>
+                <div id="buttons">
+                    <button id="buttonPrint">Imprimir Cotización</button>
+                    <button id="buttonWhatsapp">Contactar un Asesor</button>
                 </div>
             </div>
         </div>
