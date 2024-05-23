@@ -27,7 +27,7 @@
     <div class="text-contenido">Cotizaciones</div>
     <div class="services-grid">
         <div th:each="quotation : ${quotations}" class="cajas">
-            <div>
+            <div class="price">
                 <span th:text="${quotation.total}"></span>
             </div>
            <!-- <div>
